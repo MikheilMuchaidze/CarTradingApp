@@ -212,13 +212,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="brain.head.profile" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4pV-ks-gl0">
-                                <rect key="frame" x="361.66666666666669" y="42.333333333333314" width="46.333333333333314" height="49.666666666666686"/>
+                                <rect key="frame" x="361.66666666666669" y="52.333333333333314" width="46.333333333333314" height="49.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4pV-ks-gl0" secondAttribute="height" multiplier="1:1" id="z0a-K2-ZM6"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Yw4-mR-lai">
-                                <rect key="frame" x="20.000000000000004" y="46" width="46.333333333333343" height="42.666666666666671"/>
+                                <rect key="frame" x="20.000000000000004" y="56" width="46.333333333333343" height="42.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yw4-mR-lai" secondAttribute="height" multiplier="1:1" id="KnY-Hv-iax"/>
                                 </constraints>
@@ -227,11 +227,11 @@
                         <viewLayoutGuide key="safeArea" id="j3s-b4-Fwx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Yw4-mR-lai" firstAttribute="top" secondItem="j3s-b4-Fwx" secondAttribute="top" id="6hu-zr-rvx"/>
+                            <constraint firstItem="Yw4-mR-lai" firstAttribute="top" secondItem="j3s-b4-Fwx" secondAttribute="top" constant="10" id="6hu-zr-rvx"/>
                             <constraint firstItem="4pV-ks-gl0" firstAttribute="height" secondItem="WKC-l2-Gk0" secondAttribute="height" multiplier="0.05" id="KAb-VO-14N"/>
                             <constraint firstItem="Yw4-mR-lai" firstAttribute="leading" secondItem="j3s-b4-Fwx" secondAttribute="leading" constant="20" id="Ryk-DY-qb1"/>
                             <constraint firstItem="j3s-b4-Fwx" firstAttribute="trailing" secondItem="4pV-ks-gl0" secondAttribute="trailing" constant="20" id="gmf-M6-FqU"/>
-                            <constraint firstItem="4pV-ks-gl0" firstAttribute="top" secondItem="j3s-b4-Fwx" secondAttribute="top" id="ssH-PR-7iV"/>
+                            <constraint firstItem="4pV-ks-gl0" firstAttribute="top" secondItem="j3s-b4-Fwx" secondAttribute="top" constant="10" id="ssH-PR-7iV"/>
                             <constraint firstItem="Yw4-mR-lai" firstAttribute="height" secondItem="WKC-l2-Gk0" secondAttribute="height" multiplier="0.05" id="tQw-zm-Wbf"/>
                         </constraints>
                     </view>

@@ -14,3 +14,13 @@ extension UIViewController {
     }
 }
 
+//alert popup function for all UIViewControllers presented and created
+extension UIViewController {
+    func alertPopUp(title: String, message: String, okTitle: String) {
+        let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: okTitle, style: UIAlertAction.Style.default, handler: nil)
+        alertmassege.addAction(okAction)
+        self.present(alertmassege, animated: true)
+    }
+    
+}

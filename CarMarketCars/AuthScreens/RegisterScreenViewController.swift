@@ -1,4 +1,6 @@
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class RegisterScreenViewController: UIViewController {
     
@@ -11,6 +13,7 @@ class RegisterScreenViewController: UIViewController {
 
     }
     
+    //clear all fields
     @IBAction func resetAllFields(_ sender: Any) {
         let allTxtFields = [UserEmailTxt, UserPasswordTxt, UserRepeatPassTxt]
         allTxtFields.forEach { elem in
@@ -21,7 +24,17 @@ class RegisterScreenViewController: UIViewController {
     
     @IBAction func signUpBtn(_ sender: Any) {
         
+        if validateIfEmpty() == true &&
+            validateIfPasswordMatch() == true &&
+            validateIfPassword(str: UserPasswordTxt.text!) == true &&
+            validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
+            
+            print("wohoo from sign up")
+        }
+        
+        
     }
     
     
 }
+
