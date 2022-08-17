@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>963275422781-he81l4un3a68adek8ngtr4pipal2i3it.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.963275422781-he81l4un3a68adek8ngtr4pipal2i3it</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDK7BG47sYOvIZQkuaNrqK-7lMDdDlpGpw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>963275422781</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ge.Mikheil-Muchaidze.CarMarketCars</string>
+	<key>PROJECT_ID</key>
+	<string>carmarketproject-ios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carmarketproject-ios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:963275422781:ios:d84771ad9526da3ab83e54</string>
+</dict>
+</plist>
