@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import FirebaseAuth
 
 //registration validation functions
 extension RegisterScreenViewController {

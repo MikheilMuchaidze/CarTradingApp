@@ -2,21 +2,20 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class MainCarsListViewController: UIViewController {
+class UserDetailsViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     
-    @IBOutlet weak var activeUserLbl: UILabel!
+    @IBOutlet weak var UserImageImage: UIImageView!
     
-    @IBOutlet weak var goBackActionImage: UIImageView!
-    @IBOutlet weak var userDetailsImage: UIImageView!
+    @IBOutlet weak var UserNameLbl: UILabel!
+    @IBOutlet weak var UserSurnameLbl: UILabel!
+    @IBOutlet weak var UserEmailLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addTapToGoBackToImage(image: goBackActionImage)
-        addTapToGoToDetailsToImage(image: userDetailsImage)
-
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,30 +23,19 @@ class MainCarsListViewController: UIViewController {
             if user == nil {
                 print("no user please sign in or register")
             } else {
-                self.activeUserLbl.text = user?.email
+                self.UserNameLbl.text = user?.displayName
+                self.UserSurnameLbl.text = user?.displayName
+                self.UserEmailLbl.text = user?.email
             }
             print("addStateDidChangeListener - MainCarsListViewController")
         })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError {
-            print(signOutError.localizedDescription)
-        }
         
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
         print("removeStateDidChangeListener - MainCarsListViewController")
     }
     
-    
-    
-
 }
-
-
-
-
-

@@ -1,9 +1,11 @@
-import Foundation
+import Firebase
+import FirebaseAuth
 import UIKit
 
 extension UIViewController {
+    
     //funcion for add back option to image
-    func addTapToGoBacktImage(image: UIImageView) {
+    func addTapToGoBackToImage(image: UIImageView) {
         image.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToGoBack))
         image.addGestureRecognizer(tapGesture)
@@ -11,6 +13,19 @@ extension UIViewController {
     
     @objc func tapToGoBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //funcion for presenting view to image
+    func addTapToGoToDetailsToImage(image: UIImageView) {
+        image.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToGoToDetails))
+        image.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tapToGoToDetails() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "UserDetailsViewController")
+        guard let vc = vc else { return }
+        self.present(vc, animated: true)
     }
 }
 
