@@ -1,5 +1,7 @@
 import UIKit
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
 import FirebaseAuth
 
 class LoginScreenViewController: UIViewController {
@@ -45,24 +47,30 @@ class LoginScreenViewController: UIViewController {
     
     @IBAction func signInBtn(_ sender: Any) {
         
-        guard
-            let email = UserEmailTxt.text,
-            let password = UserPasswordTxt.text,
-            !email.isEmpty,
-            !password.isEmpty
-        else { return }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-            if let error = error, user == nil {
-                self.alertPopUp(title: "Sign in failed", message: "\(error.localizedDescription)", okTitle: "Try again.")
+        if validateIfEmpty() == true && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
+            
+            guard
+                let email = UserEmailTxt.text,
+                let password = UserPasswordTxt.text,
+                !email.isEmpty,
+                !password.isEmpty
+            else { return }
+            
+            Auth.auth().signIn(withEmail: email, password: password) { user, error in
+                
+                if let error = error, user == nil {
+                    self.alertPopUp(title: "Sign in failed", message: "\(error.localizedDescription)", okTitle: "Try again.")
+                }
+                
+                print("User \(user?.user.email ?? "") Successful sign in")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             
-            print("User \(user?.user.email ?? "") Successful sign in")
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
-            self.navigationController?.pushViewController(vc, animated: true)
         }
         
-        
     }
+    
+    
     
 }

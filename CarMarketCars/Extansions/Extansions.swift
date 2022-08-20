@@ -1,5 +1,7 @@
 import Firebase
 import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
 import UIKit
 
 extension UIViewController {
@@ -39,3 +41,4 @@ extension UIViewController {
     }
     
 }
+

@@ -3,23 +3,20 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import SwiftUI
 
 class RegisterScreenViewController: UIViewController {
-        
+    
     var handle: AuthStateDidChangeListenerHandle?
     
+    @IBOutlet weak var UserNameTxt: UITextField!
+    @IBOutlet weak var UserSurnameTxt: UITextField!
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
-    @IBOutlet weak var UserNameTxt: UITextField!
-    @IBOutlet weak var UserSurnameTxt: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let refDB = FirebaseDatabase.Database.database()
 
     }
     
@@ -29,11 +26,11 @@ class RegisterScreenViewController: UIViewController {
             if user == nil {
                 print("no user please register")
             } else {
+                self.UserNameTxt.text = nil
+                self.UserSurnameTxt.text = nil
                 self.UserEmailTxt.text = nil
                 self.UserPasswordTxt.text = nil
                 self.UserRepeatPassTxt.text = nil
-                self.UserNameTxt.text = nil
-                self.UserSurnameTxt.text = nil
             }
             
             print("addStateDidChangeListener - RegisterPage")
@@ -43,11 +40,11 @@ class RegisterScreenViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
+        UserNameTxt.text = nil
+        UserSurnameTxt.text = nil
         UserEmailTxt.text = nil
         UserPasswordTxt.text = nil
         UserRepeatPassTxt.text = nil
-        UserNameTxt.text = nil
-        UserSurnameTxt.text = nil
         
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
@@ -69,22 +66,40 @@ class RegisterScreenViewController: UIViewController {
         if validateIfEmpty() == true && validateIfPasswordMatch() == true && validateIfPassword(str: UserPasswordTxt.text!) == true && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
             
             guard
+                let name = UserNameTxt.text,
+                let surname = UserSurnameTxt.text,
                 let email = UserEmailTxt.text,
                 let password = UserPasswordTxt.text,
+                !name.isEmpty,
+                !surname.isEmpty,
                 !email.isEmpty,
                 !password.isEmpty
             else { return }
-            
             
             Auth.auth().createUser(withEmail: UserEmailTxt.text!, password: UserPasswordTxt.text!) { authResult, error in
                 
                 if error != nil {
                     self.alertPopUp(title: "Failure", message: "\(error!.localizedDescription)", okTitle: "Try again")
                     return
+                } else {
+                    let db = Firestore.firestore()
+                    db.collection("users").document("\(authResult?.user.email ?? "")").setData([
+                        "Uid": authResult!.user.uid,
+                        "Name": name,
+                        "Surname": surname,
+                        "Email": email,
+                        "Password": password
+                    ]) { (error) in
+                        if error != nil {
+                            self.alertPopUp(title: "Database Error", message: "\(error?.localizedDescription ?? "")", okTitle: "Try Again")
+                        }
+                    }
+    
+                    self.alertPopUp(title: "Congratulations", message: "Your user created!", okTitle: "Log In")
+                    print("Successful sign up")
+                    self.tabBarController?.selectedIndex = 0
                 }
-                self.alertPopUp(title: "Congratulations", message: "Your user created!", okTitle: "Log In")
-                print("Successful sign up")
-                self.tabBarController?.selectedIndex = 0
+                
             }
         }
         

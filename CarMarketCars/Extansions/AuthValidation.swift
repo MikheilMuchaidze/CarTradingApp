@@ -2,6 +2,35 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
+//login validation functions
+extension LoginScreenViewController {
+    
+    //validation of text fields
+    func validateIfEmpty() -> Bool {
+        if UserEmailTxt.text == "" || UserPasswordTxt.text  == "" {
+            alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //validate email form
+    func validateIfEmailCorrectForm(str: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
+            let error = "Incorrect email format..."
+            alertPopUp(title: "Incorrect Email", message: error, okTitle: "Try again.")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+}
+
+
 //registration validation functions
 extension RegisterScreenViewController {
     

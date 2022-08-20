@@ -1,8 +1,12 @@
 import UIKit
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
 import FirebaseAuth
 
 class MainCarsListViewController: UIViewController {
+    
+    let test = ["1", "2", "3", "4", "5"]
     
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -11,16 +15,26 @@ class MainCarsListViewController: UIViewController {
     @IBOutlet weak var goBackActionImage: UIImageView!
     @IBOutlet weak var userDetailsImage: UIImageView!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //flipped
+        goBackActionImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+        
         addTapToGoBackToImage(image: goBackActionImage)
         addTapToGoToDetailsToImage(image: userDetailsImage)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
+            
             if user == nil {
                 print("no user please sign in or register")
             } else {
@@ -40,6 +54,10 @@ class MainCarsListViewController: UIViewController {
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
         print("removeStateDidChangeListener - MainCarsListViewController")
+    }
+    
+    @IBAction func uploadCarBtn(_ sender: Any) {
+        
     }
     
     

@@ -1,5 +1,7 @@
 import UIKit
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
 import FirebaseAuth
 
 class UserDetailsViewController: UIViewController {
@@ -11,6 +13,7 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var UserNameLbl: UILabel!
     @IBOutlet weak var UserSurnameLbl: UILabel!
     @IBOutlet weak var UserEmailLbl: UILabel!
+    @IBOutlet weak var UserUidLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +23,24 @@ class UserDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
-            if user == nil {
-                print("no user please sign in or register")
-            } else {
-                self.UserNameLbl.text = user?.displayName
-                self.UserSurnameLbl.text = user?.displayName
-                self.UserEmailLbl.text = user?.email
+            
+            let db = Firestore.firestore()
+            let usersRef = db.collection("users").document("\(auth.currentUser?.email ?? "")")
+            
+            usersRef.getDocument { document, error in
+                if let document = document {
+                    let data = document.data()
+                    print(data!)
+                    self.UserNameLbl.text = data!["Name"] as? String
+                    self.UserSurnameLbl.text = data!["Surname"] as? String
+                    self.UserEmailLbl.text = data!["Email"] as? String
+                    self.UserUidLbl.text = data!["Uid"] as? String
+                } else {
+                    print("Document does'n exists \(error?.localizedDescription ?? "")")
+                }
             }
+         
+
             print("addStateDidChangeListener - MainCarsListViewController")
         })
     }
