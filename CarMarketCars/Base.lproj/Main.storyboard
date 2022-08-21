@@ -593,6 +593,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttk-nv-8ZN">
                                 <rect key="frame" x="261.66666666666669" y="202.66666666666666" width="128.33333333333331" height="37"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add Image">
                                     <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
@@ -601,7 +602,7 @@
                                     <action selector="addCarImageBtn:" destination="ESq-tp-13K" eventType="touchUpInside" id="g1r-1R-ZhW"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZJm-tU-yMx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZJm-tU-yMx">
                                 <rect key="frame" x="19.999999999999986" y="202.66666666666669" width="231.66666666666663" height="231.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZJm-tU-yMx" secondAttribute="height" multiplier="1:1" id="OZG-NA-6pt"/>
@@ -680,15 +681,73 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addLinkView" destination="axw-66-aEC" id="PDa-WX-W45"/>
                         <outlet property="carImage" destination="ZJm-tU-yMx" id="AwG-pR-47s"/>
                         <outlet property="carLocationTxt" destination="PqV-aj-v1w" id="Gr4-gr-MIi"/>
                         <outlet property="carMarkTxt" destination="O9t-h6-zNH" id="Ujo-fL-Y4H"/>
                         <outlet property="carModelTxt" destination="aOf-hi-nde" id="IaE-TI-WVo"/>
                         <outlet property="carPriceTxt" destination="DpQ-f6-q4m" id="oAM-cw-3Y5"/>
                         <outlet property="carYearTxt" destination="KL5-3H-9q5" id="p3T-Gn-pXv"/>
+                        <outlet property="insertedLinkTxt" destination="s2j-kT-kjy" id="Gsy-Pk-RBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEO-Iz-oeu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="axw-66-aEC">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="140"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwH-3Z-Yie">
+                            <rect key="frame" x="100.33333333333331" y="9.9999999999999982" width="99.666666666666686" height="27.333333333333329"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Image Link Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-kT-kjy">
+                            <rect key="frame" x="10" y="47" width="280" height="35"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lbI-S5-GPr">
+                            <rect key="frame" x="73.666666666666671" y="95.333333333333329" width="152.66666666666663" height="34.666666666666671"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewg-b1-STi">
+                                    <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="34.666666666666664"/>
+                                    <color key="tintColor" systemColor="systemIndigoColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Load">
+                                        <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="linkLoadToImageBtn:" destination="ESq-tp-13K" eventType="touchUpInside" id="24d-SM-7eP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2l-qL-8qV">
+                                    <rect key="frame" x="81.333333333333343" y="0.0" width="71.333333333333343" height="34.666666666666664"/>
+                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Cancel">
+                                        <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="addLinkViewExit:" destination="ESq-tp-13K" eventType="touchUpInside" id="kRN-b8-23I"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="YbP-D3-Qup"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="s2j-kT-kjy" firstAttribute="height" secondItem="axw-66-aEC" secondAttribute="height" multiplier="0.25" id="Yvw-DZ-acr"/>
+                        <constraint firstItem="VwH-3Z-Yie" firstAttribute="centerX" secondItem="YbP-D3-Qup" secondAttribute="centerX" id="a2x-ET-ce2"/>
+                        <constraint firstItem="YbP-D3-Qup" firstAttribute="trailing" secondItem="s2j-kT-kjy" secondAttribute="trailing" constant="10" id="cDa-dB-3AX"/>
+                        <constraint firstItem="VwH-3Z-Yie" firstAttribute="top" secondItem="axw-66-aEC" secondAttribute="top" constant="10" id="cTQ-pH-nSA"/>
+                        <constraint firstItem="YbP-D3-Qup" firstAttribute="bottom" secondItem="lbI-S5-GPr" secondAttribute="bottom" constant="10" id="kMp-p9-LH2"/>
+                        <constraint firstItem="s2j-kT-kjy" firstAttribute="leading" secondItem="YbP-D3-Qup" secondAttribute="leading" constant="10" id="mPz-hG-mGt"/>
+                        <constraint firstItem="lbI-S5-GPr" firstAttribute="centerX" secondItem="YbP-D3-Qup" secondAttribute="centerX" id="uHf-yn-lAR"/>
+                        <constraint firstItem="s2j-kT-kjy" firstAttribute="top" secondItem="VwH-3Z-Yie" secondAttribute="bottom" constant="10" id="zYh-Ss-A5E"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="2904.6728971962616" y="-46.004319654427647"/>
         </scene>
@@ -903,6 +962,9 @@
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

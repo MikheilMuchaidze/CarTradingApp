@@ -11,8 +11,34 @@ class newCarUploadViewController: UIViewController {
     @IBOutlet weak var carImage: UIImageView!
     
     @IBAction func addCarImageBtn(_ sender: Any) {
-        let test = UIImage(systemName: "car")
-        carImage.image = test
+        animateIn(desiredView: addLinkView)
+        
+//        let test = UIImage(systemName: "car")
+//        carImage.image = test
+    }
+    
+    @IBOutlet var addLinkView: UIView!
+    @IBOutlet weak var insertedLinkTxt: UITextField!
+    
+    @IBAction func linkLoadToImageBtn(_ sender: Any) {
+        
+        let imageUrl = insertedLinkTxt.text
+        
+        if imageUrl == nil || imageUrl == "" {
+            alertPopUp(title: "Url Error", message: "Incorrect or empty url in field, please input correct link", okTitle: "Ok.")
+            carImage.image = nil
+        } else {
+            let URL = URL(string: imageUrl!)
+            carImage.loadImageFrom(url: URL!)
+            insertedLinkTxt.text = nil
+            animateOut(desiredView: addLinkView)
+        }
+        
+    }
+    
+    @IBAction func addLinkViewExit(_ sender: Any) {
+        insertedLinkTxt.text = nil
+        animateOut(desiredView: addLinkView)
     }
     
     
@@ -34,6 +60,10 @@ class newCarUploadViewController: UIViewController {
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
+        
+        //set width = 300, height = 140
+        addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
+        
 
     }
     
@@ -65,7 +95,7 @@ class newCarUploadViewController: UIViewController {
     
     @IBAction func addCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() == true && validateIfImageIsEmpty() == true {
+        if validateIfEmpty() == true && validateIfImageIsEmpty() == true  {
             
             
             

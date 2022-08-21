@@ -31,7 +31,7 @@ extension UIViewController {
     }
 }
 
-//alert popup function for all UIViewControllers presented and created
+//alert popup error function for all UIViewControllers presented and created
 extension UIViewController {
     func alertPopUp(title: String, message: String, okTitle: String) {
         let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -42,3 +42,53 @@ extension UIViewController {
     
 }
 
+//popup view adding and removing
+extension UIViewController {
+    
+    //animate in a specific view
+    func animateIn(desiredView: UIView) {
+        let backgroundView = self.view!
+        
+        //attach our desired view to the screen (self.view/backgroundView)
+        backgroundView.addSubview(desiredView)
+        
+        //sets the view's scaling to be 120%
+        desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        desiredView.alpha = 0
+        desiredView.center = backgroundView.center
+        
+        //animate the affect
+        UIView.animate(withDuration: 0.3, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            desiredView.alpha = 1
+        })
+    }
+    
+    //animate out a specified view
+    func animateOut(desiredView: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            desiredView.alpha = 0
+        }, completion: { _ in
+            desiredView.removeFromSuperview()
+        })
+    }
+    
+}
+
+extension UIImageView {
+    
+    //load image from url
+    func loadImageFrom(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+    
+}
