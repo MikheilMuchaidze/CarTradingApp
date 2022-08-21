@@ -24,11 +24,12 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
+        
         cell.carMarkLbl.text = "BMW"
         cell.carModelLbl.text = "Z4"
         cell.carYearLbl.text = "\(2014)"
         cell.carLocationLbl.text = "Tbilisi"
-        cell.carPriceLbl.text = "\(12_000) $"
+        cell.carPriceLbl.text = "\(12_000)"
         
         return cell
     }

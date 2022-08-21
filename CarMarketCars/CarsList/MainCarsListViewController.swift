@@ -5,9 +5,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class MainCarsListViewController: UIViewController {
-    
-    let test = ["1", "2", "3", "4", "5"]
-    
+        
     var handle: AuthStateDidChangeListenerHandle?
     
     @IBOutlet weak var activeUserLbl: UILabel!
@@ -57,7 +55,8 @@ class MainCarsListViewController: UIViewController {
     }
     
     @IBAction func uploadCarBtn(_ sender: Any) {
-        
+        let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "newCarUploadViewController") as! newCarUploadViewController
+        self.present(carUploadPage, animated: true)
     }
     
     

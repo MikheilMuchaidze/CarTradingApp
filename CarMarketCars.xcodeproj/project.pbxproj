@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667928B11AF600E7C240 /* CarTableViewCell.swift */; };
 		246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */; };
+		246F667F28B2201700E7C240 /* newCarUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667E28B2201700E7C240 /* newCarUploadViewController.swift */; };
 		2481C54328ACC87C000DAC49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C54228ACC87C000DAC49 /* AppDelegate.swift */; };
 		2481C54528ACC87C000DAC49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C54428ACC87C000DAC49 /* SceneDelegate.swift */; };
 		2481C54A28ACC87C000DAC49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2481C54828ACC87C000DAC49 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		246F667928B11AF600E7C240 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCarsListViewController + tableView.swift"; sourceTree = "<group>"; };
+		246F667E28B2201700E7C240 /* newCarUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCarUploadViewController.swift; sourceTree = "<group>"; };
 		2481C53F28ACC87C000DAC49 /* CarMarketCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarMarketCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2481C54228ACC87C000DAC49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2481C54428ACC87C000DAC49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		246F667D28B21FDF00E7C240 /* NewCarUpload */ = {
+			isa = PBXGroup;
+			children = (
+				246F667E28B2201700E7C240 /* newCarUploadViewController.swift */,
+			);
+			path = NewCarUpload;
+			sourceTree = "<group>";
+		};
 		2481C53628ACC87C000DAC49 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 		24C6305528AD96EE006A1194 /* CarsList */ = {
 			isa = PBXGroup;
 			children = (
+				246F667D28B21FDF00E7C240 /* NewCarUpload */,
 				24C6305628AD9722006A1194 /* MainCarsListViewController.swift */,
 				246F667928B11AF600E7C240 /* CarTableViewCell.swift */,
 				246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */,
@@ -255,6 +266,7 @@
 				2481C55B28ACC976000DAC49 /* LoginScreenViewController.swift in Sources */,
 				24C6305328AD53BA006A1194 /* Extansions.swift in Sources */,
 				2481C55928ACC943000DAC49 /* StartingScreen.swift in Sources */,
+				246F667F28B2201700E7C240 /* newCarUploadViewController.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
 			);

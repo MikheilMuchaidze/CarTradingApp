@@ -2,6 +2,33 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
+//car adding validation functions
+extension newCarUploadViewController {
+    
+    //validation of text fields
+    func validateIfEmpty() -> Bool {
+        if carMarkTxt.text == "" || carModelTxt.text  == "" || carYearTxt.text  == "" || carLocationTxt.text  == "" || carPriceTxt.text  == "" {
+            alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //validate image form
+    func validateIfImageIsEmpty() -> Bool {
+        
+        //validation that an user added image for the car
+        if carImage.image == nil {
+            alertPopUp(title: "No Image", message: "Please add image of the car", okTitle: "Ok.")
+            return false
+        } else {
+            return true
+        }
+    }
+    
+}
+
 //login validation functions
 extension LoginScreenViewController {
     

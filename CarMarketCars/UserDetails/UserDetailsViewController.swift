@@ -18,7 +18,7 @@ class UserDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,6 @@ class UserDetailsViewController: UIViewController {
                     print("Document does'n exists \(error?.localizedDescription ?? "")")
                 }
             }
-         
 
             print("addStateDidChangeListener - MainCarsListViewController")
         })
