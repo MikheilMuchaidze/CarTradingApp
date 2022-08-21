@@ -14,6 +14,7 @@ class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+//        UserPasswordTxt.isSecureTextEntry = true
 
     }
     

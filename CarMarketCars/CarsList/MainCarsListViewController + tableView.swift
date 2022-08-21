@@ -19,18 +19,16 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
-        cell.testLbl.text = "123"
-        
-//        cell.backgroundColor = UIColor.white
-//        cell.layer.borderColor = UIColor.systemBlue.cgColor
-//        cell.layer.borderWidth = 3
-//        cell.layer.cornerRadius = 10
-//        cell.clipsToBounds = true
+        cell.carMarkLbl.text = "BMW"
+        cell.carModelLbl.text = "Z4"
+        cell.carYearLbl.text = "\(2014)"
+        cell.carLocationLbl.text = "Tbilisi"
+        cell.carPriceLbl.text = "\(12_000) $"
         
         return cell
     }

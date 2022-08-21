@@ -17,6 +17,8 @@ class RegisterScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        UserPasswordTxt.isSecureTextEntry = true
+//        UserRepeatPassTxt.isSecureTextEntry = true
 
     }
     
