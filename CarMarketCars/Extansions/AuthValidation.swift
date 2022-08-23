@@ -7,7 +7,7 @@ extension newCarUploadViewController {
     
     //validation of text fields
     func validateIfEmpty() -> Bool {
-        if carMarkTxt.text == "" || carModelTxt.text  == "" || carYearTxt.text  == "" || carLocationTxt.text  == "" || carPriceTxt.text  == "" {
+        if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty {
             alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
             return false
         } else {
@@ -34,7 +34,7 @@ extension LoginScreenViewController {
     
     //validation of text fields
     func validateIfEmpty() -> Bool {
-        if UserEmailTxt.text == "" || UserPasswordTxt.text  == "" {
+        if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty {
             alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
             return false
         } else {
@@ -63,7 +63,7 @@ extension RegisterScreenViewController {
     
     //validation of text fields
     func validateIfEmpty() -> Bool {
-        if UserEmailTxt.text == "" || UserPasswordTxt.text  == "" || UserRepeatPassTxt.text  == "" {
+        if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty || UserRepeatPassTxt.text!.isEmpty {
             alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
             return false
         } else {

@@ -48,7 +48,7 @@ class LoginScreenViewController: UIViewController {
     
     @IBAction func signInBtn(_ sender: Any) {
         
-        if validateIfEmpty() == true && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
+        if validateIfEmpty() && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
             
             guard
                 let email = UserEmailTxt.text,

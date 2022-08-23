@@ -25,7 +25,7 @@ class UserDetailsViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
             
             let db = Firestore.firestore()
-            let usersRef = db.collection("users").document("\(auth.currentUser?.email ?? "")")
+            let usersRef = db.collection(FirebaseCollectionNames.users.rawValue).document("\(auth.currentUser?.email ?? "")")
             
             usersRef.getDocument { document, error in
                 if let document = document {

@@ -10,11 +10,16 @@ class newCarUploadViewController: UIViewController {
     
     @IBOutlet weak var carImage: UIImageView!
     
-    @IBAction func addCarImageBtn(_ sender: Any) {
+    @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
         animateIn(desiredView: addLinkView)
         
 //        let test = UIImage(systemName: "car")
 //        carImage.image = test
+    }
+    
+    
+    @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
+        showImagePickerController()
     }
     
     @IBOutlet var addLinkView: UIView!

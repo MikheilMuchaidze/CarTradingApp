@@ -65,7 +65,7 @@ class RegisterScreenViewController: UIViewController {
     
     @IBAction func signUpBtn(_ sender: Any) {
                 
-        if validateIfEmpty() == true && validateIfPasswordMatch() == true && validateIfPassword(str: UserPasswordTxt.text!) == true && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
+        if validateIfEmpty() && validateIfPasswordMatch() && validateIfPassword(str: UserPasswordTxt.text!) && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
             
             guard
                 let name = UserNameTxt.text,
@@ -85,7 +85,7 @@ class RegisterScreenViewController: UIViewController {
                     return
                 } else {
                     let db = Firestore.firestore()
-                    db.collection("users").document("\(authResult?.user.email ?? "")").setData([
+                    db.collection(FirebaseCollectionNames.users.rawValue).document("\(authResult?.user.email ?? "")").setData([
                         "Uid": authResult!.user.uid,
                         "Name": name,
                         "Surname": surname,

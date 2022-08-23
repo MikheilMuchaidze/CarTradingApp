@@ -92,3 +92,31 @@ extension UIImageView {
     }
     
 }
+
+extension newCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    //function that shows image picker
+    func showImagePickerController() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+//        imagePickerController.sourceType = chooseAction
+        present(imagePickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            carImage.image = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            carImage.image = originalImage
+        }
+        
+        dismiss(animated: true)
+    }
+     
+    
+    
+    
+    
+}
