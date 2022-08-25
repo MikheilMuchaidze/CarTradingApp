@@ -54,7 +54,6 @@ class newCarUploadViewController: UIViewController {
     @IBOutlet weak var carYearTxt: UITextField!
     @IBOutlet weak var carLocationTxt: UITextField!
     @IBOutlet weak var carPriceTxt: UITextField!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,18 +95,30 @@ class newCarUploadViewController: UIViewController {
         
     }
     
+    var sellable: Bool!
+    
+    @IBAction func sellableStatusAction(_ sender: UISwitch) {
+        if sender.isOn {
+            sellable = true
+        } else {
+            sellable = false
+        }
+    }
+
     @IBAction func addCarToListBtn(_ sender: Any) {
         
         if validateIfEmpty() && validateIfImageIsEmpty()  {
             handle = Auth.auth().addStateDidChangeListener({ auth, user in
                 guard let currentUser = user else { return }
                 let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-                carsDb.document(currentUser.email!).setData([
+                carsDb.document().setData([
+                    "Email": "\(currentUser.email ?? "")",
                     "Mark": self.carMarkTxt.text!,
                     "Model": self.carModelTxt.text!,
                     "Year": self.carYearTxt.text!,
                     "Location": self.carLocationTxt.text!,
-                    "Price": self.carPriceTxt.text!
+                    "Price": self.carPriceTxt.text!,
+                    "Sellable": self.sellable!
     //                "Image": carImage.image!
                 ]) { error in
                     if let error = error {

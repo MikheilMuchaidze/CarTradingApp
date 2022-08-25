@@ -20,6 +20,8 @@
 		2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */; };
 		2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */; };
 		24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B63828B551FB00C8ADDA /* Constants.swift */; };
+		24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */; };
+		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
 		24C6305328AD53BA006A1194 /* Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305228AD53BA006A1194 /* Extansions.swift */; };
 		24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305628AD9722006A1194 /* MainCarsListViewController.swift */; };
 		24C6305928AD9D7A006A1194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24C6305828AD9D79006A1194 /* GoogleService-Info.plist */; };
@@ -48,6 +50,8 @@
 		2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewController.swift; sourceTree = "<group>"; };
 		2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingTabBarController.swift; sourceTree = "<group>"; };
 		24B0B63828B551FB00C8ADDA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
 		24C6305228AD53BA006A1194 /* Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extansions.swift; sourceTree = "<group>"; };
 		24C6305628AD9722006A1194 /* MainCarsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCarsListViewController.swift; sourceTree = "<group>"; };
 		24C6305828AD9D79006A1194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				24C6306928AFE201006A1194 /* UserDetailsViewController.swift */,
+				24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */,
+				24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */,
 			);
 			path = UserDetails;
 			sourceTree = "<group>";
@@ -267,11 +273,13 @@
 				2481C54528ACC87C000DAC49 /* SceneDelegate.swift in Sources */,
 				24C6306428ADAEAF006A1194 /* AuthValidation.swift in Sources */,
 				2481C55B28ACC976000DAC49 /* LoginScreenViewController.swift in Sources */,
+				24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */,
 				24C6305328AD53BA006A1194 /* Extansions.swift in Sources */,
 				2481C55928ACC943000DAC49 /* StartingScreen.swift in Sources */,
 				246F667F28B2201700E7C240 /* newCarUploadViewController.swift in Sources */,
 				24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
+				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

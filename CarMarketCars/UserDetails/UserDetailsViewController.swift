@@ -15,9 +15,13 @@ class UserDetailsViewController: UIViewController {
     @IBOutlet weak var UserEmailLbl: UILabel!
     @IBOutlet weak var UserUidLbl: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 
     }
     
