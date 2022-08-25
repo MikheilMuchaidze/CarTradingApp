@@ -13,8 +13,6 @@ class newCarUploadViewController: UIViewController {
     @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
         animateIn(desiredView: addLinkView)
         
-//        let test = UIImage(systemName: "car")
-//        carImage.image = test
     }
     
     
@@ -100,12 +98,27 @@ class newCarUploadViewController: UIViewController {
     
     @IBAction func addCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() == true && validateIfImageIsEmpty() == true  {
+        if validateIfEmpty() && validateIfImageIsEmpty()  {
+            handle = Auth.auth().addStateDidChangeListener({ auth, user in
+                guard let currentUser = user else { return }
+                let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+                carsDb.document(currentUser.email!).setData([
+                    "Mark": self.carMarkTxt.text!,
+                    "Model": self.carModelTxt.text!,
+                    "Year": self.carYearTxt.text!,
+                    "Location": self.carLocationTxt.text!,
+                    "Price": self.carPriceTxt.text!
+    //                "Image": carImage.image!
+                ]) { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("Document added")
+                        self.dismiss(animated: true)
+                    }
+                }
+            })
             
-            
-            
-            
-            dismiss(animated: true)
         }
     }
     
