@@ -19,7 +19,6 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
         return carsList.count
     }
     

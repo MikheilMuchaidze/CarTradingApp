@@ -6,6 +6,9 @@ import FirebaseAuth
 
 class UserDetailsViewController: UIViewController {
     
+    let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+    var carsList = [Dictionary<String, Any>]()
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     @IBOutlet weak var UserImageImage: UIImageView!
@@ -22,6 +25,7 @@ class UserDetailsViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        tableView.separatorStyle = .none
 
     }
     
@@ -34,17 +38,36 @@ class UserDetailsViewController: UIViewController {
             usersRef.getDocument { document, error in
                 if let document = document {
                     let data = document.data()
-                    print(data!)
                     self.UserNameLbl.text = data!["Name"] as? String
                     self.UserSurnameLbl.text = data!["Surname"] as? String
                     self.UserEmailLbl.text = data!["Email"] as? String
                     self.UserUidLbl.text = data!["Uid"] as? String
+                    let currentUser = data!["Email"] as? String
+                    
+                    self.carsdb.whereField("Email", isEqualTo: currentUser!).addSnapshotListener { snapshot, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        
+                        guard let snapshot = snapshot?.documents else { return }
+                        self.carsList.removeAll()
+                        
+                        for document in snapshot {
+                            let data = document.data()
+                            DispatchQueue.main.async {
+                                self.carsList.append(data)
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
                 } else {
                     print("Document does'n exists \(error?.localizedDescription ?? "")")
                 }
             }
 
             print("addStateDidChangeListener - MainCarsListViewController")
+            
+            
         })
     }
     

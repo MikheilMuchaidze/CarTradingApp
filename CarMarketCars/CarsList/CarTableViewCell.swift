@@ -24,7 +24,6 @@ class CarTableViewCell: UITableViewCell {
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
 
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

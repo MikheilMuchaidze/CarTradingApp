@@ -66,7 +66,6 @@ class newCarUploadViewController: UIViewController {
         //set width = 300, height = 140
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
         
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +94,7 @@ class newCarUploadViewController: UIViewController {
         
     }
     
-    var sellable: Bool!
+    var sellable: Bool = true
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
         if sender.isOn {
@@ -118,7 +117,7 @@ class newCarUploadViewController: UIViewController {
                     "Year": self.carYearTxt.text!,
                     "Location": self.carLocationTxt.text!,
                     "Price": self.carPriceTxt.text!,
-                    "Sellable": self.sellable!
+                    "Sellable": self.sellable
     //                "Image": carImage.image!
                 ]) { error in
                     if let error = error {
