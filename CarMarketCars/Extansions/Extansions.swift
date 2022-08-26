@@ -115,8 +115,4 @@ extension newCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true)
     }
      
-    
-    
-    
-    
 }

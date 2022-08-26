@@ -3,6 +3,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import SwiftUI
 
 extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -11,13 +12,48 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return true
     }
     
-    //action for swiping row
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { _, indexPath in
-            self.carsList.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+    //func for deleting car from table and also from database
+    private func delete(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, _) in
+            guard let self = self else { return }
+            
+            let thisCar = self.carsList[indexPath.row]
+            let currentID = thisCar["DocumentID"] as? String
+            
+            self.carsdb.document(currentID!).delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    self.carsList.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.tableView.reloadData()
+                    print("deleted")
+                }
+            }
+            
         }
-        return [deleteAction]
+        
+        return action
+    }
+    
+    //func for editing car information
+    private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
+            guard let self = self else { return }
+            self.alertPopUp(title: "Edit?", message: "You sure want to edit?", okTitle: "Yes!")
+        }
+        
+        return action
+    }
+
+    //action for swiping row from right to left (trailing)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = self.edit(rowIndexPathar: indexPath)
+        edit.backgroundColor = .green
+        let delete = self.delete(rowIndexPathar: indexPath)
+        delete.backgroundColor = .red
+        let swipers = UISwipeActionsConfiguration(actions: [edit, delete])
+        return swipers
     }
     
     

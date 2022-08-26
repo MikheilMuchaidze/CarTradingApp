@@ -110,7 +110,9 @@ class newCarUploadViewController: UIViewController {
             handle = Auth.auth().addStateDidChangeListener({ auth, user in
                 guard let currentUser = user else { return }
                 let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-                carsDb.document().setData([
+                let uuid = UUID().uuidString
+                carsDb.document(uuid).setData([
+                    "DocumentID": uuid,
                     "Email": "\(currentUser.email ?? "")",
                     "Mark": self.carMarkTxt.text!,
                     "Model": self.carModelTxt.text!,
