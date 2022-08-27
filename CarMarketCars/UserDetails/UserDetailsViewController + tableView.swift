@@ -40,22 +40,30 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
-            self.alertPopUp(title: "Edit?", message: "You sure want to edit?", okTitle: "Yes!")
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "newCarUploadViewController") as? newCarUploadViewController else { return }
+            vc.addEditingHiddenMode = true
+            vc.updateEditingHiddenMode = false
+            self.present(vc, animated: true)
         }
         
         return action
     }
 
-    //action for swiping row from right to left (trailing)
+    //action for Delete swiping row from right to left (trailing)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let edit = self.edit(rowIndexPathar: indexPath)
-        edit.backgroundColor = .green
         let delete = self.delete(rowIndexPathar: indexPath)
         delete.backgroundColor = .red
-        let swipers = UISwipeActionsConfiguration(actions: [edit, delete])
-        return swipers
+        let swiper = UISwipeActionsConfiguration(actions: [delete])
+        return swiper
     }
     
+    //action for Edit swiping row from left to right (leading)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = self.edit(rowIndexPathar: indexPath)
+        edit.backgroundColor = .green
+        let swiper = UISwipeActionsConfiguration(actions: [edit])
+        return swiper
+    }
     
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

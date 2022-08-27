@@ -613,7 +613,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elM-zK-KHC">
-                                <rect key="frame" x="100" y="745.66666666666663" width="228" height="46.333333333333371"/>
+                                <rect key="frame" x="130" y="745.66666666666663" width="168" height="46.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add This Car">
                                     <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
@@ -762,6 +762,17 @@
                                     <action selector="sellableStatusAction:" destination="ESq-tp-13K" eventType="valueChanged" id="dO4-4L-OZm"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zck-Mv-yet">
+                                <rect key="frame" x="316" y="745.66666666666663" width="92" height="46.333333333333371"/>
+                                <color key="tintColor" systemColor="systemIndigoColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Update">
+                                    <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="updateCarToListBtn:" destination="ESq-tp-13K" eventType="touchUpInside" id="RYZ-EE-auV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9vw-yR-vEL"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -769,13 +780,14 @@
                             <constraint firstItem="DpQ-f6-q4m" firstAttribute="height" secondItem="5AC-Ap-XNy" secondAttribute="height" multiplier="0.05" id="103-V9-d4Y"/>
                             <constraint firstItem="ttk-nv-8ZN" firstAttribute="top" secondItem="ZJm-tU-yMx" secondAttribute="top" id="1WD-aV-hpc"/>
                             <constraint firstItem="oRg-oy-Cgg" firstAttribute="top" secondItem="9vw-yR-vEL" secondAttribute="top" constant="20" id="1uy-BF-apQ"/>
-                            <constraint firstItem="elM-zK-KHC" firstAttribute="leading" relation="lessThanOrEqual" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="100" id="2A9-nh-PJc"/>
+                            <constraint firstItem="elM-zK-KHC" firstAttribute="leading" relation="lessThanOrEqual" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="130" id="2A9-nh-PJc"/>
                             <constraint firstItem="ni1-IT-tGe" firstAttribute="bottom" secondItem="ZJm-tU-yMx" secondAttribute="bottom" id="4Tg-a2-vtd"/>
                             <constraint firstItem="HhO-Qk-gGl" firstAttribute="centerY" secondItem="ni1-IT-tGe" secondAttribute="centerY" id="5Fv-Ew-PCg"/>
                             <constraint firstItem="mer-Zh-kqX" firstAttribute="leading" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="20" id="5oe-h7-Fxd"/>
                             <constraint firstItem="HhO-Qk-gGl" firstAttribute="top" secondItem="w7f-sA-1nJ" secondAttribute="bottom" constant="10" id="6Kv-G4-GZ2"/>
                             <constraint firstItem="ttk-nv-8ZN" firstAttribute="trailing" secondItem="ODQ-ag-eE1" secondAttribute="trailing" id="7Kb-az-QfW"/>
                             <constraint firstItem="z4J-nj-OOm" firstAttribute="leading" secondItem="ZJm-tU-yMx" secondAttribute="trailing" constant="10" id="7om-sK-yjZ"/>
+                            <constraint firstItem="Zck-Mv-yet" firstAttribute="height" secondItem="elM-zK-KHC" secondAttribute="height" id="875-YE-k7N"/>
                             <constraint firstItem="w7f-sA-1nJ" firstAttribute="centerX" secondItem="ODQ-ag-eE1" secondAttribute="centerX" id="8p5-eA-61l"/>
                             <constraint firstItem="HhO-Qk-gGl" firstAttribute="leading" secondItem="ZJm-tU-yMx" secondAttribute="trailing" constant="10" id="CKZ-eU-Npw"/>
                             <constraint firstItem="ODQ-ag-eE1" firstAttribute="height" secondItem="ttk-nv-8ZN" secondAttribute="height" id="Cvn-ov-dnr"/>
@@ -790,16 +802,19 @@
                             <constraint firstItem="EWv-Wn-9LE" firstAttribute="trailing" secondItem="Ydo-jK-m3i" secondAttribute="trailing" id="VCx-I0-RoH"/>
                             <constraint firstItem="9vw-yR-vEL" firstAttribute="bottom" secondItem="elM-zK-KHC" secondAttribute="bottom" constant="100" id="WrY-sK-m09"/>
                             <constraint firstItem="EWv-Wn-9LE" firstAttribute="leading" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="20" id="Wyy-2g-LiQ"/>
-                            <constraint firstItem="9vw-yR-vEL" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="elM-zK-KHC" secondAttribute="trailing" constant="100" id="Zky-Rw-NEw"/>
+                            <constraint firstItem="9vw-yR-vEL" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="elM-zK-KHC" secondAttribute="trailing" constant="130" id="Zky-Rw-NEw"/>
                             <constraint firstItem="mer-Zh-kqX" firstAttribute="trailing" secondItem="Ydo-jK-m3i" secondAttribute="trailing" id="cR0-0W-tea"/>
                             <constraint firstItem="z4J-nj-OOm" firstAttribute="top" secondItem="ttk-nv-8ZN" secondAttribute="bottom" constant="10" id="cqm-ME-ana"/>
+                            <constraint firstItem="Zck-Mv-yet" firstAttribute="trailing" secondItem="DpQ-f6-q4m" secondAttribute="trailing" id="dBZ-yt-ItS"/>
                             <constraint firstItem="ZJm-tU-yMx" firstAttribute="height" secondItem="5AC-Ap-XNy" secondAttribute="height" multiplier="0.25" id="dNv-f6-ogf"/>
                             <constraint firstItem="z4J-nj-OOm" firstAttribute="height" secondItem="ttk-nv-8ZN" secondAttribute="height" multiplier="0.945946" id="dc6-5K-9Bm"/>
                             <constraint firstItem="ttk-nv-8ZN" firstAttribute="height" secondItem="5AC-Ap-XNy" secondAttribute="height" multiplier="0.04" id="eZX-hv-cdQ"/>
                             <constraint firstItem="mer-Zh-kqX" firstAttribute="centerY" secondItem="aOf-hi-nde" secondAttribute="centerY" id="gpd-z2-TYh"/>
                             <constraint firstItem="rmZ-et-REO" firstAttribute="leading" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="20" id="jv6-Qp-weA"/>
                             <constraint firstItem="Ydo-jK-m3i" firstAttribute="leading" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="20" id="kDw-Nl-IlK"/>
+                            <constraint firstItem="Zck-Mv-yet" firstAttribute="centerY" secondItem="elM-zK-KHC" secondAttribute="centerY" id="mjX-ZA-MbX"/>
                             <constraint firstItem="k2z-Jk-VsD" firstAttribute="trailing" secondItem="Ydo-jK-m3i" secondAttribute="trailing" id="mwY-iD-oV5"/>
+                            <constraint firstItem="Zck-Mv-yet" firstAttribute="leading" relation="lessThanOrEqual" secondItem="elM-zK-KHC" secondAttribute="trailing" constant="20" id="pHc-Qj-WDT"/>
                             <constraint firstItem="ZJm-tU-yMx" firstAttribute="leading" secondItem="9vw-yR-vEL" secondAttribute="leading" constant="20" id="r3i-l0-VrH"/>
                             <constraint firstItem="9vw-yR-vEL" firstAttribute="trailing" secondItem="oRg-oy-Cgg" secondAttribute="trailing" constant="20" id="rNl-Jw-12H"/>
                             <constraint firstItem="rmZ-et-REO" firstAttribute="trailing" secondItem="Ydo-jK-m3i" secondAttribute="trailing" id="tEI-XC-3CX"/>
@@ -816,6 +831,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addCarToListBtnOutlet" destination="elM-zK-KHC" id="PHf-fm-P9a"/>
                         <outlet property="addLinkView" destination="axw-66-aEC" id="PDa-WX-W45"/>
                         <outlet property="carImage" destination="ZJm-tU-yMx" id="AwG-pR-47s"/>
                         <outlet property="carLocationTxt" destination="PqV-aj-v1w" id="Gr4-gr-MIi"/>
@@ -824,6 +840,8 @@
                         <outlet property="carPriceTxt" destination="DpQ-f6-q4m" id="oAM-cw-3Y5"/>
                         <outlet property="carYearTxt" destination="KL5-3H-9q5" id="p3T-Gn-pXv"/>
                         <outlet property="insertedLinkTxt" destination="s2j-kT-kjy" id="Gsy-Pk-RBX"/>
+                        <outlet property="titleTextLbl" destination="oRg-oy-Cgg" id="tcN-dj-dVw"/>
+                        <outlet property="updateCarToListBtnOutlet" destination="Zck-Mv-yet" id="PPV-e1-IxU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEO-Iz-oeu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -29,7 +29,7 @@ class UserDetailsViewController: UIViewController {
 
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {        
         handle = Auth.auth().addStateDidChangeListener({ auth, user in
             
             let db = Firestore.firestore()

@@ -6,6 +6,13 @@ import FirebaseAuth
 
 class newCarUploadViewController: UIViewController {
     
+    var addEditingHiddenMode = false
+    var updateEditingHiddenMode = true
+    
+    @IBOutlet weak var addCarToListBtnOutlet: UIButton!
+    @IBOutlet weak var titleTextLbl: UILabel!
+    @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     @IBOutlet weak var carImage: UIImageView!
@@ -66,6 +73,14 @@ class newCarUploadViewController: UIViewController {
         //set width = 300, height = 140
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
         
+        //hiding
+        addCarToListBtnOutlet.isHidden = addEditingHiddenMode
+        titleTextLbl.isHidden = addEditingHiddenMode
+        
+        //showing update button
+        updateCarToListBtnOutlet.isHidden = updateEditingHiddenMode
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +92,7 @@ class newCarUploadViewController: UIViewController {
                 print("addStateDidChangeListener - newCarUploadViewController")
             }
         })
-        
+     
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -120,7 +135,7 @@ class newCarUploadViewController: UIViewController {
                     "Location": self.carLocationTxt.text!,
                     "Price": self.carPriceTxt.text!,
                     "Sellable": self.sellable
-    //                "Image": carImage.image!
+//                    "Image": carImage.image!
                 ]) { error in
                     if let error = error {
                         print(error)
@@ -130,8 +145,9 @@ class newCarUploadViewController: UIViewController {
                     }
                 }
             })
-            
+
         }
+        
     }
     
     
@@ -140,6 +156,11 @@ class newCarUploadViewController: UIViewController {
         allTxtFields.forEach { elem in
             elem?.text?.removeAll()
         }
+    }
+    
+    @IBAction func updateCarToListBtn(_ sender: Any) {
+        
+        
     }
     
 

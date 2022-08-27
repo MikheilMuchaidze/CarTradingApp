@@ -5,6 +5,8 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class StartingScreen: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
