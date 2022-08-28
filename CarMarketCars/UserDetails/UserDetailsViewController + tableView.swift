@@ -4,7 +4,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     //enabling swiping funcionality for the row
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -78,12 +78,13 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return carsList.count
+        searchingCarsList.isEmpty ? carsList.count : searchingCarsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
-        let thisCar = carsList[indexPath.row]
+        let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
+//        let thisCar = carsList[indexPath.row]
         
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model
@@ -92,6 +93,25 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         cell.carPriceLbl.text = thisCar.price
         
         return cell
+    }
+    
+    //searchbar functions
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchingCarsList.removeAll()
+        
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = .systemBlue
+        
+        if searchText == "" {
+            searchingCarsList = carsList
+        } else {
+            for item in carsList {
+                if item.model.lowercased().contains(searchText.lowercased()) {
+                    searchingCarsList.append(item)
+                }
+            }
+        }
+        self.tableView.reloadData()
     }
     
 }

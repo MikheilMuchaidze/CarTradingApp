@@ -8,8 +8,11 @@ class UserDetailsViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     var carsList = [Car]()
+    var searchingCarsList = [Car]()
 
     var handle: AuthStateDidChangeListenerHandle?
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var UserImageImage: UIImageView!
     
@@ -26,6 +29,8 @@ class UserDetailsViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.separatorStyle = .none
+        
+        searchBar.delegate = self
 
     }
     

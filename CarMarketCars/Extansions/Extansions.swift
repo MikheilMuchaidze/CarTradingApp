@@ -119,20 +119,16 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     
     //add aditing mode for view controler: adding new car and updating existing one
     func editingStatus(isTrue: Bool) {
-        if isTrue == true {
-            UpdateCar()
-        } else {
-            AddNewCar()
-        }
+        isTrue == true ? updateCar() : addNewCar()
     }
     
-    func AddNewCar() {
+    func addNewCar() {
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
     }
     
-    func UpdateCar() {
+    func updateCar() {
         addCarToListBtnOutlet.isHidden = true
         titleTextLbl.isHidden = true
         updateCarToListBtnOutlet.isHidden = false

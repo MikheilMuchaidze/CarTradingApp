@@ -8,8 +8,12 @@ class MainCarsListViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     var carsList = [Car]()
+    var searchingCarsList = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var activeUserLbl: UILabel!
     
@@ -30,6 +34,8 @@ class MainCarsListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
+        searchBar.delegate = self
         
         carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
