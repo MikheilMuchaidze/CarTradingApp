@@ -8,6 +8,7 @@ class MainCarsListViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     var carsList = [Dictionary<String, Any>]()
+    var carsArray = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -33,21 +34,34 @@ class MainCarsListViewController: UIViewController {
         
         carsList.removeAll()
         
-        carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { snapshot, error in
+        carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             
             guard let snapshot = snapshot?.documents else { return }
-            self.carsList.removeAll()
+//            self.carsList.removeAll()
+                        
+//            for document in snapshot {
+//                let data = document.data()
+//                DispatchQueue.main.async {
+//                    let car = Car(with: data)
+//                    carsArray.append(car)
+//                    print(car)
+//
+//                    self.carsList.append(data)
+//                    self.tableView.reloadData()
+//                }
+//            }
             
-            for document in snapshot {
-                let data = document.data()
-                DispatchQueue.main.async {
-                    self.carsList.append(data)
-                    self.tableView.reloadData()
-                }
+            snapshot.forEach { document in
+                self?.carsArray.append(Car(with: document.data()))
             }
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            
         }
         
 
@@ -79,7 +93,7 @@ class MainCarsListViewController: UIViewController {
     }
     
     @IBAction func uploadCarBtn(_ sender: Any) {
-        let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "newCarUploadViewController") as! newCarUploadViewController
+        let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController
         self.present(carUploadPage, animated: true)
     }
     

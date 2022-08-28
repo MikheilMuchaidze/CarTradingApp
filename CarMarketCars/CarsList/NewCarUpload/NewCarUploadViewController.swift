@@ -4,10 +4,12 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-class newCarUploadViewController: UIViewController {
+class NewCarUploadViewController: UIViewController {
     
     var addEditingHiddenMode = false
     var updateEditingHiddenMode = true
+    
+    var isEditinState = false
     
     @IBOutlet weak var addCarToListBtnOutlet: UIButton!
     @IBOutlet weak var titleTextLbl: UILabel!
@@ -112,11 +114,13 @@ class newCarUploadViewController: UIViewController {
     var sellable: Bool = true
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
-        if sender.isOn {
-            sellable = true
-        } else {
-            sellable = false
-        }
+//        if sender.isOn {
+//            sellable = true
+//        } else {
+//            sellable = false
+//        }
+        
+        sellable = sender.isOn
     }
 
     @IBAction func addCarToListBtn(_ sender: Any) {

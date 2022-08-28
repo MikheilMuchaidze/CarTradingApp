@@ -3,7 +3,7 @@ import UIKit
 import FirebaseAuth
 
 //car adding validation functions
-extension newCarUploadViewController {
+extension NewCarUploadViewController {
     
     //validation of text fields
     func validateIfEmpty() -> Bool {

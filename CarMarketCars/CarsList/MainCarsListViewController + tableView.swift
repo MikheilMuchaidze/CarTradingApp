@@ -19,18 +19,26 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return carsList.count
+//        return carsList.count
+        carsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
-        let thisCar = carsList[indexPath.row]
+//        let thisCar = carsList[indexPath.row]
+        let thisCar = carsArray[indexPath.row]
         
-        cell.carMarkLbl.text = thisCar["Mark"] as? String
-        cell.carModelLbl.text = thisCar["Model"] as? String
-        cell.carYearLbl.text = thisCar["Year"] as? String
-        cell.carLocationLbl.text = thisCar["Location"] as? String
-        cell.carPriceLbl.text = thisCar["Price"] as? String
+        cell.carMarkLbl.text = thisCar.mark
+        cell.carModelLbl.text = thisCar.model
+        cell.carYearLbl.text = thisCar.year
+        cell.carLocationLbl.text = thisCar.location
+        cell.carPriceLbl.text = thisCar.price
+        
+//        cell.carMarkLbl.text = thisCar["Mark"] as? String
+//        cell.carModelLbl.text = thisCar["Model"] as? String
+//        cell.carYearLbl.text = thisCar["Year"] as? String
+//        cell.carLocationLbl.text = thisCar["Location"] as? String
+//        cell.carPriceLbl.text = thisCar["Price"] as? String
         
         return cell
     }

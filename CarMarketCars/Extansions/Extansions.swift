@@ -93,7 +93,7 @@ extension UIImageView {
     
 }
 
-extension newCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //function that shows image picker
     func showImagePickerController() {

@@ -3,7 +3,6 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import SwiftUI
 
 extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -40,7 +39,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "newCarUploadViewController") as? newCarUploadViewController else { return }
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
             vc.addEditingHiddenMode = true
             vc.updateEditingHiddenMode = false
             self.present(vc, animated: true)
@@ -56,6 +55,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let swiper = UISwipeActionsConfiguration(actions: [delete])
         return swiper
     }
+    
     
     //action for Edit swiping row from left to right (leading)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
