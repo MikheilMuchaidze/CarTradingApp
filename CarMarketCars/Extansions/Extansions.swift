@@ -3,6 +3,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import UIKit
+import SwiftUI
 
 extension UIViewController {
     
@@ -114,5 +115,35 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         
         dismiss(animated: true)
     }
+    
+    
+    //add aditing mode for view controler: adding new car and updating existing one
+    func editingStatus(isTrue: Bool) {
+        if isTrue == true {
+            UpdateCar()
+        } else {
+            AddNewCar()
+        }
+    }
+    
+    func AddNewCar() {
+        addCarToListBtnOutlet.isHidden = false
+        titleTextLbl.isHidden = false
+        updateCarToListBtnOutlet.isHidden = true
+    }
+    
+    func UpdateCar() {
+        addCarToListBtnOutlet.isHidden = true
+        titleTextLbl.isHidden = true
+        updateCarToListBtnOutlet.isHidden = false
+        
+        carMarkTxt.text = editingCar.mark
+        carModelTxt.text = editingCar.model
+        carYearTxt.text = editingCar.year
+        carLocationTxt.text = editingCar.location
+        carPriceTxt.text = editingCar.price
+        sellableStatusOutlet.isOn = editingCar.sellable
+    }
      
 }
+

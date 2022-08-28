@@ -23,6 +23,7 @@
 		24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */; };
 		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
 		24B7728E28BB5E8F009305DC /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7728D28BB5E8F009305DC /* Car.swift */; };
+		24B7729028BBA236009305DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7728F28BBA236009305DC /* User.swift */; };
 		24C6305328AD53BA006A1194 /* Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305228AD53BA006A1194 /* Extansions.swift */; };
 		24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305628AD9722006A1194 /* MainCarsListViewController.swift */; };
 		24C6305928AD9D7A006A1194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24C6305828AD9D79006A1194 /* GoogleService-Info.plist */; };
@@ -54,6 +55,7 @@
 		24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
 		24B7728D28BB5E8F009305DC /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		24B7728F28BBA236009305DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24C6305228AD53BA006A1194 /* Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extansions.swift; sourceTree = "<group>"; };
 		24C6305628AD9722006A1194 /* MainCarsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCarsListViewController.swift; sourceTree = "<group>"; };
 		24C6305828AD9D79006A1194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				24B7728D28BB5E8F009305DC /* Car.swift */,
+				24B7728F28BBA236009305DC /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */,
 				24B7728E28BB5E8F009305DC /* Car.swift in Sources */,
 				24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */,
+				24B7729028BBA236009305DC /* User.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
 				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,

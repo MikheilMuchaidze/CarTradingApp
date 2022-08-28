@@ -7,8 +7,7 @@ import FirebaseAuth
 class MainCarsListViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-    var carsList = [Dictionary<String, Any>]()
-    var carsArray = [Car]()
+    var carsList = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -32,30 +31,17 @@ class MainCarsListViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         
-        carsList.removeAll()
-        
         carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             
             guard let snapshot = snapshot?.documents else { return }
-//            self.carsList.removeAll()
-                        
-//            for document in snapshot {
-//                let data = document.data()
-//                DispatchQueue.main.async {
-//                    let car = Car(with: data)
-//                    carsArray.append(car)
-//                    print(car)
-//
-//                    self.carsList.append(data)
-//                    self.tableView.reloadData()
-//                }
-//            }
+            
+            self?.carsList.removeAll()
             
             snapshot.forEach { document in
-                self?.carsArray.append(Car(with: document.data()))
+                self?.carsList.append(Car(with: document.data()))
             }
             
             DispatchQueue.main.async {

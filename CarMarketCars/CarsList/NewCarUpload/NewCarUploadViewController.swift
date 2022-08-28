@@ -6,10 +6,8 @@ import FirebaseAuth
 
 class NewCarUploadViewController: UIViewController {
     
-    var addEditingHiddenMode = false
-    var updateEditingHiddenMode = true
-    
-    var isEditinState = false
+    var isEditingMode = false
+    var editingCar: Car!
     
     @IBOutlet weak var addCarToListBtnOutlet: UIButton!
     @IBOutlet weak var titleTextLbl: UILabel!
@@ -53,7 +51,6 @@ class NewCarUploadViewController: UIViewController {
         animateOut(desiredView: addLinkView)
     }
     
-    
     @IBAction func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
     }
@@ -63,6 +60,8 @@ class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var carYearTxt: UITextField!
     @IBOutlet weak var carLocationTxt: UITextField!
     @IBOutlet weak var carPriceTxt: UITextField!
+    
+    @IBOutlet weak var sellableStatusOutlet: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,13 +74,8 @@ class NewCarUploadViewController: UIViewController {
         //set width = 300, height = 140
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
         
-        //hiding
-        addCarToListBtnOutlet.isHidden = addEditingHiddenMode
-        titleTextLbl.isHidden = addEditingHiddenMode
-        
-        //showing update button
-        updateCarToListBtnOutlet.isHidden = updateEditingHiddenMode
-
+        //editing mode choose
+        editingStatus(isTrue: isEditingMode)
         
     }
     
@@ -114,12 +108,6 @@ class NewCarUploadViewController: UIViewController {
     var sellable: Bool = true
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
-//        if sender.isOn {
-//            sellable = true
-//        } else {
-//            sellable = false
-//        }
-        
         sellable = sender.isOn
     }
 
@@ -153,7 +141,6 @@ class NewCarUploadViewController: UIViewController {
         }
         
     }
-    
     
     @IBAction func resetTxtFields(_ sender: Any) {
         let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt]

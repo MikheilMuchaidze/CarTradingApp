@@ -758,7 +758,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ni1-IT-tGe">
-                                <rect key="frame" x="338" y="399" width="69.333333333333314" height="35"/>
+                                <rect key="frame" x="338.66666666666669" y="399.33333333333331" width="69.333333333333314" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ni1-IT-tGe" secondAttribute="height" multiplier="2:1" id="sIP-eA-ct9"/>
                                 </constraints>
@@ -841,6 +841,7 @@
                         <outlet property="carPriceTxt" destination="DpQ-f6-q4m" id="oAM-cw-3Y5"/>
                         <outlet property="carYearTxt" destination="KL5-3H-9q5" id="p3T-Gn-pXv"/>
                         <outlet property="insertedLinkTxt" destination="s2j-kT-kjy" id="Gsy-Pk-RBX"/>
+                        <outlet property="sellableStatusOutlet" destination="HhO-Qk-gGl" id="wIn-GI-dxy"/>
                         <outlet property="titleTextLbl" destination="oRg-oy-Cgg" id="tcN-dj-dVw"/>
                         <outlet property="updateCarToListBtnOutlet" destination="Zck-Mv-yet" id="PPV-e1-IxU"/>
                     </connections>

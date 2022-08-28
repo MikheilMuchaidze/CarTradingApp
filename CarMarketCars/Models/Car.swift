@@ -1,7 +1,7 @@
 import UIKit
 
 struct Car {
-    let document: String
+    let documentID: String
     let email: String
     let mark: String
     let model: String
@@ -11,7 +11,7 @@ struct Car {
     let sellable: Bool
     
     init(with dictionary: Dictionary<String, Any>) {
-        self.document = dictionary["DocumentID"] as? String ?? ""
+        self.documentID = dictionary["DocumentID"] as? String ?? ""
         self.email = dictionary["Email"] as? String ?? ""
         self.mark = dictionary["Mark"] as? String ?? ""
         self.model = dictionary["Model"] as? String ?? ""

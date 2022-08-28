@@ -17,9 +17,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
             guard let self = self else { return }
             
             let thisCar = self.carsList[indexPath.row]
-            let currentID = thisCar["DocumentID"] as? String
+            let currentID = thisCar.documentID
             
-            self.carsdb.document(currentID!).delete { error in
+            self.carsdb.document(currentID).delete { error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -40,8 +40,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
-            vc.addEditingHiddenMode = true
-            vc.updateEditingHiddenMode = false
+            let thisCar = self.carsList[indexPath.row]
+            vc.editingCar = thisCar
+            vc.isEditingMode = true
             self.present(vc, animated: true)
         }
         
@@ -85,11 +86,11 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
         let thisCar = carsList[indexPath.row]
         
-        cell.carMarkLbl.text = thisCar["Mark"] as? String
-        cell.carModelLbl.text = thisCar["Model"] as? String
-        cell.carYearLbl.text = thisCar["Year"] as? String
-        cell.carLocationLbl.text = thisCar["Location"] as? String
-        cell.carPriceLbl.text = thisCar["Price"] as? String
+        cell.carMarkLbl.text = thisCar.mark
+        cell.carModelLbl.text = thisCar.model
+        cell.carYearLbl.text = thisCar.year
+        cell.carLocationLbl.text = thisCar.location
+        cell.carPriceLbl.text = thisCar.price
         
         return cell
     }
