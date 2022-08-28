@@ -34,12 +34,6 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
         
         return cell
     }
-    
-    
-    
-    
-
-    
 
 }
 

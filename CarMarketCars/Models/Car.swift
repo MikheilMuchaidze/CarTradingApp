@@ -21,4 +21,5 @@ struct Car {
         self.sellable = dictionary["Sellable"] as? Bool ?? false
     }
     
+    
 }

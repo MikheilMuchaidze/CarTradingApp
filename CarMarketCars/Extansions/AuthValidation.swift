@@ -57,7 +57,6 @@ extension LoginScreenViewController {
     
 }
 
-
 //registration validation functions
 extension RegisterScreenViewController {
     

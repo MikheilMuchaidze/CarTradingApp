@@ -26,10 +26,6 @@ class LoginScreenViewController: UIViewController {
             } else {
                 self.UserEmailTxt.text = nil
                 self.UserPasswordTxt.text = nil
-                
-//                print("User \(user!.email ?? "") Successful sign in")
-//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
-//                self.navigationController?.pushViewController(vc, animated: true)
             }
             print("addStateDidChangeListener - LoginPage")
         })
@@ -44,6 +40,7 @@ class LoginScreenViewController: UIViewController {
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
         print("removeStateDidChangeListener - RegisterPage")
+        
     }
     
     @IBAction func signInBtn(_ sender: Any) {
@@ -67,11 +64,7 @@ class LoginScreenViewController: UIViewController {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            
         }
-        
     }
-    
-    
     
 }

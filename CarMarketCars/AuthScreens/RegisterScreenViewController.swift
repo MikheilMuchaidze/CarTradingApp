@@ -56,6 +56,7 @@ class RegisterScreenViewController: UIViewController {
     
     //clear all fields
     @IBAction func resetAllFields(_ sender: Any) {
+        
         let allTxtFields = [UserEmailTxt, UserPasswordTxt, UserRepeatPassTxt, UserNameTxt, UserSurnameTxt]
         allTxtFields.forEach { elem in
             elem?.text?.removeAll()
@@ -101,13 +102,9 @@ class RegisterScreenViewController: UIViewController {
                     print("Successful sign up")
                     self.tabBarController?.selectedIndex = 0
                 }
-                
             }
         }
-        
-        
     }
-    
     
 }
 

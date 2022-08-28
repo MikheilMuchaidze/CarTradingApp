@@ -57,7 +57,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return swiper
     }
     
-    
     //action for Edit swiping row from left to right (leading)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = self.edit(rowIndexPathar: indexPath)
@@ -94,9 +93,5 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
-    
-    
-    
-    
     
 }

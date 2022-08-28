@@ -7,7 +7,6 @@ import FirebaseAuth
 class UserDetailsViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-//    var carsList = [Dictionary<String, Any>]()
     var carsList = [Car]()
 
     var handle: AuthStateDidChangeListenerHandle?
@@ -69,7 +68,6 @@ class UserDetailsViewController: UIViewController {
             }
 
             print("addStateDidChangeListener - MainCarsListViewController")
-            
             
         })
     }

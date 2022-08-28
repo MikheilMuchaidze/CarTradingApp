@@ -3,57 +3,24 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import SwiftUI
 
 class NewCarUploadViewController: UIViewController {
     
+    var handle: AuthStateDidChangeListenerHandle?
+
     var isEditingMode = false
     var editingCar: Car!
+    var sellable: Bool = true
     
     @IBOutlet weak var addCarToListBtnOutlet: UIButton!
     @IBOutlet weak var titleTextLbl: UILabel!
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
     
-    var handle: AuthStateDidChangeListenerHandle?
-    
     @IBOutlet weak var carImage: UIImageView!
-    
-    @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
-        animateIn(desiredView: addLinkView)
-        
-    }
-    
-    
-    @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
-        showImagePickerController()
-    }
     
     @IBOutlet var addLinkView: UIView!
     @IBOutlet weak var insertedLinkTxt: UITextField!
-    
-    @IBAction func linkLoadToImageBtn(_ sender: Any) {
-        
-        let imageUrl = insertedLinkTxt.text
-        
-        if imageUrl == nil || imageUrl == "" {
-            alertPopUp(title: "Url Error", message: "Incorrect or empty url in field, please input correct link", okTitle: "Ok.")
-            carImage.image = nil
-        } else {
-            let URL = URL(string: imageUrl!)
-            carImage.loadImageFrom(url: URL!)
-            insertedLinkTxt.text = nil
-            animateOut(desiredView: addLinkView)
-        }
-        
-    }
-    
-    @IBAction func addLinkViewExit(_ sender: Any) {
-        insertedLinkTxt.text = nil
-        animateOut(desiredView: addLinkView)
-    }
-    
-    @IBAction func removeCarImageBtn(_ sender: Any) {
-        carImage.image = nil
-    }
     
     @IBOutlet weak var carMarkTxt: UITextField!
     @IBOutlet weak var carModelTxt: UITextField!
@@ -62,7 +29,7 @@ class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var carPriceTxt: UITextField!
     
     @IBOutlet weak var sellableStatusOutlet: UISwitch!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +43,6 @@ class NewCarUploadViewController: UIViewController {
         
         //editing mode choose
         editingStatus(isTrue: isEditingMode)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +71,39 @@ class NewCarUploadViewController: UIViewController {
         
     }
     
-    var sellable: Bool = true
+    @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
+        animateIn(desiredView: addLinkView)
+    }
+    
+    @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
+        showImagePickerController()
+    }
+    
+    @IBAction func linkLoadToImageBtn(_ sender: Any) {
+        
+        let imageUrl = insertedLinkTxt.text
+        
+        if imageUrl == nil || imageUrl == "" {
+            alertPopUp(title: "Url Error", message: "Incorrect or empty url in field, please input correct link", okTitle: "Ok.")
+            carImage.image = nil
+        } else {
+            let URL = URL(string: imageUrl!)
+            carImage.loadImageFrom(url: URL!)
+            insertedLinkTxt.text = nil
+            animateOut(desiredView: addLinkView)
+        }
+        
+    }
+    
+    @IBAction func addLinkViewExit(_ sender: Any) {
+        insertedLinkTxt.text = nil
+        animateOut(desiredView: addLinkView)
+    }
+    
+    @IBAction func removeCarImageBtn(_ sender: Any) {
+        carImage.image = nil
+    }
+    
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
         sellable = sender.isOn
@@ -130,7 +128,7 @@ class NewCarUploadViewController: UIViewController {
 //                    "Image": carImage.image!
                 ]) { error in
                     if let error = error {
-                        print(error)
+                        print(error.localizedDescription)
                     } else {
                         print("Document added")
                         self.dismiss(animated: true)
@@ -151,6 +149,25 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func updateCarToListBtn(_ sender: Any) {
         
+        if validateIfEmpty() && validateIfImageIsEmpty()  {
+            let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+            carsDb.document(editingCar.documentID).updateData([
+                "Mark": self.carMarkTxt.text!,
+                "Model": self.carModelTxt.text!,
+                "Year": self.carYearTxt.text!,
+                "Location": self.carLocationTxt.text!,
+                "Price": self.carPriceTxt.text!,
+                "Sellable": self.sellable
+//                    "Image": carImage.image!
+            ]) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("Document updated")
+                    self.dismiss(animated: true)
+                }
+            }
+        }
         
     }
     
