@@ -3,7 +3,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import SwiftUI
+import FirebaseStorage
 
 class NewCarUploadViewController: UIViewController {
     
@@ -135,8 +135,10 @@ class NewCarUploadViewController: UIViewController {
                         self.dismiss(animated: true)
                     }
                 }
+                if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
+                    self.uploadImage(data: imageData, uuid: uuid)
+                }
             })
-
         }
         
     }

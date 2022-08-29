@@ -2,8 +2,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseStorage
 import UIKit
-import SwiftUI
 
 extension UIViewController {
     
@@ -104,9 +104,10 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
 //        imagePickerController.sourceType = chooseAction
         present(imagePickerController, animated: true)
     }
+
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             carImage.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -114,6 +115,19 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         }
         
         dismiss(animated: true)
+    }
+    
+    //upload image to storage
+    func uploadImage(data: Data, uuid:  String) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let localFile = data
+        let photoRef = storageRef.child("carImages/\(uuid)")
+        photoRef.putData(localFile) { metadata, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     //enums for additing and editing a car
