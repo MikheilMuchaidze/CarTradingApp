@@ -23,7 +23,8 @@ class UserDetailsTableViewCell: UITableViewCell {
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
-        
+        carImage.contentMode = .scaleAspectFill
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

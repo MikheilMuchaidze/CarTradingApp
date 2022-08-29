@@ -12,6 +12,7 @@ class NewCarUploadViewController: UIViewController {
     var carUploadPageStatus: carUploadStatus!
     var editingCar: Car!
     var sellable: Bool = true
+    let uuid = UUID().uuidString
     
     @IBOutlet weak var addCarToListBtnOutlet: UIButton!
     @IBOutlet weak var titleTextLbl: UILabel!
@@ -72,6 +73,7 @@ class NewCarUploadViewController: UIViewController {
         
     }
     
+    
     @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
         animateIn(desiredView: addLinkView)
     }
@@ -105,7 +107,6 @@ class NewCarUploadViewController: UIViewController {
         carImage.image = nil
     }
     
-    
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
         sellable = sender.isOn
     }
@@ -116,9 +117,8 @@ class NewCarUploadViewController: UIViewController {
             handle = Auth.auth().addStateDidChangeListener({ auth, user in
                 guard let currentUser = user else { return }
                 let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-                let uuid = UUID().uuidString
-                carsDb.document(uuid).setData([
-                    "DocumentID": uuid,
+                carsDb.document(self.uuid).setData([
+                    "DocumentID": self.uuid,
                     "Email": "\(currentUser.email ?? "")",
                     "Mark": self.carMarkTxt.text!,
                     "Model": self.carModelTxt.text!,
@@ -126,7 +126,6 @@ class NewCarUploadViewController: UIViewController {
                     "Location": self.carLocationTxt.text!,
                     "Price": self.carPriceTxt.text!,
                     "Sellable": self.sellable
-//                    "Image": carImage.image!
                 ]) { error in
                     if let error = error {
                         print(error.localizedDescription)
@@ -136,7 +135,7 @@ class NewCarUploadViewController: UIViewController {
                     }
                 }
                 if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
-                    self.uploadImage(data: imageData, uuid: uuid)
+                    self.uploadImage(data: imageData, uuid: self.uuid)
                 }
             })
         }
@@ -161,7 +160,6 @@ class NewCarUploadViewController: UIViewController {
                 "Location": self.carLocationTxt.text!,
                 "Price": self.carPriceTxt.text!,
                 "Sellable": self.sellable
-//                    "Image": carImage.image!
             ]) { error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -170,10 +168,15 @@ class NewCarUploadViewController: UIViewController {
                     self.dismiss(animated: true)
                 }
             }
+            if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
+                self.uploadImage(data: imageData, uuid: editingCar.documentID)
+            }
         }
-        
     }
     
-
-
+    
 }
+
+
+
+

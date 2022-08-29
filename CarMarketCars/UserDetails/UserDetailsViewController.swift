@@ -72,16 +72,18 @@ class UserDetailsViewController: UIViewController {
                 }
             }
 
-            print("addStateDidChangeListener - MainCarsListViewController")
+            print("addStateDidChangeListener - UserDetailsViewController")
             
         })
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
-        print("removeStateDidChangeListener - MainCarsListViewController")
+        print("removeStateDidChangeListener - UserDetailsViewController")
+        
     }
     
 }

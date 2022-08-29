@@ -3,6 +3,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
         
@@ -25,6 +26,14 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let photoRef = storageRef.child("carImages/\(thisCar.documentID)")
+        photoRef.downloadURL { url, error in
+            guard let url = url else { return }
+            cell.carImage.loadImageFrom(url: url)
+        }
         
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model

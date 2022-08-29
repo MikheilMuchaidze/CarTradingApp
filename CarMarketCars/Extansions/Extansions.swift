@@ -75,6 +75,19 @@ extension UIViewController {
         })
     }
     
+    //upload image to storage
+    func uploadImage(data: Data, uuid:  String) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let localFile = data
+        let photoRef = storageRef.child("carImages/\(uuid)")
+        photoRef.putData(localFile) { metadata, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 extension UIImageView {
@@ -117,18 +130,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true)
     }
     
-    //upload image to storage
-    func uploadImage(data: Data, uuid:  String) {
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let localFile = data
-        let photoRef = storageRef.child("carImages/\(uuid)")
-        photoRef.putData(localFile) { metadata, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
-    }
     
     //enums for additing and editing a car
     enum carUploadStatus {
@@ -163,6 +164,14 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carLocationTxt.text = editingCar.location
         carPriceTxt.text = editingCar.price
         sellableStatusOutlet.isOn = editingCar.sellable
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let photoRef = storageRef.child("carImages/\(editingCar.documentID)")
+        photoRef.downloadURL { url, error in
+            guard let url = url else { return }
+            self.carImage.loadImageFrom(url: url)
+        }
     }
      
 }

@@ -3,6 +3,7 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -85,6 +86,14 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let photoRef = storageRef.child("carImages/\(thisCar.documentID)")
+        photoRef.downloadURL { url, error in
+            guard let url = url else { return }
+            cell.carImage.loadImageFrom(url: url)
+        }
+        
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model
         cell.carYearLbl.text = thisCar.year
@@ -93,6 +102,12 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         
         return cell
     }
+    
+    //updating tableview after editing cell
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        self.tableView.reloadData()
+    }
+    
     
     //searchbar functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

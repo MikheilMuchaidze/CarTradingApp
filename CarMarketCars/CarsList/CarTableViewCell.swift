@@ -23,6 +23,7 @@ class CarTableViewCell: UITableViewCell {
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
+        carImage.contentMode = .scaleAspectFill
 
     }
 

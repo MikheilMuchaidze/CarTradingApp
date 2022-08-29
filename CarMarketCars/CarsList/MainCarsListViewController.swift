@@ -3,15 +3,16 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
     
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+    let carsStorageRef = Storage.storage().reference()
     var carsList = [Car]()
     var searchingCarsList = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
-    
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -90,8 +91,5 @@ class MainCarsListViewController: UIViewController {
         self.present(carUploadPage, animated: true)
     }
     
-    
-    
-
 }
 
