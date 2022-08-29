@@ -9,7 +9,7 @@ class NewCarUploadViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
 
-    var isEditingMode = false
+    var carUploadPageStatus: carUploadStatus!
     var editingCar: Car!
     var sellable: Bool = true
     
@@ -42,7 +42,8 @@ class NewCarUploadViewController: UIViewController {
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
         
         //editing mode choose
-        editingStatus(isTrue: isEditingMode)
+        carUpload(page: carUploadPageStatus)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

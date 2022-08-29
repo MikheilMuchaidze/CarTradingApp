@@ -86,6 +86,7 @@ class MainCarsListViewController: UIViewController {
     
     @IBAction func uploadCarBtn(_ sender: Any) {
         let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController
+        carUploadPage.carUploadPageStatus = .AddingCar
         self.present(carUploadPage, animated: true)
     }
     

@@ -25,7 +25,6 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
-//        let thisCar = carsList[indexPath.row]
         
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model

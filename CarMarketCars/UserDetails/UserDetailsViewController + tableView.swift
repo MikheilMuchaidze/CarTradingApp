@@ -42,7 +42,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
             let thisCar = self.carsList[indexPath.row]
             vc.editingCar = thisCar
-            vc.isEditingMode = true
+            vc.carUploadPageStatus = .UpdatingCar
             self.present(vc, animated: true)
         }
         
@@ -84,7 +84,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
-//        let thisCar = carsList[indexPath.row]
         
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model

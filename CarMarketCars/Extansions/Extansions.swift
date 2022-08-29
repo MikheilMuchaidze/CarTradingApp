@@ -116,10 +116,20 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true)
     }
     
+    //enums for additing and editing a car
+    enum carUploadStatus {
+        case AddingCar
+        case UpdatingCar
+    }
     
     //add aditing mode for view controler: adding new car and updating existing one
-    func editingStatus(isTrue: Bool) {
-        isTrue == true ? updateCar() : addNewCar()
+    func carUpload(page status: carUploadStatus) {
+        switch status {
+        case .AddingCar:
+            addNewCar()
+        case .UpdatingCar:
+            updateCar()
+        }
     }
     
     func addNewCar() {
