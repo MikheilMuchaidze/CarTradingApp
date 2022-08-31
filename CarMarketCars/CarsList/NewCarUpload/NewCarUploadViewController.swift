@@ -171,6 +171,7 @@ class NewCarUploadViewController: UIViewController {
             if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
                 self.uploadImage(data: imageData, uuid: editingCar.documentID)
             }
+            
         }
     }
     

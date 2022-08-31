@@ -6,7 +6,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
-    
+        
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     let carsStorageRef = Storage.storage().reference()
     var carsList = [Car]()
@@ -20,6 +20,7 @@ class MainCarsListViewController: UIViewController {
     
     @IBOutlet weak var goBackActionImage: UIImageView!
     @IBOutlet weak var userDetailsImage: UIImageView!
+    @IBOutlet weak var updateTableOutlet: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -56,8 +57,7 @@ class MainCarsListViewController: UIViewController {
             }
             
         }
-        
-
+                
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,9 +70,9 @@ class MainCarsListViewController: UIViewController {
             }
             print("addStateDidChangeListener - MainCarsListViewController")
         })
-        
+                
     }
-    
+        
     override func viewWillDisappear(_ animated: Bool) {
         do {
             try Auth.auth().signOut()
@@ -83,6 +83,8 @@ class MainCarsListViewController: UIViewController {
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
         print("removeStateDidChangeListener - MainCarsListViewController")
+        
+        
     }
     
     @IBAction func uploadCarBtn(_ sender: Any) {
@@ -91,5 +93,10 @@ class MainCarsListViewController: UIViewController {
         self.present(carUploadPage, animated: true)
     }
     
+    @IBAction func updateTableBtn(_ sender: Any) {
+        self.tableView.reloadData()
+    }
+    
 }
+
 

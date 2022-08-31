@@ -75,7 +75,7 @@ class UserDetailsViewController: UIViewController {
             print("addStateDidChangeListener - UserDetailsViewController")
             
         })
-        
+            
     }
     
     override func viewWillDisappear(_ animated: Bool) {

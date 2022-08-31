@@ -1,6 +1,6 @@
 import UIKit
 
-struct Car {
+struct Car: Equatable {
     let documentID: String
     let email: String
     let mark: String
