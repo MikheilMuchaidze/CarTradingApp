@@ -107,7 +107,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MdT-6K-Kiu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="336" y="315"/>
+            <point key="canvasLocation" x="364" y="315"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="tne-QT-ifu">
@@ -589,17 +589,6 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKG-do-upB">
-                                <rect key="frame" x="148.33333333333334" y="802" width="92" height="36"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Update">
-                                    <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="updateTableBtn:" destination="pOO-Py-eBO" eventType="touchUpInside" id="ae0-N4-fEe"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="j3s-b4-Fwx"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -613,16 +602,12 @@
                             <constraint firstItem="h1H-Ci-ycz" firstAttribute="top" secondItem="3fj-zQ-TdW" secondAttribute="bottom" id="McA-zh-6D8"/>
                             <constraint firstItem="Yw4-mR-lai" firstAttribute="leading" secondItem="j3s-b4-Fwx" secondAttribute="leading" constant="20" id="Ryk-DY-qb1"/>
                             <constraint firstItem="xMX-8J-CIM" firstAttribute="top" secondItem="mu1-ZS-m56" secondAttribute="bottom" constant="10" id="T6C-KY-KD9"/>
-                            <constraint firstItem="eKG-do-upB" firstAttribute="height" secondItem="xMX-8J-CIM" secondAttribute="height" id="dtm-9n-HTv"/>
                             <constraint firstItem="mu1-ZS-m56" firstAttribute="top" secondItem="h1H-Ci-ycz" secondAttribute="bottom" id="dyN-nk-3X2"/>
                             <constraint firstItem="j3s-b4-Fwx" firstAttribute="trailing" secondItem="mu1-ZS-m56" secondAttribute="trailing" id="ffh-dK-fht"/>
                             <constraint firstItem="j3s-b4-Fwx" firstAttribute="trailing" secondItem="4pV-ks-gl0" secondAttribute="trailing" constant="20" id="gmf-M6-FqU"/>
-                            <constraint firstItem="j3s-b4-Fwx" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eKG-do-upB" secondAttribute="trailing" constant="200" id="jRU-j5-dUq"/>
                             <constraint firstItem="j3s-b4-Fwx" firstAttribute="trailing" secondItem="h1H-Ci-ycz" secondAttribute="trailing" constant="20" id="pdh-MJ-lN2"/>
                             <constraint firstItem="h1H-Ci-ycz" firstAttribute="leading" secondItem="j3s-b4-Fwx" secondAttribute="leading" constant="20" id="rN5-c1-waC"/>
-                            <constraint firstItem="eKG-do-upB" firstAttribute="leading" secondItem="xMX-8J-CIM" secondAttribute="trailing" constant="20" id="rPx-86-wG9"/>
                             <constraint firstItem="4pV-ks-gl0" firstAttribute="top" secondItem="j3s-b4-Fwx" secondAttribute="top" constant="10" id="ssH-PR-7iV"/>
-                            <constraint firstItem="eKG-do-upB" firstAttribute="centerY" secondItem="xMX-8J-CIM" secondAttribute="centerY" id="t79-3l-e1a"/>
                             <constraint firstItem="Yw4-mR-lai" firstAttribute="height" secondItem="WKC-l2-Gk0" secondAttribute="height" multiplier="0.05" id="tQw-zm-Wbf"/>
                             <constraint firstItem="xMX-8J-CIM" firstAttribute="trailing" secondItem="mu1-ZS-m56" secondAttribute="trailing" multiplier="0.3" id="u8X-Wq-Y1p"/>
                             <constraint firstItem="xMX-8J-CIM" firstAttribute="leading" secondItem="mu1-ZS-m56" secondAttribute="leading" constant="20" id="uxd-rI-SRW"/>
@@ -634,7 +619,6 @@
                         <outlet property="goBackActionImage" destination="Yw4-mR-lai" id="Vpr-ob-eX0"/>
                         <outlet property="searchBar" destination="h1H-Ci-ycz" id="8cP-qm-PrJ"/>
                         <outlet property="tableView" destination="mu1-ZS-m56" id="rxa-1A-VK8"/>
-                        <outlet property="updateTableOutlet" destination="eKG-do-upB" id="REg-4o-yII"/>
                         <outlet property="userDetailsImage" destination="4pV-ks-gl0" id="JeS-dE-RRb"/>
                     </connections>
                 </viewController>

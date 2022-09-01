@@ -176,3 +176,24 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
      
 }
 
+extension MainCarsListViewController {
+    
+    //function to reload table when its pulled from top
+    func tablePullToRefresh() {
+        //for refreshin when scrolled up
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        tableView.refreshControl?.tintColor = .systemIndigo
+    }
+    
+    //refreshing objc funtion itself
+    @objc func didPullToRefresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
+}
+
+

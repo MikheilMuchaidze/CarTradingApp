@@ -6,10 +6,14 @@ import FirebaseAuth
 import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
-        
-    let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+            
+    var carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     let carsStorageRef = Storage.storage().reference()
-    var carsList = [Car]()
+    var carsList = [Car]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var searchingCarsList = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
@@ -36,6 +40,8 @@ class MainCarsListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
+        tablePullToRefresh()
         
         searchBar.delegate = self
         
@@ -84,8 +90,9 @@ class MainCarsListViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle)
         print("removeStateDidChangeListener - MainCarsListViewController")
         
-        
     }
+    
+    
     
     @IBAction func uploadCarBtn(_ sender: Any) {
         let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController
@@ -93,9 +100,7 @@ class MainCarsListViewController: UIViewController {
         self.present(carUploadPage, animated: true)
     }
     
-    @IBAction func updateTableBtn(_ sender: Any) {
-        self.tableView.reloadData()
-    }
+
     
 }
 
