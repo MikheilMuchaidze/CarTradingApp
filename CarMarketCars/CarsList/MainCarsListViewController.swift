@@ -9,11 +9,8 @@ class MainCarsListViewController: UIViewController {
             
     var carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     let carsStorageRef = Storage.storage().reference()
-    var carsList = [Car]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var carsList = [Car]()
+    
     var searchingCarsList = [Car]()
     
     var handle: AuthStateDidChangeListenerHandle?
@@ -24,7 +21,6 @@ class MainCarsListViewController: UIViewController {
     
     @IBOutlet weak var goBackActionImage: UIImageView!
     @IBOutlet weak var userDetailsImage: UIImageView!
-    @IBOutlet weak var updateTableOutlet: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -40,9 +36,7 @@ class MainCarsListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
-        tablePullToRefresh()
-        
+                
         searchBar.delegate = self
         
         carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
@@ -63,7 +57,9 @@ class MainCarsListViewController: UIViewController {
             }
             
         }
-                
+        
+        tablePullToRefresh()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,15 +88,11 @@ class MainCarsListViewController: UIViewController {
         
     }
     
-    
-    
     @IBAction func uploadCarBtn(_ sender: Any) {
         let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController
         carUploadPage.carUploadPageStatus = .AddingCar
         self.present(carUploadPage, animated: true)
     }
-    
-
     
 }
 

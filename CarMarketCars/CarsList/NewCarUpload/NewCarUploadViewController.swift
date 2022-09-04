@@ -19,6 +19,7 @@ class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
     
     @IBOutlet weak var carImage: UIImageView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     @IBOutlet var addLinkView: UIView!
     @IBOutlet weak var insertedLinkTxt: UITextField!
@@ -28,8 +29,15 @@ class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var carYearTxt: UITextField!
     @IBOutlet weak var carLocationTxt: UITextField!
     @IBOutlet weak var carPriceTxt: UITextField!
+    @IBOutlet weak var carPhoneTxt: UITextField!
     
     @IBOutlet weak var sellableStatusOutlet: UISwitch!
+    
+    @IBOutlet weak var addCarImageWithUrl: UIButton!
+    @IBOutlet weak var addCarImageFromGallery: UIButton!
+    @IBOutlet weak var removeCarImage: UIButton!
+    @IBOutlet weak var sellNowText: UILabel!
+    @IBOutlet weak var resetTxtFieldsOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +74,7 @@ class NewCarUploadViewController: UIViewController {
         carYearTxt.text = nil
         carLocationTxt.text = nil
         carPriceTxt.text = nil
+        carPhoneTxt.text = nil
         
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
@@ -80,6 +89,8 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
         showImagePickerController()
+        indicator.startAnimating()
+        indicator.isHidden = true
     }
     
     @IBAction func linkLoadToImageBtn(_ sender: Any) {
@@ -105,6 +116,8 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
+        indicator.isHidden = false
+        indicator.startAnimating()
     }
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
@@ -125,6 +138,7 @@ class NewCarUploadViewController: UIViewController {
                     "Year": self.carYearTxt.text!,
                     "Location": self.carLocationTxt.text!,
                     "Price": self.carPriceTxt.text!,
+                    "Phone": self.carPhoneTxt.text!,
                     "Sellable": self.sellable
                 ]) { error in
                     if let error = error {
@@ -143,7 +157,7 @@ class NewCarUploadViewController: UIViewController {
     }
     
     @IBAction func resetTxtFields(_ sender: Any) {
-        let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt]
+        let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
         allTxtFields.forEach { elem in
             elem?.text?.removeAll()
         }
@@ -159,6 +173,7 @@ class NewCarUploadViewController: UIViewController {
                 "Year": self.carYearTxt.text!,
                 "Location": self.carLocationTxt.text!,
                 "Price": self.carPriceTxt.text!,
+                "Phone": self.carPhoneTxt.text!,
                 "Sellable": self.sellable
             ]) { error in
                 if let error = error {

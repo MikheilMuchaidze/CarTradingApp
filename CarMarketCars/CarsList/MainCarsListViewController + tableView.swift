@@ -26,6 +26,8 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
+        cell.indicator.isHidden = false
+        cell.indicator.startAnimating()
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
         let storage = Storage.storage()
@@ -34,6 +36,8 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
         photoRef.downloadURL { url, error in
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
+            cell.indicator.stopAnimating()
+            cell.indicator.isHidden = true
         }
         
         cell.carMarkLbl.text = thisCar.mark
@@ -41,8 +45,18 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
         cell.carYearLbl.text = thisCar.year
         cell.carLocationLbl.text = thisCar.location
         cell.carPriceLbl.text = thisCar.price
+        cell.carPhoneLbl.text = thisCar.phone
         
         return cell
+    }
+    
+    //function to get to car info page when clicking
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
+        let thisCar = self.carsList[indexPath.row]
+        vc.editingCar = thisCar
+        vc.carUploadPageStatus = .CarInfo
+        self.present(vc, animated: true)
     }
     
     //searchbar functions

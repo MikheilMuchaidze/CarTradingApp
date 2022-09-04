@@ -8,6 +8,7 @@ struct Car: Equatable {
     let year: String
     let location: String
     let price: String
+    let phone: String
     let sellable: Bool
     
     init(with dictionary: Dictionary<String, Any>) {
@@ -18,6 +19,7 @@ struct Car: Equatable {
         self.year = dictionary["Year"] as? String ?? ""
         self.location = dictionary["Location"] as? String ?? ""
         self.price = dictionary["Price"] as? String ?? ""
+        self.phone = dictionary["Phone"] as? String ?? ""
         self.sellable = dictionary["Sellable"] as? Bool ?? false
     }
     

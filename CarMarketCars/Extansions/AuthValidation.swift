@@ -6,7 +6,7 @@ extension NewCarUploadViewController {
     
     //validation of text fields
     func validateIfEmpty() -> Bool {
-        if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty {
+        if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty || carPhoneTxt.text!.isEmpty {
             alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
             return false
         } else {

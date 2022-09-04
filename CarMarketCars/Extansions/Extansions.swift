@@ -135,6 +135,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     enum carUploadStatus {
         case AddingCar
         case UpdatingCar
+        case CarInfo
     }
     
     //add aditing mode for view controler: adding new car and updating existing one
@@ -144,6 +145,42 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             addNewCar()
         case .UpdatingCar:
             updateCar()
+        case .CarInfo:
+            carInfo()
+        }
+    }
+    
+    func carInfo() {
+        indicator.isHidden = false
+        indicator.startAnimating()
+        
+        let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
+        outletsList.forEach { elem in
+            elem?.isHidden = true
+        }
+        
+        carMarkTxt.text = editingCar.mark
+        carModelTxt.text = editingCar.model
+        carYearTxt.text = editingCar.year
+        carLocationTxt.text = editingCar.location
+        carPriceTxt.text = editingCar.price
+        carPhoneTxt.text = editingCar.phone
+        sellableStatusOutlet.isOn = editingCar.sellable
+        
+        let fieldsList = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt, sellableStatusOutlet]
+        
+        fieldsList.forEach { elem in
+            elem?.isEnabled = false
+        }
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let photoRef = storageRef.child("carImages/\(editingCar.documentID)")
+        photoRef.downloadURL { url, error in
+            guard let url = url else { return }
+            self.carImage.loadImageFrom(url: url)
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
         }
     }
     
@@ -151,6 +188,8 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
+        indicator.isHidden = false
+        indicator.startAnimating()
     }
     
     func updateCar() {
@@ -163,6 +202,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carYearTxt.text = editingCar.year
         carLocationTxt.text = editingCar.location
         carPriceTxt.text = editingCar.price
+        carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
         
         let storage = Storage.storage()

@@ -84,6 +84,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
+        cell.indicator.startAnimating()
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
         let storage = Storage.storage()
@@ -91,7 +92,9 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         let photoRef = storageRef.child("carImages/\(thisCar.documentID)")
         photoRef.downloadURL { url, error in
             guard let url = url else { return }
+            cell.indicator.stopAnimating()
             cell.carImage.loadImageFrom(url: url)
+            cell.indicator.isHidden = true
         }
         
         cell.carMarkLbl.text = thisCar.mark
@@ -99,6 +102,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         cell.carYearLbl.text = thisCar.year
         cell.carLocationLbl.text = thisCar.location
         cell.carPriceLbl.text = thisCar.price
+        cell.carPhoneLbl.text = thisCar.phone
         
         return cell
     }

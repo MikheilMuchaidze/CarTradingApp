@@ -14,7 +14,9 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var carYearLbl: UILabel!
     @IBOutlet weak var carLocationLbl: UILabel!
     @IBOutlet weak var carPriceLbl: UILabel!
-        
+    @IBOutlet weak var carPhoneLbl: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
