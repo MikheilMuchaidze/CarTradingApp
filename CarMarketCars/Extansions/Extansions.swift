@@ -185,6 +185,9 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func addNewCar() {
+        indicator.isHidden = false
+        indicator.startAnimating()
+        
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
@@ -211,6 +214,8 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         photoRef.downloadURL { url, error in
             guard let url = url else { return }
             self.carImage.loadImageFrom(url: url)
+            self.indicator.stopAnimating()
+            self.indicator.isHidden = true
         }
     }
      

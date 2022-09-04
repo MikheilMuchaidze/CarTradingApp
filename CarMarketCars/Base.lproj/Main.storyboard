@@ -365,6 +365,7 @@
                                                         </imageView>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mrP-Bq-n1J">
                                                             <rect key="frame" x="79" y="79" width="20" height="20"/>
+                                                            <color key="color" systemColor="systemIndigoColor"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -578,6 +579,7 @@
                                                         </stackView>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="95I-sI-nX7">
                                                             <rect key="frame" x="79" y="79" width="20" height="20"/>
+                                                            <color key="color" systemColor="systemIndigoColor"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -779,6 +781,7 @@
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1Hf-O3-cTR">
                                 <rect key="frame" x="127.66666666666669" y="284.33333333333331" width="20" height="20"/>
+                                <color key="color" systemColor="systemIndigoColor"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODQ-ag-eE1">
                                 <rect key="frame" x="275.33333333333331" y="266" width="132.66666666666669" height="34.666666666666686"/>
