@@ -13,12 +13,15 @@ class RegisterScreenViewController: UIViewController {
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        UserPasswordTxt.isSecureTextEntry = true
 //        UserRepeatPassTxt.isSecureTextEntry = true
+        
+        indicator.isHidden = true
 
     }
     
@@ -68,6 +71,9 @@ class RegisterScreenViewController: UIViewController {
                 
         if validateIfEmpty() && validateIfPasswordMatch() && validateIfPassword(str: UserPasswordTxt.text!) && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
             
+            indicator.isHidden = false
+            indicator.startAnimating()
+            
             guard
                 let name = UserNameTxt.text,
                 let surname = UserSurnameTxt.text,
@@ -83,6 +89,8 @@ class RegisterScreenViewController: UIViewController {
                 
                 if error != nil {
                     self.alertPopUp(title: "Failure", message: "\(error!.localizedDescription)", okTitle: "Try again")
+                    self.indicator.isHidden = true
+                    self.indicator.stopAnimating()
                     return
                 } else {
                     let db = Firestore.firestore()
@@ -95,11 +103,15 @@ class RegisterScreenViewController: UIViewController {
                     ]) { (error) in
                         if error != nil {
                             self.alertPopUp(title: "Database Error", message: "\(error?.localizedDescription ?? "")", okTitle: "Try Again")
+                            self.indicator.isHidden = true
+                            self.indicator.stopAnimating()
                         }
                     }
     
                     self.alertPopUp(title: "Congratulations", message: "Your user created!", okTitle: "Log In")
                     print("Successful sign up")
+                    self.indicator.isHidden = true
+                    self.indicator.stopAnimating()
                     self.tabBarController?.selectedIndex = 0
                 }
             }

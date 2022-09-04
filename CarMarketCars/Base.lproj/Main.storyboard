@@ -178,6 +178,10 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OZj-B5-wgc">
+                                <rect key="frame" x="338" y="760" width="20" height="20"/>
+                                <color key="color" systemColor="systemIndigoColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,10 +190,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fdt-iK-Ujx" secondAttribute="bottom" constant="50" id="327-vI-ArF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Fc-pI-6KL" secondAttribute="trailing" constant="20" id="4fL-aI-Dl0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bIv-y8-g9A" secondAttribute="trailing" constant="20" id="6Rd-wL-KPT"/>
+                            <constraint firstItem="OZj-B5-wgc" firstAttribute="leading" secondItem="Fdt-iK-Ujx" secondAttribute="trailing" constant="10" id="DdK-PN-aIq"/>
                             <constraint firstItem="bib-q4-IQf" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="Iel-0l-xXS"/>
                             <constraint firstItem="Fdt-iK-Ujx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="VWD-a0-Zi1"/>
                             <constraint firstItem="Fdt-iK-Ujx" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="a8c-uo-kGC"/>
                             <constraint firstItem="3eA-wb-Qvy" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="dwq-j0-LpO"/>
+                            <constraint firstItem="OZj-B5-wgc" firstAttribute="centerY" secondItem="Fdt-iK-Ujx" secondAttribute="centerY" id="f1x-Ts-SpI"/>
                             <constraint firstItem="bIv-y8-g9A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="lOV-fF-qLP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Fdt-iK-Ujx" secondAttribute="trailing" constant="100" id="nf6-5f-a9G"/>
                             <constraint firstItem="hb8-J5-4Fa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="qbB-EN-Uu2"/>
@@ -203,6 +209,7 @@
                     <connections>
                         <outlet property="UserEmailTxt" destination="bib-q4-IQf" id="8T4-f7-ueK"/>
                         <outlet property="UserPasswordTxt" destination="3eA-wb-Qvy" id="P3V-cl-Vwb"/>
+                        <outlet property="indicator" destination="OZj-B5-wgc" id="sGc-Yp-fqV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1117,10 +1124,15 @@
                                     <action selector="resetAllFields:" destination="LEi-ee-4xA" eventType="touchUpInside" id="3RM-zX-glj"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="6vq-pp-MMQ">
+                                <rect key="frame" x="338" y="760" width="20" height="20"/>
+                                <color key="color" systemColor="systemIndigoColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IMn-5Y-zrb"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6vq-pp-MMQ" firstAttribute="leading" secondItem="BqJ-jZ-WRF" secondAttribute="trailing" constant="10" id="5h5-fM-140"/>
                             <constraint firstItem="q8a-Ac-8gS" firstAttribute="width" secondItem="q6r-01-ivi" secondAttribute="width" multiplier="0.2" id="6Yy-9g-X81"/>
                             <constraint firstItem="IMn-5Y-zrb" firstAttribute="trailing" secondItem="KP7-N8-5dp" secondAttribute="trailing" constant="20" id="8TY-kB-HHz"/>
                             <constraint firstItem="q6r-01-ivi" firstAttribute="height" secondItem="bDv-q6-uQR" secondAttribute="height" multiplier="0.05" id="8vw-rG-IGO"/>
@@ -1146,6 +1158,7 @@
                             <constraint firstItem="fYd-bW-HsG" firstAttribute="height" secondItem="bDv-q6-uQR" secondAttribute="height" multiplier="0.05" id="rkQ-9h-JJa"/>
                             <constraint firstItem="1wH-C6-81N" firstAttribute="top" secondItem="xY7-Bi-fmL" secondAttribute="bottom" id="tJn-jv-gLb"/>
                             <constraint firstAttribute="trailing" secondItem="xY7-Bi-fmL" secondAttribute="trailing" constant="20" id="uqx-IN-Fra"/>
+                            <constraint firstItem="6vq-pp-MMQ" firstAttribute="centerY" secondItem="BqJ-jZ-WRF" secondAttribute="centerY" id="wjT-3X-RQM"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sign Up" image="square.and.arrow.up.fill" catalog="system" id="dbh-Ua-v3e"/>
@@ -1155,6 +1168,7 @@
                         <outlet property="UserPasswordTxt" destination="fYd-bW-HsG" id="GNQ-jE-sRh"/>
                         <outlet property="UserRepeatPassTxt" destination="gsP-Qf-MLd" id="pVv-El-Pgx"/>
                         <outlet property="UserSurnameTxt" destination="GOG-co-QtA" id="Qv2-00-dW3"/>
+                        <outlet property="indicator" destination="6vq-pp-MMQ" id="OqN-8k-QCR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b21-lF-EtC" sceneMemberID="firstResponder"/>

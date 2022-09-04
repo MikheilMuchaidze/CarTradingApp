@@ -10,11 +10,14 @@ class LoginScreenViewController: UIViewController {
     
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
-
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
 //        UserPasswordTxt.isSecureTextEntry = true
+        indicator.isHidden = true
 
     }
     
@@ -47,6 +50,9 @@ class LoginScreenViewController: UIViewController {
         
         if validateIfEmpty() && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {
             
+            indicator.isHidden = false
+            indicator.startAnimating()
+            
             guard
                 let email = UserEmailTxt.text,
                 let password = UserPasswordTxt.text,
@@ -58,10 +64,14 @@ class LoginScreenViewController: UIViewController {
                 
                 if let error = error, user == nil {
                     self.alertPopUp(title: "Sign in failed", message: "\(error.localizedDescription)", okTitle: "Try again.")
+                    self.indicator.isHidden = true
+                    self.indicator.stopAnimating()
                 }
                 
                 print("User \(user?.user.email ?? "") Successful sign in")
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
+                self.indicator.isHidden = true
+                self.indicator.stopAnimating()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
