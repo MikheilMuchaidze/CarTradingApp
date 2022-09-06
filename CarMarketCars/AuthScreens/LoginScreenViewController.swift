@@ -6,17 +6,24 @@ import FirebaseAuth
 
 class LoginScreenViewController: UIViewController {
     
+    //MARK: Fields
+    
     var handle: AuthStateDidChangeListenerHandle?
+    
+    //MARK: Outlets
     
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
-    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
+    //MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-//        UserPasswordTxt.isSecureTextEntry = true
+        //adding toggle button to password for showing and hiding text
+        UserPasswordTxt.enablePasswordToggle()
+        
         indicator.isHidden = true
 
     }
@@ -46,6 +53,8 @@ class LoginScreenViewController: UIViewController {
         
     }
     
+    //MARK: Actions
+
     @IBAction func signInBtn(_ sender: Any) {
         
         if validateIfEmpty() && validateIfEmailCorrectForm(str: UserEmailTxt.text!) {

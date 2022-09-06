@@ -6,22 +6,24 @@ import FirebaseAuth
 
 class UserDetailsViewController: UIViewController {
     
+    //MARK: Fields
+    
+    var handle: AuthStateDidChangeListenerHandle?
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     var carsList = [Car]()
     var searchingCarsList = [Car]()
-
-    var handle: AuthStateDidChangeListenerHandle?
+    
+    //MARK: Outlets
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var UserImageImage: UIImageView!
-    
     @IBOutlet weak var UserNameLbl: UILabel!
     @IBOutlet weak var UserSurnameLbl: UILabel!
     @IBOutlet weak var UserEmailLbl: UILabel!
     @IBOutlet weak var UserUidLbl: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

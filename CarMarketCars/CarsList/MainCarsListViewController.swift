@@ -6,23 +6,36 @@ import FirebaseAuth
 import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
-            
+    
+    //MARK: Clean Components
+
+    
+    
+    //MARK: Fields
+
     var carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     let carsStorageRef = Storage.storage().reference()
     var carsList = [Car]()
-    
     var searchingCarsList = [Car]()
-    
     var handle: AuthStateDidChangeListenerHandle?
     
+    //MARK: Outlets
+
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var activeUserLbl: UILabel!
-    
     @IBOutlet weak var goBackActionImage: UIImageView!
     @IBOutlet weak var userDetailsImage: UIImageView!
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: Object Lifecycle
+    
+    
+    
+    //MARK: Setup
+    
+    
+    
+    //MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +100,8 @@ class MainCarsListViewController: UIViewController {
         print("removeStateDidChangeListener - MainCarsListViewController")
         
     }
+    
+    //MARK: Actions
     
     @IBAction func uploadCarBtn(_ sender: Any) {
         let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController

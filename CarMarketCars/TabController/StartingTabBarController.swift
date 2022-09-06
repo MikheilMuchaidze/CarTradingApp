@@ -6,7 +6,5 @@ class StartingTabBarController: UITabBarController {
         super.viewDidLoad()
 
     }
-    
-
 
 }

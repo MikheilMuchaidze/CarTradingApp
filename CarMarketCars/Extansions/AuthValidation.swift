@@ -1,7 +1,8 @@
 import UIKit
 import FirebaseAuth
 
-//car adding validation functions
+//MARK: New car adding validations
+
 extension NewCarUploadViewController {
     
     //validation of text fields
@@ -28,9 +29,10 @@ extension NewCarUploadViewController {
     
 }
 
-//login validation functions
+//MARK: Login view auth validations
+
 extension LoginScreenViewController {
-    
+        
     //validation of text fields
     func validateIfEmpty() -> Bool {
         if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty {
@@ -56,7 +58,8 @@ extension LoginScreenViewController {
     
 }
 
-//registration validation functions
+//MARK: Register view auth validations
+
 extension RegisterScreenViewController {
     
     //validation of text fields

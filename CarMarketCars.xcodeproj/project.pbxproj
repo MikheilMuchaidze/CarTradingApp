@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2447CE8E28C64D48008F1032 /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */; };
 		246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667928B11AF600E7C240 /* CarTableViewCell.swift */; };
 		246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */; };
 		246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
 		246F667928B11AF600E7C240 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCarsListViewController + tableView.swift"; sourceTree = "<group>"; };
 		246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCarUploadViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				24C6305228AD53BA006A1194 /* Extansions.swift */,
 				24C6306328ADAEAE006A1194 /* AuthValidation.swift */,
 				24B0B63828B551FB00C8ADDA /* Constants.swift */,
+				2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				24B7729028BBA236009305DC /* User.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
 				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
+				2447CE8E28C64D48008F1032 /* UITextField+SecureToggle.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

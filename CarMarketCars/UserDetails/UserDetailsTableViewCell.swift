@@ -6,8 +6,9 @@ import FirebaseAuth
 
 class UserDetailsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var helperView: UIView!
+    //MARK: Outlets
     
+    @IBOutlet weak var helperView: UIView!
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var carMarkLbl: UILabel!
     @IBOutlet weak var carModelLbl: UILabel!
@@ -17,6 +18,8 @@ class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var carPhoneLbl: UILabel!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    //MARK: Cell Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         

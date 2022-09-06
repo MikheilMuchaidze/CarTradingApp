@@ -11,6 +11,8 @@ struct Car: Equatable {
     let phone: String
     let sellable: Bool
     
+    //MARK: Init for download from firebase
+    
     init(with dictionary: Dictionary<String, Any>) {
         self.documentID = dictionary["DocumentID"] as? String ?? ""
         self.email = dictionary["Email"] as? String ?? ""

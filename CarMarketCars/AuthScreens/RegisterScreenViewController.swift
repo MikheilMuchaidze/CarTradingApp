@@ -6,7 +6,11 @@ import FirebaseAuth
 
 class RegisterScreenViewController: UIViewController {
     
+    //MARK: Fields
+        
     var handle: AuthStateDidChangeListenerHandle?
+    
+    //MARK: Outlets
     
     @IBOutlet weak var UserNameTxt: UITextField!
     @IBOutlet weak var UserSurnameTxt: UITextField!
@@ -15,11 +19,16 @@ class RegisterScreenViewController: UIViewController {
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    //MARK: View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        UserPasswordTxt.isSecureTextEntry = true
-//        UserRepeatPassTxt.isSecureTextEntry = true
+        //adding toggle button to password for showing and hiding text
+        
+        //TODO: ar mushaoooobs es deda....
+//        UserPasswordTxt.enablePasswordToggle()
+//        UserRepeatPassTxt.enablePasswordToggle()
         
         indicator.isHidden = true
 
@@ -56,6 +65,8 @@ class RegisterScreenViewController: UIViewController {
         print("removeStateDidChangeListener - RegisterPage")
 
     }
+    
+    //MARK: Actions
     
     //clear all fields
     @IBAction func resetAllFields(_ sender: Any) {

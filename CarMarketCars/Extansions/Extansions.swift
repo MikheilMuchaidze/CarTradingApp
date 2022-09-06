@@ -5,7 +5,10 @@ import FirebaseFirestore
 import FirebaseStorage
 import UIKit
 
+
 extension UIViewController {
+    
+    //MARK: Tap fucntionality for sign out and profile pics
     
     //funcion for add back option to image
     func addTapToGoBackToImage(image: UIImageView) {
@@ -32,8 +35,10 @@ extension UIViewController {
     }
 }
 
-//alert popup error function for all UIViewControllers presented and created
+//MARK: Alert massege funcion
+
 extension UIViewController {
+    
     func alertPopUp(title: String, message: String, okTitle: String) {
         let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: okTitle, style: UIAlertAction.Style.default, handler: nil)
@@ -43,7 +48,8 @@ extension UIViewController {
     
 }
 
-//popup view adding and removing
+//MARK: Popup view animations
+
 extension UIViewController {
     
     //animate in a specific view
@@ -75,7 +81,8 @@ extension UIViewController {
         })
     }
     
-    //upload image to storage
+    //MARK: Upload image to firebase
+
     func uploadImage(data: Data, uuid:  String) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -89,6 +96,8 @@ extension UIViewController {
     }
     
 }
+
+//MARK: Imageview load image from url
 
 extension UIImageView {
     
@@ -106,6 +115,8 @@ extension UIImageView {
     }
     
 }
+
+//MARK: adding new car view: image picker from galley functions
 
 extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -130,6 +141,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true)
     }
     
+    //MARK: enums for choosing newcar view: enums for upload, update and view
     
     //enums for additing and editing a car
     enum carUploadStatus {
@@ -220,6 +232,8 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
      
 }
+
+//MARK: main table view refresh if pulled from top
 
 extension MainCarsListViewController {
     

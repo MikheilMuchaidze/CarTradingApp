@@ -7,6 +7,8 @@ struct User {
     let email: String
     let Uid: String
     
+    //MARK: Init for download from firebase
+    
     init(with dictionary: Dictionary<String, Any>) {
         self.name = dictionary["Name"] as? String ?? ""
         self.surname = dictionary["Surname"] as? String ?? ""
