@@ -1,12 +1,8 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
 
 class CarTableViewCell: UITableViewCell {
     
-    //MARK: Outlets
+    //MARK: - Outlets
 
     @IBOutlet weak var helperView: UIView!
     @IBOutlet weak var carImage: UIImageView!
@@ -18,20 +14,23 @@ class CarTableViewCell: UITableViewCell {
     @IBOutlet weak var carPhoneLbl: UILabel!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
-    //MARK: Cell Lifecycle
-        
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    //MARK: - Setup
+    
+    private func setup() {
         helperView.layer.cornerRadius = 10
         carImage.layer.cornerRadius = 10
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
         carImage.contentMode = .scaleAspectFill
-        
         indicator.isHidden = true
-
+    }
+    
+    //MARK: - Cell Lifecycle
+        
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

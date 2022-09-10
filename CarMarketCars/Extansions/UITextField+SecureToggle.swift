@@ -5,7 +5,6 @@ let button = UIButton(type: .custom)
 extension UITextField {
 
     func enablePasswordToggle() {
-
         let openEye = UIImage(named: "closed-eye")?.withTintColor(.blue)
         let closedEye = UIImage(named: "opened-eye")?.withTintColor(.blue)
 
@@ -15,7 +14,6 @@ extension UITextField {
         button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
         rightView = button
         rightViewMode = .always
-
     }
 
     @objc func togglePasswordView(_ sender: Any) {

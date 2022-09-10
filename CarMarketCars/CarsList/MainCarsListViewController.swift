@@ -7,11 +7,11 @@ import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
     
-    //MARK: Clean Components
+    //MARK: - Clean Components
 
     
     
-    //MARK: Fields
+    //MARK: - Fields
 
     var carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     let carsStorageRef = Storage.storage().reference()
@@ -19,7 +19,7 @@ class MainCarsListViewController: UIViewController {
     var searchingCarsList = [Car]()
     var handle: AuthStateDidChangeListenerHandle?
     
-    //MARK: Outlets
+    //MARK: - Outlets
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activeUserLbl: UILabel!
@@ -27,18 +27,13 @@ class MainCarsListViewController: UIViewController {
     @IBOutlet weak var userDetailsImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: Object Lifecycle
+    //MARK: - Object Lifecycle
     
     
     
-    //MARK: Setup
+    //MARK: - Setup
     
-    
-    
-    //MARK: View Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func setup() {
         
         //flipped
         goBackActionImage.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -72,16 +67,25 @@ class MainCarsListViewController: UIViewController {
         }
         
         tablePullToRefresh()
+        
+    }
+
+    //MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener({ auth, user in
+        handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
             
             if user == nil {
                 print("no user please sign in or register")
             } else {
-                self.activeUserLbl.text = user?.email
+                self?.activeUserLbl.text = user?.email
             }
             print("addStateDidChangeListener - MainCarsListViewController")
         })
@@ -89,19 +93,11 @@ class MainCarsListViewController: UIViewController {
     }
         
     override func viewWillDisappear(_ animated: Bool) {
-        do {
-            try Auth.auth().signOut()
-        } catch let signOutError {
-            print(signOutError.localizedDescription)
-        }
-        
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
-        print("removeStateDidChangeListener - MainCarsListViewController")
-        
     }
     
-    //MARK: Actions
+    //MARK: - Actions
     
     @IBAction func uploadCarBtn(_ sender: Any) {
         let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController

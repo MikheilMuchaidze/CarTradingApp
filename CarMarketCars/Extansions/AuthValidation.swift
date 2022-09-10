@@ -1,7 +1,7 @@
 import UIKit
 import FirebaseAuth
 
-//MARK: New car adding validations
+//MARK: - New car adding validations
 
 extension NewCarUploadViewController {
     
@@ -17,7 +17,6 @@ extension NewCarUploadViewController {
     
     //validate image form
     func validateIfImageIsEmpty() -> Bool {
-        
         //validation that an user added image for the car
         if carImage.image == nil {
             alertPopUp(title: "No Image", message: "Please add image of the car", okTitle: "Ok.")
@@ -29,10 +28,10 @@ extension NewCarUploadViewController {
     
 }
 
-//MARK: Login view auth validations
+//MARK: - Login view auth validations
 
 extension LoginScreenViewController {
-        
+    
     //validation of text fields
     func validateIfEmpty() -> Bool {
         if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty {
@@ -58,7 +57,7 @@ extension LoginScreenViewController {
     
 }
 
-//MARK: Register view auth validations
+//MARK: - Register view auth validations
 
 extension RegisterScreenViewController {
     

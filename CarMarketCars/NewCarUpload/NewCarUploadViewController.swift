@@ -7,37 +7,48 @@ import FirebaseStorage
 
 class NewCarUploadViewController: UIViewController {
     
-    var handle: AuthStateDidChangeListenerHandle?
+    //MARK: - Clean Components
+    
+    
+    //MARK: - Fields
 
+    var handle: AuthStateDidChangeListenerHandle?
     var carUploadPageStatus: carUploadStatus!
     var editingCar: Car!
     var sellable: Bool = true
     let uuid = UUID().uuidString
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var addCarToListBtnOutlet: UIButton!
     @IBOutlet weak var titleTextLbl: UILabel!
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
-    
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    
     @IBOutlet var addLinkView: UIView!
     @IBOutlet weak var insertedLinkTxt: UITextField!
-    
     @IBOutlet weak var carMarkTxt: UITextField!
     @IBOutlet weak var carModelTxt: UITextField!
     @IBOutlet weak var carYearTxt: UITextField!
     @IBOutlet weak var carLocationTxt: UITextField!
     @IBOutlet weak var carPriceTxt: UITextField!
     @IBOutlet weak var carPhoneTxt: UITextField!
-    
     @IBOutlet weak var sellableStatusOutlet: UISwitch!
-    
     @IBOutlet weak var addCarImageWithUrl: UIButton!
     @IBOutlet weak var addCarImageFromGallery: UIButton!
     @IBOutlet weak var removeCarImage: UIButton!
     @IBOutlet weak var sellNowText: UILabel!
     @IBOutlet weak var resetTxtFieldsOutlet: UIButton!
+    
+    //MARK: - Object Lifecycle
+    
+    
+    
+    //MARK: - Setup
+    
+    
+    
+    //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +93,7 @@ class NewCarUploadViewController: UIViewController {
         
     }
     
+    //MARK: - Actions
     
     @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
         animateIn(desiredView: addLinkView)
@@ -189,7 +201,6 @@ class NewCarUploadViewController: UIViewController {
             
         }
     }
-    
     
 }
 

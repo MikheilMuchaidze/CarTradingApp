@@ -4,9 +4,13 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-class LoginScreenViewController: UIViewController {
+final class LoginScreenViewController: UIViewController {
     
-    //MARK: Fields
+    //MARK: - Clean Components
+    
+
+    
+    //MARK: - Fields
     
     var handle: AuthStateDidChangeListenerHandle?
     
@@ -16,44 +20,35 @@ class LoginScreenViewController: UIViewController {
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
-    //MARK: View lifecycle
+    // MARK: - Setup
+    
+    private func setup() {
+        //adding toggle button to password for showing and hiding text
+        UserPasswordTxt.enablePasswordToggle()
+        indicator.isHidden = true
+    }
+    
+    //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        //adding toggle button to password for showing and hiding text
-        UserPasswordTxt.enablePasswordToggle()
-        
-        indicator.isHidden = true
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        handle = Auth.auth().addStateDidChangeListener({ auth, user in
-            if user == nil {
-                print("no user please sign")
-            } else {
-                self.UserEmailTxt.text = nil
-                self.UserPasswordTxt.text = nil
-            }
-            print("addStateDidChangeListener - LoginPage")
-        })
-                                                       
+        setup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
-        UserEmailTxt.text = nil
-        UserPasswordTxt.text = nil
-        
-        guard let handle = handle else { return }
-        Auth.auth().removeStateDidChangeListener(handle)
-        print("removeStateDidChangeListener - RegisterPage")
-        
+        cleanAllFields()
     }
     
-    //MARK: Actions
+    //MARK: - Methods
+    
+    func cleanAllFields() {
+        let allTxtFields = [UserEmailTxt, UserPasswordTxt]
+        allTxtFields.forEach { elem in
+            elem?.text?.removeAll()
+        }
+    }
+    
+    //MARK: - Actions
 
     @IBAction func signInBtn(_ sender: Any) {
         
@@ -69,21 +64,32 @@ class LoginScreenViewController: UIViewController {
                 !password.isEmpty
             else { return }
             
-            Auth.auth().signIn(withEmail: email, password: password) { user, error in
-                
-                if let error = error, user == nil {
-                    self.alertPopUp(title: "Sign in failed", message: "\(error.localizedDescription)", okTitle: "Try again.")
-                    self.indicator.isHidden = true
-                    self.indicator.stopAnimating()
+            AuthServie.loginUser(withEmail: email, password: password) { [weak self] result, error in
+                if let error = error, result == nil {
+                    self?.alertPopUp(title: "Sign in failed", message: "\(error.localizedDescription)", okTitle: "Try again.")
+                    self?.indicator.isHidden = true
+                    self?.indicator.stopAnimating()
+                } else {
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
+                    self?.indicator.isHidden = true
+                    self?.indicator.stopAnimating()
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
-                
-                print("User \(user?.user.email ?? "") Successful sign in")
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainCarsListViewController") as! MainCarsListViewController
-                self.indicator.isHidden = true
-                self.indicator.stopAnimating()
-                self.navigationController?.pushViewController(vc, animated: true)
             }
+            
         }
     }
     
 }
+
+//MARK: - protocol to ViewController
+
+
+    
+
+    
+    
+    
+    
+    
+

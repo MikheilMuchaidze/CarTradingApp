@@ -5,16 +5,38 @@ struct User {
     let surname: String
     let password: String
     let email: String
-    let Uid: String
+    let uid: String
     
-    //MARK: Init for download from firebase
+    init(name: String, surname: String, password: String, email: String, uid: String) {
+        self.name = name
+        self.surname = surname
+        self.password = password
+        self.email = email
+        self.uid = uid
+    }
+    
+    //MARK: - Init for download from firebase
     
     init(with dictionary: Dictionary<String, Any>) {
         self.name = dictionary["Name"] as? String ?? ""
         self.surname = dictionary["Surname"] as? String ?? ""
         self.password = dictionary["Password"] as? String ?? ""
         self.email = dictionary["Email"] as? String ?? ""
-        self.Uid = dictionary["Uid"] as? String ?? ""
+        self.uid = dictionary["Uid"] as? String ?? ""
     }
+    
+    //MARK: - Convert User to database type for upload
+    
+    func toDatabaseType() -> [String : Any] {
+        return [
+            "Name": name,
+            "Surname": surname,
+            "Password": password,
+            "Email": email,
+            "Uid": uid
+        ]
+    }
+    
+    
     
 }

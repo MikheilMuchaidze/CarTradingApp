@@ -4,7 +4,6 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
-import SwiftUI
 
 extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
         
@@ -78,8 +77,6 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
         self.tableView.reloadData()
     }
     
-    
-
 }
 
 

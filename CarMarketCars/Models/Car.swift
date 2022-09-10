@@ -11,7 +11,7 @@ struct Car: Equatable {
     let phone: String
     let sellable: Bool
     
-    //MARK: Init for download from firebase
+    //MARK: - Init for download from firebase
     
     init(with dictionary: Dictionary<String, Any>) {
         self.documentID = dictionary["DocumentID"] as? String ?? ""
@@ -25,5 +25,5 @@ struct Car: Equatable {
         self.sellable = dictionary["Sellable"] as? Bool ?? false
     }
     
-    
 }
+

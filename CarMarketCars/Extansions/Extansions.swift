@@ -1,14 +1,13 @@
+import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
-import UIKit
-
 
 extension UIViewController {
     
-    //MARK: Tap fucntionality for sign out and profile pics
+    //MARK: - Tap fucntionality for sign out and profile pics
     
     //funcion for add back option to image
     func addTapToGoBackToImage(image: UIImageView) {
@@ -18,6 +17,13 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
+        do {
+            try Auth.auth().signOut()
+            print("logged out")
+        } catch let signOutError {
+            print(signOutError.localizedDescription)
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -35,7 +41,7 @@ extension UIViewController {
     }
 }
 
-//MARK: Alert massege funcion
+//MARK: - Alert massege funcion
 
 extension UIViewController {
     
@@ -48,7 +54,7 @@ extension UIViewController {
     
 }
 
-//MARK: Popup view animations
+//MARK: - Popup view animations
 
 extension UIViewController {
     
@@ -81,7 +87,7 @@ extension UIViewController {
         })
     }
     
-    //MARK: Upload image to firebase
+    //MARK: - Upload image to firebase
 
     func uploadImage(data: Data, uuid:  String) {
         let storage = Storage.storage()
@@ -97,7 +103,7 @@ extension UIViewController {
     
 }
 
-//MARK: Imageview load image from url
+//MARK: - Imageview load image from url
 
 extension UIImageView {
     
@@ -116,7 +122,7 @@ extension UIImageView {
     
 }
 
-//MARK: adding new car view: image picker from galley functions
+//MARK: - adding new car view: image picker from galley functions
 
 extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -129,7 +135,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         present(imagePickerController, animated: true)
     }
 
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -141,7 +146,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         dismiss(animated: true)
     }
     
-    //MARK: enums for choosing newcar view: enums for upload, update and view
+    //MARK: - enums for choosing newcar view: enums for upload, update and view
     
     //enums for additing and editing a car
     enum carUploadStatus {
@@ -233,7 +238,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
      
 }
 
-//MARK: main table view refresh if pulled from top
+//MARK: - main table view refresh if pulled from top
 
 extension MainCarsListViewController {
     
