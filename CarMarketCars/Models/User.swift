@@ -26,11 +26,11 @@ struct User {
     //MARK: - Init for download from firebase
     
     init(with dictionary: Dictionary<String, Any>) {
-        self.name = dictionary["Name"] as? String ?? ""
-        self.surname = dictionary["Surname"] as? String ?? ""
-        self.password = dictionary["Password"] as? String ?? ""
-        self.email = dictionary["Email"] as? String ?? ""
-        self.uid = dictionary["Uid"] as? String ?? ""
+        self.name = dictionary["Name"] as? String ?? "No name"
+        self.surname = dictionary["Surname"] as? String ?? "No surname"
+        self.password = dictionary["Password"] as? String ?? "No password"
+        self.email = dictionary["Email"] as? String ?? "No email"
+        self.uid = dictionary["Uid"] as? String ?? "No uid"
     }
     
     //MARK: - Convert User to database type for upload

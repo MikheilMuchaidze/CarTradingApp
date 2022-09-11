@@ -55,7 +55,7 @@ final class LoginScreenViewController: UIViewController {
             
             loader(isLoading: true)
             
-            AuthServie.loginUser(withEmail: email, password: password) { [weak self] result, error in
+            AuthService.loginUser(withEmail: email, password: password) { [weak self] result, error in
                 self?.loader(isLoading: false)
                 if let error = error, result == nil {
                     self?.alertPopUp(title: LoginValidationTitles.authFailed, message: "\(error.localizedDescription)", okTitle: LoginValidationOkTitles.tryAgainTitle)

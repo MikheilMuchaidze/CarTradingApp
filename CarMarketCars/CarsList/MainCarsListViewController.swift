@@ -17,7 +17,6 @@ class MainCarsListViewController: UIViewController {
     let carsStorageRef = Storage.storage().reference()
     var carsList = [Car]()
     var searchingCarsList = [Car]()
-    var handle: AuthStateDidChangeListenerHandle?
     
     //MARK: - Outlets
 
@@ -30,28 +29,6 @@ class MainCarsListViewController: UIViewController {
     //MARK: - Object Lifecycle
     
     
-    
-    //MARK: - Setup
-    
-    private func setup() {
-        
-        //flipped
-        goBackActionImage.transform = CGAffineTransform(scaleX: -1, y: 1)
-        
-        addTapToGoBackToImage(image: goBackActionImage)
-        addTapToGoToDetailsToImage(image: userDetailsImage)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-                
-        searchBar.delegate = self
-        
-        fetchSellableCars()
-        
-        tablePullToRefresh()
-        
-    }
 
     //MARK: - View Lifecycle
     
@@ -60,27 +37,32 @@ class MainCarsListViewController: UIViewController {
         setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
-            
-            if user != nil {
-                self?.activeUserLbl.text = user?.email
-            }
-
-            print("addStateDidChangeListener - MainCarsListViewController")
-        })
-                
-    }
-        
-    override func viewWillDisappear(_ animated: Bool) {
-        guard let handle = handle else { return }
-        Auth.auth().removeStateDidChangeListener(handle)
+    //MARK: - Setup
+    
+    private func setup() {
+        //flipped
+        goBackActionImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+        //add actions for images
+        addTapToGoBackToImage(image: goBackActionImage)
+        addTapToGoToDetailsToImage(image: userDetailsImage)
+        //delegates
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        searchBar.delegate = self
+        //downloading data for tableview
+        fetchSellableCars()
+        //add function to reload tableview after swiping from top
+        tablePullToRefresh()
+        AuthService.currentUserInfo { [weak self] user in
+            self?.activeUserLbl.text = user.email
+        }
     }
     
     //MARK: - Actions
     
     @IBAction func uploadCarBtn(_ sender: Any) {
-        let carUploadPage = storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as! NewCarUploadViewController
+        guard let carUploadPage = storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
         carUploadPage.carUploadPageStatus = .AddingCar
         self.present(carUploadPage, animated: true)
     }

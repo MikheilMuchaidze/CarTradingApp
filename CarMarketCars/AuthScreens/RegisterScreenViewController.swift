@@ -62,7 +62,7 @@ final class RegisterScreenViewController: UIViewController {
         
             loader(isLoading: true)
             
-            AuthServie.registerUser(withEmail: email, password: password) { [weak self] result, error in
+            AuthService.registerUser(withEmail: email, password: password) { [weak self] result, error in
                 
                 self?.loader(isLoading: false)
                 
@@ -73,7 +73,7 @@ final class RegisterScreenViewController: UIViewController {
                     return
                 } else {
                     
-                    AuthServie.registerUserInDB(with: registeredUser)
+                    AuthService.registerUserInDB(with: registeredUser)
                     
                     self?.alertPopUp(title: RegisterValidationTitles.successfulRegistration, message: RegisterValidationMessages.successfulRegistrationMassage, okTitle: RegisterValidationOkTitles.logInAfterRegistratoin)
                     self?.tabBarController?.selectedIndex = 0

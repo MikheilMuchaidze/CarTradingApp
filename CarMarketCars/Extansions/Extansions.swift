@@ -17,13 +17,7 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
-        do {
-            try Auth.auth().signOut()
-            print("logged out")
-        } catch let signOutError {
-            print(signOutError.localizedDescription)
-        }
-        
+        AuthService.logOutUser()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -35,9 +29,8 @@ extension UIViewController {
     }
     
     @objc func tapToGoToDetails() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "UserDetailsViewController")
-        guard let vc = vc else { return }
-        self.present(vc, animated: true)
+        guard let toDetailsVC = storyboard?.instantiateViewController(withIdentifier: StoryboardName.userDetails) as? UserDetailsViewController else { return }
+        self.present(toDetailsVC, animated: true)
     }
     
     
@@ -289,6 +282,13 @@ extension LoginScreenViewController: indicatorAnimateions {
 }
 
 extension RegisterScreenViewController: indicatorAnimateions {
+    func loader(isLoading: Bool) {
+        indicator.isHidden = !isLoading
+        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+}
+
+extension CarTableViewCell: indicatorAnimateions {
     func loader(isLoading: Bool) {
         indicator.isHidden = !isLoading
         isLoading ? indicator.startAnimating() : indicator.stopAnimating()

@@ -25,8 +25,7 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
-        cell.indicator.isHidden = false
-        cell.indicator.startAnimating()
+        cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
         let storage = Storage.storage()
@@ -35,8 +34,8 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
         photoRef.downloadURL { url, error in
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
-            cell.indicator.stopAnimating()
-            cell.indicator.isHidden = true
+            cell.loader(isLoading: false)
+
         }
         
         cell.carMarkLbl.text = thisCar.mark
