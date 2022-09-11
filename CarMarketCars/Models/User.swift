@@ -28,7 +28,7 @@ struct User {
     //MARK: - Convert User to database type for upload
     
     func toDatabaseType() -> [String : Any] {
-        return [
+        [
             "Name": name,
             "Surname": surname,
             "Password": password,

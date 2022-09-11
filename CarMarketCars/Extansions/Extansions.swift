@@ -39,11 +39,9 @@ extension UIViewController {
         guard let vc = vc else { return }
         self.present(vc, animated: true)
     }
-}
-
+    
+    
 //MARK: - Alert massege funcion
-
-extension UIViewController {
     
     func alertPopUp(title: String, message: String, okTitle: String) {
         let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -51,12 +49,8 @@ extension UIViewController {
         alertmassege.addAction(okAction)
         self.present(alertmassege, animated: true)
     }
-    
-}
 
 //MARK: - Popup view animations
-
-extension UIViewController {
     
     //animate in a specific view
     func animateIn(desiredView: UIView) {
@@ -100,9 +94,8 @@ extension UIViewController {
             }
         }
     }
-    
-}
 
+}
 //MARK: - Imageview load image from url
 
 extension UIImageView {
@@ -258,6 +251,46 @@ extension MainCarsListViewController {
         }
     }
     
+    //check, download and update sellable car data from database
+    func fetchSellableCars() {
+        carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            guard let snapshot = snapshot?.documents else { return }
+            
+            self?.carsList.removeAll()
+            
+            snapshot.forEach { document in
+                self?.carsList.append(Car(with: document.data()))
+            }
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            
+        }
+    }
+    
 }
 
+//MARK: - indicator animation for viewcontrollers
 
+protocol indicatorAnimateions {
+    func loader(isLoading: Bool)
+}
+
+extension LoginScreenViewController: indicatorAnimateions {
+    func loader(isLoading: Bool) {
+        indicator.isHidden = !isLoading
+        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+}
+
+extension RegisterScreenViewController: indicatorAnimateions {
+    func loader(isLoading: Bool) {
+        indicator.isHidden = !isLoading
+        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+}

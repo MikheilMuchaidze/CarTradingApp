@@ -1,6 +1,6 @@
 import UIKit
 
-let button = UIButton(type: .custom)
+private let button = UIButton(type: .custom)
 
 extension UITextField {
 

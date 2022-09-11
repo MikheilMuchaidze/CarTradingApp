@@ -35,7 +35,7 @@ extension LoginScreenViewController {
     //validation of text fields
     func validateIfEmpty() -> Bool {
         if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty {
-            alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
+            alertPopUp(title: LoginValidationTitles.fieldsEmpty, message: LoginValidationMessages.fieldsEmptyMassage, okTitle: LoginValidationOkTitles.okTitle)
             return false
         } else {
             return true
@@ -47,8 +47,7 @@ extension LoginScreenViewController {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
-            let error = "Incorrect email format..."
-            alertPopUp(title: "Incorrect Email", message: error, okTitle: "Try again.")
+            alertPopUp(title: LoginValidationTitles.incorrectEmail, message: LoginValidationMessages.incorrectEmailMassage, okTitle: LoginValidationOkTitles.tryAgainTitle)
             return false
         } else {
             return true
@@ -64,7 +63,7 @@ extension RegisterScreenViewController {
     //validation of text fields
     func validateIfEmpty() -> Bool {
         if UserEmailTxt.text!.isEmpty || UserPasswordTxt.text!.isEmpty || UserRepeatPassTxt.text!.isEmpty {
-            alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
+            alertPopUp(title: RegisterValidationTitles.fieldsEmpty, message: RegisterValidationMessages.fieldsEmptyMassage, okTitle: RegisterValidationOkTitles.okTitle)
             return false
         } else {
             return true
@@ -75,26 +74,22 @@ extension RegisterScreenViewController {
     func validateIfPassword(str: String) -> Bool {
         
         if (!NSPredicate(format:"SELF MATCHES %@", ".*[A-Z]+.*").evaluate(with: str)) {
-            let error = "least one uppercase"
-            alertPopUp(title: "Incorrect password", message: error, okTitle: "Try again.")
+            alertPopUp(title: RegisterValidationTitles.incorrectPassword, message: RegisterValidationMessages.oneUppercaseErrorMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         }
         
         if (!NSPredicate(format:"SELF MATCHES %@", ".*[0-9]+.*").evaluate(with: str)) {
-            let error = "least one digit"
-            alertPopUp(title: "Incorrect password", message: error, okTitle: "Try again.")
+            alertPopUp(title: RegisterValidationTitles.incorrectPassword, message: RegisterValidationMessages.oneDigitErrorMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         }
         
         if (!NSPredicate(format:"SELF MATCHES %@", ".*[a-z]+.*").evaluate(with: str)) {
-            let error = "least one lowercase"
-            alertPopUp(title: "Incorrect password", message: error, okTitle: "Try again.")
+            alertPopUp(title: RegisterValidationTitles.incorrectPassword, message: RegisterValidationMessages.oneLowercaseErrorMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         }
         
         if (str.count < 8) {
-            let error = "min 8 characters total"
-            alertPopUp(title: "Incorrect password", message: error, okTitle: "Try again.")
+            alertPopUp(title: RegisterValidationTitles.incorrectPassword, message: RegisterValidationMessages.minEightSymbolsErrorMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         }
         
@@ -104,7 +99,7 @@ extension RegisterScreenViewController {
     //validate password and repeat password similarity
     func validateIfPasswordMatch() -> Bool {
         if UserPasswordTxt.text != UserRepeatPassTxt.text {
-            alertPopUp(title: "Passwords not match.", message: "Passwrods must be a match! Try again.", okTitle: "Ok")
+            alertPopUp(title: RegisterValidationTitles.passwordsNotMatch, message: RegisterValidationMessages.passwordsNotMatchMassage, okTitle: RegisterValidationOkTitles.okTitle)
             return false
         } else {
             return true
@@ -116,8 +111,7 @@ extension RegisterScreenViewController {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
         if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
-            let error = "Incorrect email format..."
-            alertPopUp(title: "Incorrect Email", message: error, okTitle: "Try again.")
+            alertPopUp(title: RegisterValidationTitles.incorrectEmail, message: RegisterValidationMessages.incorrectEmailMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         } else {
             return true

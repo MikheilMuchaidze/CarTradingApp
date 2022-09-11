@@ -47,24 +47,7 @@ class MainCarsListViewController: UIViewController {
                 
         searchBar.delegate = self
         
-        carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let snapshot = snapshot?.documents else { return }
-            
-            self?.carsList.removeAll()
-            
-            snapshot.forEach { document in
-                self?.carsList.append(Car(with: document.data()))
-            }
-            
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-            
-        }
+        fetchSellableCars()
         
         tablePullToRefresh()
         
@@ -74,19 +57,16 @@ class MainCarsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         handle = Auth.auth().addStateDidChangeListener({ [weak self] auth, user in
             
-            if user == nil {
-                print("no user please sign in or register")
-            } else {
+            if user != nil {
                 self?.activeUserLbl.text = user?.email
             }
+
             print("addStateDidChangeListener - MainCarsListViewController")
         })
                 

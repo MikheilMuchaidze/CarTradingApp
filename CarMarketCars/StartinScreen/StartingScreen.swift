@@ -11,7 +11,7 @@ class StartingScreen: UIViewController {
     //MARK: - Actions
     
     @IBAction func StartBtn(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "StartingTabBarController") as! StartingTabBarController
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: StoryboardName.mainTabBar) as? StartingTabBarController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

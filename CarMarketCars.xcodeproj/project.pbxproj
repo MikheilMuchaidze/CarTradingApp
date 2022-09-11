@@ -22,7 +22,6 @@
 		2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */; };
 		2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */; };
 		248998A828CB93FB00E3AFDB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248998A728CB93FB00E3AFDB /* AuthService.swift */; };
-		248998AB28CB941700E3AFDB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248998AA28CB941700E3AFDB /* UserService.swift */; };
 		24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B63828B551FB00C8ADDA /* Constants.swift */; };
 		24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */; };
 		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
@@ -57,7 +56,6 @@
 		2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewController.swift; sourceTree = "<group>"; };
 		2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingTabBarController.swift; sourceTree = "<group>"; };
 		248998A728CB93FB00E3AFDB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		248998AA28CB941700E3AFDB /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		24B0B63828B551FB00C8ADDA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				248998A728CB93FB00E3AFDB /* AuthService.swift */,
-				248998AA28CB941700E3AFDB /* UserService.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -317,7 +314,6 @@
 			files = (
 				24C6306A28AFE202006A1194 /* UserDetailsViewController.swift in Sources */,
 				24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */,
-				248998AB28CB941700E3AFDB /* UserService.swift in Sources */,
 				246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */,
 				2481C54328ACC87C000DAC49 /* AppDelegate.swift in Sources */,
 				2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */,
