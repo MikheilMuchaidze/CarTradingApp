@@ -14,6 +14,9 @@ final class LoginScreenViewController: UIViewController {
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    //MARK: - Object Lifecycle
+
+    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -55,7 +58,7 @@ final class LoginScreenViewController: UIViewController {
             
             loader(isLoading: true)
             
-            AuthService.loginUser(withEmail: email, password: password) { [weak self] result, error in
+            FirebaseService.loginUser(withEmail: email, password: password) { [weak self] result, error in
                 self?.loader(isLoading: false)
                 if let error = error, result == nil {
                     self?.alertPopUp(title: LoginValidationTitles.authFailed, message: "\(error.localizedDescription)", okTitle: LoginValidationOkTitles.tryAgainTitle)

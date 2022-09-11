@@ -43,54 +43,37 @@ class NewCarUploadViewController: UIViewController {
     //MARK: - Object Lifecycle
     
     
-    
-    //MARK: - Setup
-    
-    
-    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        cleanAllFields()
+    }
+    
+    //MARK: - Setup
+    
+    private func setup() {
         carImage.layer.cornerRadius = 10
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
-        
         //set width = 300, height = 140
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
-        
         //editing mode choose
         carUpload(page: carUploadPageStatus)
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        handle = Auth.auth().addStateDidChangeListener({ auth, user in
-            if user == nil {
-                print("no user please register")
-            } else {
-                print("addStateDidChangeListener - newCarUploadViewController")
-            }
-        })
-     
-    }
+    //MARK: - Methods
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        carMarkTxt.text = nil
-        carModelTxt.text = nil
-        carYearTxt.text = nil
-        carLocationTxt.text = nil
-        carPriceTxt.text = nil
-        carPhoneTxt.text = nil
-        
-        guard let handle = handle else { return }
-        Auth.auth().removeStateDidChangeListener(handle)
-        print("removeStateDidChangeListener - newCarUploadViewController")
-        
+    private func cleanAllFields() {
+        let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
+        allTxtFields.forEach { elem in
+            elem?.text?.removeAll()
+        }
     }
     
     //MARK: - Actions
@@ -101,20 +84,19 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
         showImagePickerController()
-        indicator.startAnimating()
-        indicator.isHidden = true
+        loader(isLoading: false)
     }
     
     @IBAction func linkLoadToImageBtn(_ sender: Any) {
         
-        let imageUrl = insertedLinkTxt.text
+        guard let imageUrl = insertedLinkTxt.text else { return }
         
-        if imageUrl == nil || imageUrl == "" {
-            alertPopUp(title: "Url Error", message: "Incorrect or empty url in field, please input correct link", okTitle: "Ok.")
+        if imageUrl == "" {
+            alertPopUp(title: NewCarValidationTitles.imageUrlError, message: NewCarValidationMessages.imageUrlErrorMassage, okTitle: NewCarValidationOkTitles.okTitle)
             carImage.image = nil
         } else {
-            let URL = URL(string: imageUrl!)
-            carImage.loadImageFrom(url: URL!)
+            guard let url = URL(string: imageUrl) else { return }
+            carImage.loadImageFrom(url: url)
             insertedLinkTxt.text = nil
             animateOut(desiredView: addLinkView)
         }
@@ -128,8 +110,7 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
-        indicator.isHidden = false
-        indicator.startAnimating()
+        loader(isLoading: true)
     }
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
@@ -161,18 +142,20 @@ class NewCarUploadViewController: UIViewController {
                     }
                 }
                 if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
-                    self.uploadImage(data: imageData, uuid: self.uuid)
+                    FirebaseService.imageUploader(image: imageData, uid: self.uuid) { metadata, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
                 }
             })
         }
+    
         
     }
     
     @IBAction func resetTxtFields(_ sender: Any) {
-        let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
-        allTxtFields.forEach { elem in
-            elem?.text?.removeAll()
-        }
+        cleanAllFields()
     }
     
     @IBAction func updateCarToListBtn(_ sender: Any) {
@@ -196,7 +179,11 @@ class NewCarUploadViewController: UIViewController {
                 }
             }
             if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
-                self.uploadImage(data: imageData, uuid: editingCar.documentID)
+                FirebaseService.imageUploader(image: imageData, uid: editingCar.documentID) { metadata, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
             }
             
         }

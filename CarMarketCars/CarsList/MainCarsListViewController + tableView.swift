@@ -1,9 +1,4 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
-import FirebaseStorage
 
 extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
         
@@ -24,18 +19,17 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CarTableViewCell", for: indexPath) as! CarTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellName.CarTableViewCell, for: indexPath) as! CarTableViewCell
         cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let photoRef = storageRef.child("carImages/\(thisCar.documentID)")
-        photoRef.downloadURL { url, error in
+        FirebaseService.loadImage(image: thisCar.documentID) { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
             cell.loader(isLoading: false)
-
         }
         
         cell.carMarkLbl.text = thisCar.mark
@@ -50,7 +44,7 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     //function to get to car info page when clicking
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
         let thisCar = self.carsList[indexPath.row]
         vc.editingCar = thisCar
         vc.carUploadPageStatus = .CarInfo

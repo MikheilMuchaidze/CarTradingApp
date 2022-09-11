@@ -14,6 +14,9 @@ final class RegisterScreenViewController: UIViewController {
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
+    //MARK: - Object Lifecycle
+
+    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -62,7 +65,7 @@ final class RegisterScreenViewController: UIViewController {
         
             loader(isLoading: true)
             
-            AuthService.registerUser(withEmail: email, password: password) { [weak self] result, error in
+            FirebaseService.registerUser(withEmail: email, password: password) { [weak self] result, error in
                 
                 self?.loader(isLoading: false)
                 
@@ -73,7 +76,7 @@ final class RegisterScreenViewController: UIViewController {
                     return
                 } else {
                     
-                    AuthService.registerUserInDB(with: registeredUser)
+                    FirebaseService.registerUserInDB(with: registeredUser)
                     
                     self?.alertPopUp(title: RegisterValidationTitles.successfulRegistration, message: RegisterValidationMessages.successfulRegistrationMassage, okTitle: RegisterValidationOkTitles.logInAfterRegistratoin)
                     self?.tabBarController?.selectedIndex = 0

@@ -15,6 +15,11 @@ enum StoryboardName {
     static let userDetails = "UserDetailsViewController"
 }
 
+enum CellName {
+    static let CarTableViewCell = "CarTableViewCell"
+    static let UserDetailsTableViewCell = "UserDetailsTableViewCell"
+}
+
 extension LoginScreenViewController {
     
     enum LoginValidationTitles {
@@ -61,6 +66,21 @@ extension RegisterScreenViewController {
         static let okTitle = "Ok."
         static let tryAgainTitle = "Try again."
         static let logInAfterRegistratoin = "Log In"
+    }
+}
+
+extension NewCarUploadViewController {
+    
+    enum NewCarValidationTitles {
+        static let imageUrlError = "Url Error"
+    }
+    
+    enum NewCarValidationMessages {
+        static let imageUrlErrorMassage = "Incorrect or empty url in field, please input correct link"
+    }
+    
+    enum NewCarValidationOkTitles {
+        static let okTitle = "Ok."
     }
 }
 

@@ -1,20 +1,12 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
-import FirebaseStorage
 
 class MainCarsListViewController: UIViewController {
     
     //MARK: - Clean Components
 
     
-    
     //MARK: - Fields
 
-    var carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-    let carsStorageRef = Storage.storage().reference()
     var carsList = [Car]()
     var searchingCarsList = [Car]()
     
@@ -27,7 +19,6 @@ class MainCarsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Object Lifecycle
-    
     
 
     //MARK: - View Lifecycle
@@ -51,10 +42,19 @@ class MainCarsListViewController: UIViewController {
         tableView.separatorStyle = .none
         searchBar.delegate = self
         //downloading data for tableview
-        fetchSellableCars()
+        FirebaseService.fetchCars { [weak self] snapshot, error in
+            guard let snapshot = snapshot?.documents else { return }
+            self?.carsList.removeAll()
+            snapshot.forEach { elem in
+                self?.carsList.append(Car(with: elem.data()))
+            }
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
         //add function to reload tableview after swiping from top
         tablePullToRefresh()
-        AuthService.currentUserInfo { [weak self] user in
+        FirebaseService.currentUserInfo { [weak self] user in
             self?.activeUserLbl.text = user.email
         }
     }

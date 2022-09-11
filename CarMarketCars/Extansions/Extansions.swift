@@ -17,7 +17,7 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
-        AuthService.logOutUser()
+        FirebaseService.logOutUser()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -72,20 +72,6 @@ extension UIViewController {
         }, completion: { _ in
             desiredView.removeFromSuperview()
         })
-    }
-    
-    //MARK: - Upload image to firebase
-
-    func uploadImage(data: Data, uuid:  String) {
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let localFile = data
-        let photoRef = storageRef.child("carImages/\(uuid)")
-        photoRef.putData(localFile) { metadata, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
     }
 
 }
@@ -176,14 +162,10 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             elem?.isEnabled = false
         }
         
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let photoRef = storageRef.child("carImages/\(editingCar.documentID)")
-        photoRef.downloadURL { url, error in
+        FirebaseService.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
-            self.carImage.loadImageFrom(url: url)
-            self.indicator.stopAnimating()
-            self.indicator.isHidden = true
+            self?.carImage.loadImageFrom(url: url)
+            self?.loader(isLoading: false)
         }
     }
     
@@ -211,14 +193,10 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
         
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let photoRef = storageRef.child("carImages/\(editingCar.documentID)")
-        photoRef.downloadURL { url, error in
+        FirebaseService.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
-            self.carImage.loadImageFrom(url: url)
-            self.indicator.stopAnimating()
-            self.indicator.isHidden = true
+            self?.carImage.loadImageFrom(url: url)
+            self?.loader(isLoading: false)
         }
     }
      
@@ -245,26 +223,26 @@ extension MainCarsListViewController {
     }
     
     //check, download and update sellable car data from database
-    func fetchSellableCars() {
-        carsdb.whereField(CarFields.sellable, isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            guard let snapshot = snapshot?.documents else { return }
-            
-            self?.carsList.removeAll()
-            
-            snapshot.forEach { document in
-                self?.carsList.append(Car(with: document.data()))
-            }
-            
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-            
-        }
-    }
+//    func fetchSellableCars() {
+//        carsdb.whereField(CarFields.sellable, isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//
+//            guard let snapshot = snapshot?.documents else { return }
+//
+//            self?.carsList.removeAll()
+//
+//            snapshot.forEach { document in
+//                self?.carsList.append(Car(with: document.data()))
+//            }
+//
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//
+//        }
+//    }
     
 }
 
@@ -289,6 +267,13 @@ extension RegisterScreenViewController: indicatorAnimateions {
 }
 
 extension CarTableViewCell: indicatorAnimateions {
+    func loader(isLoading: Bool) {
+        indicator.isHidden = !isLoading
+        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+}
+
+extension NewCarUploadViewController: indicatorAnimateions {
     func loader(isLoading: Bool) {
         indicator.isHidden = !isLoading
         isLoading ? indicator.startAnimating() : indicator.stopAnimating()

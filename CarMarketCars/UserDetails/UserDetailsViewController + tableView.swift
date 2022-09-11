@@ -87,7 +87,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTableViewCell", for: indexPath) as! UserDetailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as! UserDetailsTableViewCell
         cell.indicator.startAnimating()
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
