@@ -1,5 +1,13 @@
 import UIKit
 
+enum UserFields {
+    static let name = "Name"
+    static let surname = "Surname"
+    static let password = "Password"
+    static let email = "Email"
+    static let uid = "Uid"
+}
+
 struct User {
     let name: String
     let surname: String

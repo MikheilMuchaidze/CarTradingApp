@@ -253,7 +253,7 @@ extension MainCarsListViewController {
     
     //check, download and update sellable car data from database
     func fetchSellableCars() {
-        carsdb.whereField("Sellable", isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
+        carsdb.whereField(CarFields.sellable, isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
             }

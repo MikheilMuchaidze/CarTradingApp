@@ -143,7 +143,6 @@
 		2481C55728ACC928000DAC49 /* AuthScreens */ = {
 			isa = PBXGroup;
 			children = (
-				2489989928CB916800E3AFDB /* Login */,
 				2481C55A28ACC976000DAC49 /* LoginScreenViewController.swift */,
 				2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */,
 			);
@@ -165,13 +164,6 @@
 				2481C54428ACC87C000DAC49 /* SceneDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		2489989928CB916800E3AFDB /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		248998A628CB93D600E3AFDB /* FirebaseServices */ = {

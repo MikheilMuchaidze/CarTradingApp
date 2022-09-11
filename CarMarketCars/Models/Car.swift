@@ -1,5 +1,17 @@
 import UIKit
 
+enum CarFields {
+    static let documentID = "DocumentID"
+    static let email = "Email"
+    static let mark = "Mark"
+    static let model = "Model"
+    static let year = "Year"
+    static let location = "Location"
+    static let price = "Price"
+    static let phone = "Phone"
+    static let sellable = "Sellable"
+}
+
 struct Car: Equatable {
     let documentID: String
     let email: String

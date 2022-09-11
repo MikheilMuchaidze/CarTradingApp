@@ -15,21 +15,25 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     //func for deleting car from table and also from database
     private func delete(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, _) in
-            guard let self = self else { return }
             
-            let thisCar = self.carsList[indexPath.row]
+            guard let thisCar = self?.carsList[indexPath.row] else { return }
             let currentID = thisCar.documentID
             
-            self.carsdb.document(currentID).delete { error in
+            self?.carsList.remove(at: indexPath.row)
+            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self?.tableView.reloadData()
+            
+            self?.carsdb.document(currentID).delete { error in
                 if let error = error {
                     print(error.localizedDescription)
-                } else {
-                    self.carsList.remove(at: indexPath.row)
-                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                    self.tableView.reloadData()
-                    print("deleted")
                 }
             }
+                        
+            self?.imageDb.child("carImages/\(currentID)").delete(completion: { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            })
             
         }
         

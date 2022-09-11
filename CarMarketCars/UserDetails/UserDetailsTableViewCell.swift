@@ -1,6 +1,6 @@
 import UIKit
 
-class UserDetailsTableViewCell: UITableViewCell {
+final class UserDetailsTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     

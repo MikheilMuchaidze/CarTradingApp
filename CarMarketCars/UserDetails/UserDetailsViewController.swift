@@ -1,15 +1,17 @@
 import UIKit
 import Firebase
+import FirebaseStorage
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-class UserDetailsViewController: UIViewController {
+final class UserDetailsViewController: UIViewController {
     
     //MARK: - Fields
     
     var handle: AuthStateDidChangeListenerHandle?
     let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
+    let imageDb = Storage.storage().reference()
     var carsList = [Car]()
     var searchingCarsList = [Car]()
     
