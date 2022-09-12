@@ -1,5 +1,4 @@
 import UIKit
-import FirebaseAuth
 
 //MARK: - New car adding validations
 
@@ -8,7 +7,7 @@ extension NewCarUploadViewController {
     //validation of text fields
     func validateIfEmpty() -> Bool {
         if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty || carPhoneTxt.text!.isEmpty {
-            alertPopUp(title: "Field(s) empty.", message: "All fields must be completed.", okTitle: "Ok.")
+            alertPopUp(title: NewCarValidationTitles.fieldsEmpty, message: NewCarValidationMessages.fieldsEmptyMassage, okTitle: NewCarValidationOkTitles.okTitle)
             return false
         } else {
             return true
@@ -19,7 +18,7 @@ extension NewCarUploadViewController {
     func validateIfImageIsEmpty() -> Bool {
         //validation that an user added image for the car
         if carImage.image == nil {
-            alertPopUp(title: "No Image", message: "Please add image of the car", okTitle: "Ok.")
+            alertPopUp(title: NewCarValidationTitles.noImage, message: NewCarValidationMessages.noImageMassage, okTitle: NewCarValidationOkTitles.okTitle)
             return false
         } else {
             return true
@@ -44,7 +43,7 @@ extension LoginScreenViewController {
     
     //validate email form
     func validateIfEmailCorrectForm(str: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailRegEx = LoginEmailPredicates.emailRegEx
 
         if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
             alertPopUp(title: LoginValidationTitles.incorrectEmail, message: LoginValidationMessages.incorrectEmailMassage, okTitle: LoginValidationOkTitles.tryAgainTitle)
@@ -108,7 +107,7 @@ extension RegisterScreenViewController {
     
     //validate email form
     func validateIfEmailCorrectForm(str: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailRegEx = RegisterEmailPredicates.emailRegEx
 
         if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
             alertPopUp(title: RegisterValidationTitles.incorrectEmail, message: RegisterValidationMessages.incorrectEmailMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)

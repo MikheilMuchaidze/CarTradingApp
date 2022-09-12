@@ -1,9 +1,4 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
-import FirebaseStorage
 
 class NewCarUploadViewController: UIViewController {
     
@@ -12,7 +7,6 @@ class NewCarUploadViewController: UIViewController {
     
     //MARK: - Fields
 
-    var handle: AuthStateDidChangeListenerHandle?
     var carUploadPageStatus: carUploadStatus!
     var editingCar: Car!
     var sellable: Bool = true
@@ -119,38 +113,34 @@ class NewCarUploadViewController: UIViewController {
 
     @IBAction func addCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() && validateIfImageIsEmpty()  {
-            handle = Auth.auth().addStateDidChangeListener({ auth, user in
-                guard let currentUser = user else { return }
-                let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-                carsDb.document(self.uuid).setData([
-                    "DocumentID": self.uuid,
-                    "Email": "\(currentUser.email ?? "")",
-                    "Mark": self.carMarkTxt.text!,
-                    "Model": self.carModelTxt.text!,
-                    "Year": self.carYearTxt.text!,
-                    "Location": self.carLocationTxt.text!,
-                    "Price": self.carPriceTxt.text!,
-                    "Phone": self.carPhoneTxt.text!,
-                    "Sellable": self.sellable
-                ]) { error in
+        if validateIfEmpty() && validateIfImageIsEmpty() {
+            FirebaseService.currentUserInfo { [weak self] user in
+                guard
+                    let uuid = self?.uuid,
+                    let mark = self?.carMarkTxt.text,
+                    let model = self?.carModelTxt.text,
+                    let year = self?.carYearTxt.text,
+                    let location = self?.carLocationTxt.text,
+                    let price = self?.carPriceTxt.text,
+                    let phone = self?.carPhoneTxt.text,
+                    let sellable = self?.sellable
+                else { return }
+                let addingCar = Car(documentID: uuid, email: user.email, mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
+                FirebaseService.addCarInDB(car: addingCar.toDatabaseType(), uid: uuid) { error in
                     if let error = error {
                         print(error.localizedDescription)
-                    } else {
-                        print("Document added")
-                        self.dismiss(animated: true)
                     }
                 }
-                if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
-                    FirebaseService.imageUploader(image: imageData, uid: self.uuid) { metadata, error in
+                if let imageData = self?.carImage.image?.jpegData(compressionQuality: 0.5) {
+                    FirebaseService.imageUploader(image: imageData, uid: uuid) { metadata, error in
                         if let error = error {
                             print(error.localizedDescription)
                         }
                     }
                 }
-            })
+                self?.dismiss(animated: true)
+            }
         }
-    
         
     }
     
@@ -160,32 +150,29 @@ class NewCarUploadViewController: UIViewController {
     
     @IBAction func updateCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() && validateIfImageIsEmpty()  {
-            let carsDb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
-            carsDb.document(editingCar.documentID).updateData([
-                "Mark": self.carMarkTxt.text!,
-                "Model": self.carModelTxt.text!,
-                "Year": self.carYearTxt.text!,
-                "Location": self.carLocationTxt.text!,
-                "Price": self.carPriceTxt.text!,
-                "Phone": self.carPhoneTxt.text!,
-                "Sellable": self.sellable
-            ]) { error in
+        if validateIfEmpty() && validateIfImageIsEmpty() {
+            guard
+                let mark = self.carMarkTxt.text,
+                let model = self.carModelTxt.text,
+                let year = self.carYearTxt.text,
+                let location = self.carLocationTxt.text,
+                let price = self.carPriceTxt.text,
+                let phone = self.carPhoneTxt.text
+            else { return }
+            let updates = CaruForUpdate(mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
+            FirebaseService.updateCarInDB(car: updates.toDatabaseTypeUpdate(), uid: editingCar.documentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
-                } else {
-                    print("Document updated")
-                    self.dismiss(animated: true)
                 }
             }
-            if let imageData = self.carImage.image?.jpegData(compressionQuality: 0.5) {
+            if let imageData = carImage.image?.jpegData(compressionQuality: 0.5) {
                 FirebaseService.imageUploader(image: imageData, uid: editingCar.documentID) { metadata, error in
                     if let error = error {
                         print(error.localizedDescription)
                     }
                 }
             }
-            
+            dismiss(animated: true)
         }
     }
     

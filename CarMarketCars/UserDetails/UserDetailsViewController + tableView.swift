@@ -1,9 +1,4 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
-import FirebaseStorage
 
 extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -23,17 +18,17 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
             self?.tableView.reloadData()
             
-            self?.carsdb.document(currentID).delete { error in
+            FirebaseService.carRemoverFromDb(car: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
-                        
-            self?.imageDb.child("carImages/\(currentID)").delete(completion: { error in
+            
+            FirebaseService.imageRemoverFromDb(image: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
-            })
+            }
             
         }
         
@@ -44,7 +39,7 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewCarUploadViewController") as? NewCarUploadViewController else { return }
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
             let thisCar = self.carsList[indexPath.row]
             vc.editingCar = thisCar
             vc.carUploadPageStatus = .UpdatingCar
@@ -88,17 +83,16 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as! UserDetailsTableViewCell
-        cell.indicator.startAnimating()
+        cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
-        
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        let photoRef = storageRef.child("carImages/\(thisCar.documentID)")
-        photoRef.downloadURL { url, error in
+
+        FirebaseService.loadImage(image: thisCar.documentID) { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
             guard let url = url else { return }
-            cell.indicator.stopAnimating()
             cell.carImage.loadImageFrom(url: url)
-            cell.indicator.isHidden = true
+            cell.loader(isLoading: false)
         }
         
         cell.carMarkLbl.text = thisCar.mark

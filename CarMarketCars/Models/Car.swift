@@ -12,6 +12,42 @@ enum CarFields {
     static let sellable = "Sellable"
 }
 
+struct CaruForUpdate: Equatable {
+    let mark: String
+    let model: String
+    let year: String
+    let location: String
+    let price: String
+    let phone: String
+    let sellable: Bool
+    
+    //MARK: - Init for update
+    
+    init(mark: String, model: String, year: String, location: String, price: String, phone: String, sellable: Bool) {
+        self.mark = mark
+        self.model = model
+        self.year = year
+        self.location = location
+        self.price = price
+        self.phone = phone
+        self.sellable = sellable
+    }
+    
+    //MARK: - Convert Car to database type for update
+    
+    func toDatabaseTypeUpdate() -> [String : Any] {
+        [
+            "Mark": mark,
+            "Model": model,
+            "Year": year,
+            "Location": location,
+            "Price": price,
+            "Phone": phone,
+            "Sellable": sellable
+        ]
+    }
+}
+
 struct Car: Equatable {
     let documentID: String
     let email: String
@@ -22,6 +58,18 @@ struct Car: Equatable {
     let price: String
     let phone: String
     let sellable: Bool
+    
+    init(documentID: String,email: String, mark: String, model: String, year: String, location: String, price: String, phone: String, sellable: Bool) {
+        self.documentID = documentID
+        self.email = email
+        self.mark = mark
+        self.model = model
+        self.year = year
+        self.location = location
+        self.price = price
+        self.phone = phone
+        self.sellable = sellable
+    }
     
     //MARK: - Init for download from firebase
     
@@ -37,5 +85,23 @@ struct Car: Equatable {
         self.sellable = dictionary["Sellable"] as? Bool ?? false
     }
     
+    //MARK: - Convert Car to database type for upload
+    
+    func toDatabaseType() -> [String : Any] {
+        [
+            "DocumentID": documentID,
+            "Email": email,
+            "Mark": mark,
+            "Model": model,
+            "Year": year,
+            "Location": location,
+            "Price": price,
+            "Phone": phone,
+            "Sellable": sellable
+        ]
+    }
+    
 }
+
+
 

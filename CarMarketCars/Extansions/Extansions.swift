@@ -1,9 +1,4 @@
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseStorage
 
 extension UIViewController {
     
@@ -140,8 +135,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func carInfo() {
-        indicator.isHidden = false
-        indicator.startAnimating()
+        loader(isLoading: true)
         
         let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
         outletsList.forEach { elem in
@@ -170,9 +164,8 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func addNewCar() {
-        indicator.isHidden = false
-        indicator.startAnimating()
-        
+        loader(isLoading: true)
+
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
@@ -279,3 +272,11 @@ extension NewCarUploadViewController: indicatorAnimateions {
         isLoading ? indicator.startAnimating() : indicator.stopAnimating()
     }
 }
+
+extension UserDetailsTableViewCell: indicatorAnimateions {
+    func loader(isLoading: Bool) {
+        indicator.isHidden = !isLoading
+        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+    }
+}
+

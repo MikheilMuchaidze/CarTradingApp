@@ -22,6 +22,10 @@ enum CellName {
 
 extension LoginScreenViewController {
     
+    enum LoginEmailPredicates {
+        static let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    }
+    
     enum LoginValidationTitles {
         static let fieldsEmpty = "Field(s) empty."
         static let incorrectEmail = "Incorrect Email"
@@ -40,6 +44,10 @@ extension LoginScreenViewController {
 }
 
 extension RegisterScreenViewController {
+    
+    enum RegisterEmailPredicates {
+        static let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    }
     
     enum RegisterValidationTitles {
         static let fieldsEmpty = "Field(s) empty."
@@ -73,10 +81,14 @@ extension NewCarUploadViewController {
     
     enum NewCarValidationTitles {
         static let imageUrlError = "Url Error"
+        static let fieldsEmpty = "Field(s) empty."
+        static let noImage = "No Image"
     }
     
     enum NewCarValidationMessages {
         static let imageUrlErrorMassage = "Incorrect or empty url in field, please input correct link"
+        static let fieldsEmptyMassage = "All fields must be completed."
+        static let noImageMassage = "Please add image of the car"
     }
     
     enum NewCarValidationOkTitles {
