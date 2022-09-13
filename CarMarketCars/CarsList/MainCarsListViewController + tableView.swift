@@ -44,7 +44,8 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     //function to get to car info page when clicking
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
+        let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
         let thisCar = self.carsList[indexPath.row]
         vc.editingCar = thisCar
         vc.carUploadPageStatus = .CarInfo

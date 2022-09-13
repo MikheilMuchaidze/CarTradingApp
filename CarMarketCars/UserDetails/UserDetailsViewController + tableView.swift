@@ -39,7 +39,8 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
+            let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
             let thisCar = self.carsList[indexPath.row]
             vc.editingCar = thisCar
             vc.carUploadPageStatus = .UpdatingCar

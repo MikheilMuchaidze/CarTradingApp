@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f84-jC-AQD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,25 +12,25 @@
         <!--Main Cars List View Controller-->
         <scene sceneID="nY8-bi-TpY">
             <objects>
-                <viewController storyboardIdentifier="MainCarsListViewController" id="f84-jC-AQD" customClass="MainCarsListViewController" customModule="CarMarketCars" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainPage" id="f84-jC-AQD" customClass="MainCarsListViewController" customModule="CarMarketCars" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gTk-Qu-Lo9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="brain.head.profile" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="asi-j5-oHP">
-                                <rect key="frame" x="349" y="52" width="45" height="49"/>
+                                <rect key="frame" x="349" y="56" width="45" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="asi-j5-oHP" secondAttribute="height" multiplier="1:1" id="yn8-bX-L42"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="rectangle.portrait.and.arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-Vi-XqY">
-                                <rect key="frame" x="20" y="54" width="45" height="45"/>
+                                <rect key="frame" x="20" y="58" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6xh-Vi-XqY" secondAttribute="height" multiplier="1:1" id="kBc-i0-FwR"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UyT-j5-cl8">
-                                <rect key="frame" x="107.5" y="59" width="199.5" height="34.5"/>
+                                <rect key="frame" x="107.5" y="63" width="199.5" height="34.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3j-3z-pgt">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="34.5"/>
@@ -60,11 +61,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OPu-2l-0Oe">
-                                <rect key="frame" x="0.0" y="144.5" width="414" height="617.5"/>
+                                <rect key="frame" x="0.0" y="153.5" width="414" height="608.5"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CarTableViewCell" id="zjT-hU-GP7" customClass="CarTableViewCell" customModule="CarMarketCars" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zjT-hU-GP7" id="W5Q-am-gBK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -171,7 +172,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" text="" placeholder="Search By Model" translatesAutoresizingMaskIntoConstraints="NO" id="aFy-oh-nFN">
-                                <rect key="frame" x="20" y="93.5" width="374" height="51"/>
+                                <rect key="frame" x="20" y="97.5" width="374" height="56"/>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -218,11 +219,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="brain.head.profile" catalog="system" width="114" height="128"/>
-        <image name="car.2" catalog="system" width="128" height="72"/>
-        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
+        <image name="brain.head.profile" catalog="system" width="120" height="128"/>
+        <image name="car.2" catalog="system" width="128" height="73"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

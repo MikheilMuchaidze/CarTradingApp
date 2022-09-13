@@ -63,7 +63,8 @@ final class LoginScreenViewController: UIViewController {
                 if let error = error, result == nil {
                     self?.alertPopUp(title: LoginValidationTitles.authFailed, message: "\(error.localizedDescription)", okTitle: LoginValidationOkTitles.tryAgainTitle)
                 } else {
-                    guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: StoryboardName.main) as? MainCarsListViewController else { return }
+                    let storyboard = UIStoryboard(name: StoryboardNames.mainPage, bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.main) as? MainCarsListViewController else { return }
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -74,9 +75,6 @@ final class LoginScreenViewController: UIViewController {
 }
 
 //MARK: - protocol to ViewController
-
-
-
 
 
 

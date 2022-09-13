@@ -24,7 +24,8 @@ extension UIViewController {
     }
     
     @objc func tapToGoToDetails() {
-        guard let toDetailsVC = storyboard?.instantiateViewController(withIdentifier: StoryboardName.userDetails) as? UserDetailsViewController else { return }
+        let toDetailsVC = UIStoryboard(name: StoryboardNames.userDetails, bundle: nil)
+        guard let toDetailsVC = toDetailsVC.instantiateViewController(withIdentifier: ViewControllerName.userDetails) as? UserDetailsViewController else { return }
         self.present(toDetailsVC, animated: true)
     }
     

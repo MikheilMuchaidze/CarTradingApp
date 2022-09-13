@@ -1,6 +1,6 @@
 import UIKit
 
-class StartingScreen: UIViewController {
+final class StartingScreen: UIViewController {
     
     //MARK: - View Lifecycle
 
@@ -11,7 +11,8 @@ class StartingScreen: UIViewController {
     //MARK: - Actions
     
     @IBAction func StartBtn(_ sender: Any) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: StoryboardName.mainTabBar) as? StartingTabBarController else { return }
+        let storyboard = UIStoryboard(name: StoryboardNames.main, bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.mainTabBar) as? StartingTabBarController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

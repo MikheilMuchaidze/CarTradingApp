@@ -1,6 +1,6 @@
 import UIKit
 
-class MainCarsListViewController: UIViewController {
+final class MainCarsListViewController: UIViewController {
     
     //MARK: - Clean Components
 
@@ -62,7 +62,8 @@ class MainCarsListViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func uploadCarBtn(_ sender: Any) {
-        guard let carUploadPage = storyboard?.instantiateViewController(withIdentifier: StoryboardName.newCar) as? NewCarUploadViewController else { return }
+        let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
+        guard let carUploadPage = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
         carUploadPage.carUploadPageStatus = .AddingCar
         self.present(carUploadPage, animated: true)
     }

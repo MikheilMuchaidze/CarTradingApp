@@ -1,6 +1,6 @@
 import UIKit
 
-class NewCarUploadViewController: UIViewController {
+final class NewCarUploadViewController: UIViewController {
     
     //MARK: - Clean Components
     
