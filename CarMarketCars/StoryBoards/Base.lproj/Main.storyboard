@@ -107,7 +107,55 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MdT-6K-Kiu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="315"/>
+            <point key="canvasLocation" x="331" y="315"/>
+        </scene>
+        <!--Starting-->
+        <scene sceneID="wlP-nj-GbB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Starting" id="E64-f4-4O3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="si4-2l-CND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-684" y="-348"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="09r-rC-HlV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="yPr-BE-6Tz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENe-l2-FKC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-529" y="-393"/>
+        </scene>
+        <!--MainPage-->
+        <scene sceneID="EcV-Hx-okl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainPage" id="0y7-AD-X0q" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pqn-lg-Qae" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-250" y="-349"/>
+        </scene>
+        <!--CarEdit_Upload_View-->
+        <scene sceneID="b5n-8G-t8d">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CarEdit_Upload_View" id="iWe-LA-dzG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQB-Xi-lXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68" y="-349"/>
+        </scene>
+        <!--UserDetails-->
+        <scene sceneID="dZU-rM-R6l">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserDetails" id="G1Y-Fh-6ad" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZXF-j6-gR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-250" y="-419"/>
+        </scene>
+        <!--Register-->
+        <scene sceneID="6Fi-1l-JCL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Register" id="XXc-AM-Zqv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3G-I5-I0l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-529" y="-301"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="tne-QT-ifu">

@@ -22,6 +22,12 @@
 		2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */; };
 		2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */; };
 		248998A828CB93FB00E3AFDB /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248998A728CB93FB00E3AFDB /* FireBaseService.swift */; };
+		248998B728D0EA4600E3AFDB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B628D0EA4600E3AFDB /* Login.storyboard */; };
+		248998B928D0EA5300E3AFDB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B828D0EA5300E3AFDB /* Register.storyboard */; };
+		248998BB28D0EAEB00E3AFDB /* Starting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BA28D0EAEB00E3AFDB /* Starting.storyboard */; };
+		248998BD28D0EB6200E3AFDB /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BC28D0EB6200E3AFDB /* MainPage.storyboard */; };
+		248998BF28D0EB9B00E3AFDB /* UserDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BE28D0EB9B00E3AFDB /* UserDetails.storyboard */; };
+		248998C328D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998C228D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard */; };
 		24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B63828B551FB00C8ADDA /* Constants.swift */; };
 		24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */; };
 		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
@@ -56,6 +62,12 @@
 		2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewController.swift; sourceTree = "<group>"; };
 		2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingTabBarController.swift; sourceTree = "<group>"; };
 		248998A728CB93FB00E3AFDB /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
+		248998B628D0EA4600E3AFDB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		248998B828D0EA5300E3AFDB /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		248998BA28D0EAEB00E3AFDB /* Starting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Starting.storyboard; sourceTree = "<group>"; };
+		248998BC28D0EB6200E3AFDB /* MainPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
+		248998BE28D0EB9B00E3AFDB /* UserDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetails.storyboard; sourceTree = "<group>"; };
+		248998C228D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CarEdit_Upload_View.storyboard; sourceTree = "<group>"; };
 		24B0B63828B551FB00C8ADDA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
@@ -123,7 +135,7 @@
 				24C6305528AD96EE006A1194 /* CarsList */,
 				246F667D28B21FDF00E7C240 /* NewCarUpload */,
 				24C6306828AFE1DF006A1194 /* UserDetails */,
-				2481C54828ACC87C000DAC49 /* Main.storyboard */,
+				248998B528D0EA1E00E3AFDB /* StoryBoards */,
 				2481C54B28ACC87E000DAC49 /* Assets.xcassets */,
 				24C6305828AD9D79006A1194 /* GoogleService-Info.plist */,
 				2481C54D28ACC87E000DAC49 /* LaunchScreen.storyboard */,
@@ -172,6 +184,20 @@
 				248998A728CB93FB00E3AFDB /* FireBaseService.swift */,
 			);
 			path = FirebaseServices;
+			sourceTree = "<group>";
+		};
+		248998B528D0EA1E00E3AFDB /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				2481C54828ACC87C000DAC49 /* Main.storyboard */,
+				248998BA28D0EAEB00E3AFDB /* Starting.storyboard */,
+				248998B628D0EA4600E3AFDB /* Login.storyboard */,
+				248998B828D0EA5300E3AFDB /* Register.storyboard */,
+				248998BC28D0EB6200E3AFDB /* MainPage.storyboard */,
+				248998BE28D0EB9B00E3AFDB /* UserDetails.storyboard */,
+				248998C228D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		24B7728C28BB5E74009305DC /* Models */ = {
@@ -291,9 +317,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2481C54F28ACC87E000DAC49 /* LaunchScreen.storyboard in Resources */,
+				248998BB28D0EAEB00E3AFDB /* Starting.storyboard in Resources */,
 				24C6305928AD9D7A006A1194 /* GoogleService-Info.plist in Resources */,
+				248998C328D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard in Resources */,
 				2481C54C28ACC87E000DAC49 /* Assets.xcassets in Resources */,
+				248998BD28D0EB6200E3AFDB /* MainPage.storyboard in Resources */,
+				248998B728D0EA4600E3AFDB /* Login.storyboard in Resources */,
+				248998BF28D0EB9B00E3AFDB /* UserDetails.storyboard in Resources */,
 				2481C54A28ACC87C000DAC49 /* Main.storyboard in Resources */,
+				248998B928D0EA5300E3AFDB /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +520,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -517,7 +549,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
