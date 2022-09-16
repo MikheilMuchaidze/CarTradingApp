@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2447CE8E28C64D48008F1032 /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */; };
+		2447CE8E28C64D48008F1032 /* UITextField+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */; };
 		246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667928B11AF600E7C240 /* CarTableViewCell.swift */; };
 		246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */; };
 		246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */; };
@@ -26,6 +26,10 @@
 		2485FD0928D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0828D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift */; };
 		2485FD0B28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0A28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift */; };
 		2485FD0D28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0C28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift */; };
+		2485FD0F28D403840057CFFF /* UIViewController+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */; };
+		2485FD1228D404570057CFFF /* UIImageView+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */; };
+		2485FD1428D404EA0057CFFF /* Array+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1328D404EA0057CFFF /* Array+Extansion.swift */; };
+		2485FD1628D405590057CFFF /* UIActivityIndicatorView+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */; };
 		248998B728D0EA4600E3AFDB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B628D0EA4600E3AFDB /* Login.storyboard */; };
 		248998B928D0EA5300E3AFDB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B828D0EA5300E3AFDB /* Register.storyboard */; };
 		248998BB28D0EAEB00E3AFDB /* Starting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BA28D0EAEB00E3AFDB /* Starting.storyboard */; };
@@ -37,7 +41,6 @@
 		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
 		24B7728E28BB5E8F009305DC /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7728D28BB5E8F009305DC /* Car.swift */; };
 		24B7729028BBA236009305DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7728F28BBA236009305DC /* User.swift */; };
-		24C6305328AD53BA006A1194 /* Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305228AD53BA006A1194 /* Extansions.swift */; };
 		24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6305628AD9722006A1194 /* MainCarsListViewController.swift */; };
 		24C6305928AD9D7A006A1194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24C6305828AD9D79006A1194 /* GoogleService-Info.plist */; };
 		24C6305C28ADA151006A1194 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 24C6305B28ADA151006A1194 /* FirebaseAnalytics */; };
@@ -50,7 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
+		2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extansion.swift"; sourceTree = "<group>"; };
 		246F667928B11AF600E7C240 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCarsListViewController + tableView.swift"; sourceTree = "<group>"; };
 		246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCarUploadViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,10 @@
 		2485FD0828D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseUpload.swift; sourceTree = "<group>"; };
 		2485FD0A28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseDownload.swift; sourceTree = "<group>"; };
 		2485FD0C28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseEdit.swift; sourceTree = "<group>"; };
+		2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extansion.swift"; sourceTree = "<group>"; };
+		2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extansion.swift"; sourceTree = "<group>"; };
+		2485FD1328D404EA0057CFFF /* Array+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extansion.swift"; sourceTree = "<group>"; };
+		2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extansion.swift"; sourceTree = "<group>"; };
 		248998B628D0EA4600E3AFDB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		248998B828D0EA5300E3AFDB /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		248998BA28D0EAEB00E3AFDB /* Starting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Starting.storyboard; sourceTree = "<group>"; };
@@ -81,7 +88,6 @@
 		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
 		24B7728D28BB5E8F009305DC /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24B7728F28BBA236009305DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		24C6305228AD53BA006A1194 /* Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extansions.swift; sourceTree = "<group>"; };
 		24C6305628AD9722006A1194 /* MainCarsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCarsListViewController.swift; sourceTree = "<group>"; };
 		24C6305828AD9D79006A1194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24C6306328ADAEAE006A1194 /* AuthValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidation.swift; sourceTree = "<group>"; };
@@ -223,11 +229,14 @@
 		24C6305428AD53BD006A1194 /* Extansions */ = {
 			isa = PBXGroup;
 			children = (
-				24C6305228AD53BA006A1194 /* Extansions.swift */,
 				24C6306328ADAEAE006A1194 /* AuthValidation.swift */,
 				24B0B63828B551FB00C8ADDA /* Constants.swift */,
-				2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */,
+				2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */,
 				2485FD0428D246550057CFFF /* UIView+Extansion.swift */,
+				2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */,
+				2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */,
+				2485FD1328D404EA0057CFFF /* Array+Extansion.swift */,
+				2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -360,16 +369,19 @@
 				24C6306428ADAEAF006A1194 /* AuthValidation.swift in Sources */,
 				2481C55B28ACC976000DAC49 /* LoginScreenViewController.swift in Sources */,
 				24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */,
-				24C6305328AD53BA006A1194 /* Extansions.swift in Sources */,
 				2481C55928ACC943000DAC49 /* StartingScreen.swift in Sources */,
 				246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */,
 				24B7728E28BB5E8F009305DC /* Car.swift in Sources */,
+				2485FD1428D404EA0057CFFF /* Array+Extansion.swift in Sources */,
+				2485FD1228D404570057CFFF /* UIImageView+Extansion.swift in Sources */,
+				2485FD1628D405590057CFFF /* UIActivityIndicatorView+Extansion.swift in Sources */,
 				24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */,
+				2485FD0F28D403840057CFFF /* UIViewController+Extansion.swift in Sources */,
 				24B7729028BBA236009305DC /* User.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
 				2485FD0928D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift in Sources */,
 				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
-				2447CE8E28C64D48008F1032 /* UITextField+SecureToggle.swift in Sources */,
+				2447CE8E28C64D48008F1032 /* UITextField+Extansion.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
 				2485FD0B28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift in Sources */,
 			);

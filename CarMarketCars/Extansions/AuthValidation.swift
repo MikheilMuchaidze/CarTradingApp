@@ -91,7 +91,6 @@ extension RegisterScreenViewController {
             alertPopUp(title: RegisterValidationTitles.incorrectPassword, message: RegisterValidationMessages.minEightSymbolsErrorMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
             return false
         }
-        
         return true
     }
     

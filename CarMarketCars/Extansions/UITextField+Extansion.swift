@@ -1,5 +1,7 @@
 import UIKit
 
+//MARK: - extansion with secure toggle function for textfields
+
 private let button = UIButton(type: .custom)
 
 extension UITextField {
@@ -13,7 +15,7 @@ extension UITextField {
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: -50, bottom: 0, trailing: 0)
         button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
         rightView = button
-        rightViewMode = .always
+        rightViewMode = .whileEditing
     }
 
     @objc func togglePasswordView(_ sender: Any) {

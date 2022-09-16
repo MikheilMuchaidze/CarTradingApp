@@ -5,16 +5,6 @@ enum FirebaseCollectionNames: String {
     case cars
 }
 
-enum ViewControllerName {
-    static let starting = "StartingScreen"
-    static let mainTabBar = "StartingTabBarController"
-    static let login = "Login"
-    static let register = "Register"
-    static let main = "MainPage"
-    static let newCar = "CarEdit_Upload_View"
-    static let userDetails = "UserDetails"
-}
-
 enum StoryboardNames {
     static let main = "Main"
     static let starting = "Starting"
@@ -23,6 +13,16 @@ enum StoryboardNames {
     static let mainPage = "MainPage"
     static let userDetails = "UserDetails"
     static let newCar = "CarEdit_Upload_View"
+}
+
+enum ViewControllerName {
+    static let starting = "StartingScreen"
+    static let mainTabBar = "StartingTabBarController"
+    static let login = "Login"
+    static let register = "Register"
+    static let main = "MainPage"
+    static let newCar = "CarEdit_Upload_View"
+    static let userDetails = "UserDetails"
 }
 
 enum CellName {
