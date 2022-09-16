@@ -12,7 +12,7 @@ final class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var carLocationLbl: UILabel!
     @IBOutlet weak var carPriceLbl: UILabel!
     @IBOutlet weak var carPhoneLbl: UILabel!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     //MARK: - Cell Lifecycle
 

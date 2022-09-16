@@ -32,8 +32,8 @@ final class UserDetailsViewController: UIViewController {
         tableView.separatorStyle = .none
         searchBar.delegate = self
         
-        FirebaseService.currentUserInfo { user in
-            FirebaseService.fetchCarsByEmail(email: user.email) { [weak self] snapshot, error in
+        FirebaseDatabaseDownload.currentUserInfo { user in
+            FirebaseDatabaseDownload.fetchCarsByEmail(email: user.email) { [weak self] snapshot, error in
                 let currentUserData = User(with: user.toDatabaseType())
                 
                 self?.UserNameLbl.text = currentUserData.name

@@ -18,7 +18,7 @@ final class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var titleTextLbl: UILabel!
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
     @IBOutlet weak var carImage: UIImageView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet var addLinkView: UIView!
     @IBOutlet weak var insertedLinkTxt: UITextField!
     @IBOutlet weak var carMarkTxt: UITextField!
@@ -78,7 +78,7 @@ final class NewCarUploadViewController: UIViewController {
     
     @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
         showImagePickerController()
-        loader(isLoading: false)
+//        loader(isLoading: false)
     }
     
     @IBAction func linkLoadToImageBtn(_ sender: Any) {
@@ -104,7 +104,7 @@ final class NewCarUploadViewController: UIViewController {
     
     @IBAction func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
-        loader(isLoading: true)
+//        loader(isLoading: true)
     }
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
@@ -114,7 +114,7 @@ final class NewCarUploadViewController: UIViewController {
     @IBAction func addCarToListBtn(_ sender: Any) {
         
         if validateIfEmpty() && validateIfImageIsEmpty() {
-            FirebaseService.currentUserInfo { [weak self] user in
+            FirebaseDatabaseDownload.currentUserInfo { [weak self] user in
                 guard
                     let uuid = self?.uuid,
                     let mark = self?.carMarkTxt.text,
@@ -126,13 +126,13 @@ final class NewCarUploadViewController: UIViewController {
                     let sellable = self?.sellable
                 else { return }
                 let addingCar = Car(documentID: uuid, email: user.email, mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
-                FirebaseService.addCarInDB(car: addingCar.toDatabaseType(), uid: uuid) { error in
+                FirebaseDatabaseUpload.addCarInDB(car: addingCar.toDatabaseType(), uid: uuid) { error in
                     if let error = error {
                         print(error.localizedDescription)
                     }
                 }
                 if let imageData = self?.carImage.image?.jpegData(compressionQuality: 0.5) {
-                    FirebaseService.imageUploader(image: imageData, uid: uuid) { metadata, error in
+                    FirebaseDatabaseUpload.imageUploader(image: imageData, uid: uuid) { metadata, error in
                         if let error = error {
                             print(error.localizedDescription)
                         }
@@ -160,13 +160,13 @@ final class NewCarUploadViewController: UIViewController {
                 let phone = self.carPhoneTxt.text
             else { return }
             let updates = CaruForUpdate(mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
-            FirebaseService.updateCarInDB(car: updates.toDatabaseTypeUpdate(), uid: editingCar.documentID) { error in
+            FirebaseDatabaseEdit.updateCarInDB(car: updates.toDatabaseTypeUpdate(), uid: editingCar.documentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
             if let imageData = carImage.image?.jpegData(compressionQuality: 0.5) {
-                FirebaseService.imageUploader(image: imageData, uid: editingCar.documentID) { metadata, error in
+                FirebaseDatabaseUpload.imageUploader(image: imageData, uid: editingCar.documentID) { metadata, error in
                     if let error = error {
                         print(error.localizedDescription)
                     }

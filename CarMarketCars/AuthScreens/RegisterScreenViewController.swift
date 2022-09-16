@@ -12,7 +12,7 @@ final class RegisterScreenViewController: UIViewController {
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+//    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     //MARK: - Object Lifecycle
 
@@ -33,16 +33,13 @@ final class RegisterScreenViewController: UIViewController {
     private func setup() {
         //adding toggle button to password for showing and hiding text
         UserPasswordTxt.enablePasswordToggle()
-        loader(isLoading: false)
+//        loader(isLoading: false)
     }
     
     //MARK: - Methods
     
     private func cleanAllFields() {
-        let allTxtFields = [UserNameTxt, UserSurnameTxt, UserEmailTxt, UserPasswordTxt, UserRepeatPassTxt]
-        allTxtFields.forEach { elem in
-            elem?.text?.removeAll()
-        }
+        [UserNameTxt, UserSurnameTxt, UserEmailTxt, UserPasswordTxt, UserRepeatPassTxt].clearFields()
     }
     
     //MARK: - Actions
@@ -63,11 +60,11 @@ final class RegisterScreenViewController: UIViewController {
         
         if validateIfEmpty() && validateIfPasswordMatch() && validateIfPassword(str: UserPasswordTxt.text!) && validateIfEmailCorrectForm(str: email) {
         
-            loader(isLoading: true)
+//            loader(isLoading: true)
             
-            FirebaseService.registerUser(withEmail: email, password: password) { [weak self] result, error in
+            FirebaseAuth.registerUser(withEmail: email, password: password) { [weak self] result, error in
                 
-                self?.loader(isLoading: false)
+//                self?.loader(isLoading: false)
                 
                 let registeredUser = User(name: name, surname: surname, password: password, email: email, uid: result?.user.uid ?? "")
                 
@@ -76,7 +73,7 @@ final class RegisterScreenViewController: UIViewController {
                     return
                 } else {
                     
-                    FirebaseService.registerUserInDB(with: registeredUser)
+                    FirebaseDatabaseUpload.registerUserInDB(with: registeredUser)
                     
                     self?.alertPopUp(title: RegisterValidationTitles.successfulRegistration, message: RegisterValidationMessages.successfulRegistrationMassage, okTitle: RegisterValidationOkTitles.logInAfterRegistratoin)
                     self?.tabBarController?.selectedIndex = 0

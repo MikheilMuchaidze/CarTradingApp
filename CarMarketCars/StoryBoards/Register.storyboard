@@ -147,10 +147,6 @@
                                     <action selector="resetAllFields:" destination="CXM-2n-3W4" eventType="touchUpInside" id="oO9-uf-Z5J"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-U4-J55">
-                                <rect key="frame" x="324" y="730.5" width="20" height="20"/>
-                                <color key="color" systemColor="systemIndigoColor"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rPH-z1-n1p"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,9 +162,7 @@
                             <constraint firstItem="C9f-Lk-2wQ" firstAttribute="leading" secondItem="rPH-z1-n1p" secondAttribute="leading" constant="20" id="Erl-hf-Lbp"/>
                             <constraint firstItem="HZS-km-vxx" firstAttribute="height" secondItem="n4Z-S9-9tP" secondAttribute="height" multiplier="0.05" id="KA7-35-5Me"/>
                             <constraint firstItem="zs4-5p-ZEO" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rPH-z1-n1p" secondAttribute="leading" constant="100" id="L6w-w9-Zkc"/>
-                            <constraint firstItem="LCl-U4-J55" firstAttribute="centerY" secondItem="zs4-5p-ZEO" secondAttribute="centerY" id="N12-mS-v98"/>
                             <constraint firstItem="41S-cR-Z5y" firstAttribute="width" secondItem="HZS-km-vxx" secondAttribute="width" multiplier="0.2" id="OWi-aI-VRU"/>
-                            <constraint firstItem="LCl-U4-J55" firstAttribute="leading" secondItem="zs4-5p-ZEO" secondAttribute="trailing" constant="10" id="QpK-Qo-lXc"/>
                             <constraint firstItem="zs4-5p-ZEO" firstAttribute="height" secondItem="n4Z-S9-9tP" secondAttribute="height" multiplier="0.05" id="Rmp-nj-UMR"/>
                             <constraint firstItem="rPH-z1-n1p" firstAttribute="trailing" secondItem="vlR-DG-9Dl" secondAttribute="trailing" constant="20" id="WvK-gX-xrl"/>
                             <constraint firstItem="rPH-z1-n1p" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="zs4-5p-ZEO" secondAttribute="trailing" constant="100" id="XJ4-vY-XDE"/>
@@ -192,7 +186,6 @@
                         <outlet property="UserPasswordTxt" destination="n7w-Ka-6Ii" id="ccT-5j-BGF"/>
                         <outlet property="UserRepeatPassTxt" destination="WWR-FT-xIi" id="5iW-2Q-GJd"/>
                         <outlet property="UserSurnameTxt" destination="M87-hV-hac" id="koq-95-efx"/>
-                        <outlet property="indicator" destination="LCl-U4-J55" id="M40-I1-piM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs6-vj-oJW" sceneMemberID="firstResponder"/>

@@ -100,7 +100,6 @@ struct Car: Equatable {
             "Sellable": sellable
         ]
     }
-    
 }
 
 

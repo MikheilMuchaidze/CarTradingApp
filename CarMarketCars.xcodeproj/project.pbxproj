@@ -21,7 +21,11 @@
 		2481C55B28ACC976000DAC49 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55A28ACC976000DAC49 /* LoginScreenViewController.swift */; };
 		2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */; };
 		2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */; };
-		248998A828CB93FB00E3AFDB /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248998A728CB93FB00E3AFDB /* FireBaseService.swift */; };
+		2485FD0528D246550057CFFF /* UIView+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0428D246550057CFFF /* UIView+Extansion.swift */; };
+		2485FD0728D3FA370057CFFF /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0628D3FA370057CFFF /* FirebaseAuth.swift */; };
+		2485FD0928D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0828D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift */; };
+		2485FD0B28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0A28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift */; };
+		2485FD0D28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0C28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift */; };
 		248998B728D0EA4600E3AFDB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B628D0EA4600E3AFDB /* Login.storyboard */; };
 		248998B928D0EA5300E3AFDB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B828D0EA5300E3AFDB /* Register.storyboard */; };
 		248998BB28D0EAEB00E3AFDB /* Starting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BA28D0EAEB00E3AFDB /* Starting.storyboard */; };
@@ -61,7 +65,11 @@
 		2481C55A28ACC976000DAC49 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenViewController.swift; sourceTree = "<group>"; };
 		2481C55F28AD4414000DAC49 /* StartingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingTabBarController.swift; sourceTree = "<group>"; };
-		248998A728CB93FB00E3AFDB /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
+		2485FD0428D246550057CFFF /* UIView+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extansion.swift"; sourceTree = "<group>"; };
+		2485FD0628D3FA370057CFFF /* FirebaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
+		2485FD0828D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseUpload.swift; sourceTree = "<group>"; };
+		2485FD0A28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseDownload.swift; sourceTree = "<group>"; };
+		2485FD0C28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseEdit.swift; sourceTree = "<group>"; };
 		248998B628D0EA4600E3AFDB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		248998B828D0EA5300E3AFDB /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		248998BA28D0EAEB00E3AFDB /* Starting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Starting.storyboard; sourceTree = "<group>"; };
@@ -181,7 +189,10 @@
 		248998A628CB93D600E3AFDB /* FirebaseServices */ = {
 			isa = PBXGroup;
 			children = (
-				248998A728CB93FB00E3AFDB /* FireBaseService.swift */,
+				2485FD0628D3FA370057CFFF /* FirebaseAuth.swift */,
+				2485FD0828D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift */,
+				2485FD0A28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift */,
+				2485FD0C28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -216,6 +227,7 @@
 				24C6306328ADAEAE006A1194 /* AuthValidation.swift */,
 				24B0B63828B551FB00C8ADDA /* Constants.swift */,
 				2447CE8D28C64D48008F1032 /* UITextField+SecureToggle.swift */,
+				2485FD0428D246550057CFFF /* UIView+Extansion.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -336,10 +348,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2485FD0728D3FA370057CFFF /* FirebaseAuth.swift in Sources */,
+				2485FD0D28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift in Sources */,
 				24C6306A28AFE202006A1194 /* UserDetailsViewController.swift in Sources */,
 				24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */,
 				246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */,
 				2481C54328ACC87C000DAC49 /* AppDelegate.swift in Sources */,
+				2485FD0528D246550057CFFF /* UIView+Extansion.swift in Sources */,
 				2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */,
 				2481C54528ACC87C000DAC49 /* SceneDelegate.swift in Sources */,
 				24C6306428ADAEAF006A1194 /* AuthValidation.swift in Sources */,
@@ -350,12 +365,13 @@
 				246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */,
 				24B7728E28BB5E8F009305DC /* Car.swift in Sources */,
 				24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */,
-				248998A828CB93FB00E3AFDB /* FireBaseService.swift in Sources */,
 				24B7729028BBA236009305DC /* User.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
+				2485FD0928D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift in Sources */,
 				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
 				2447CE8E28C64D48008F1032 /* UITextField+SecureToggle.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
+				2485FD0B28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

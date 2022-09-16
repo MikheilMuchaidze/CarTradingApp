@@ -18,13 +18,13 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
             self?.tableView.reloadData()
             
-            FirebaseService.carRemoverFromDb(car: currentID) { error in
+            FirebaseDatabaseEdit.carRemoverFromDb(car: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
             
-            FirebaseService.imageRemoverFromDb(image: currentID) { error in
+            FirebaseDatabaseEdit.imageRemoverFromDb(image: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -84,16 +84,16 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as! UserDetailsTableViewCell
-        cell.loader(isLoading: true)
+//        cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
 
-        FirebaseService.loadImage(image: thisCar.documentID) { url, error in
+        FirebaseDatabaseDownload.loadImage(image: thisCar.documentID) { url, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
-            cell.loader(isLoading: false)
+//            cell.loader(isLoading: false)
         }
         
         cell.carMarkLbl.text = thisCar.mark

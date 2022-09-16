@@ -42,7 +42,7 @@ final class MainCarsListViewController: UIViewController {
         tableView.separatorStyle = .none
         searchBar.delegate = self
         //downloading data for tableview
-        FirebaseService.fetchCars { [weak self] snapshot, error in
+        FirebaseDatabaseDownload.fetchCars { [weak self] snapshot, error in
             guard let snapshot = snapshot?.documents else { return }
             self?.carsList.removeAll()
             snapshot.forEach { elem in
@@ -54,7 +54,7 @@ final class MainCarsListViewController: UIViewController {
         }
         //add function to reload tableview after swiping from top
         tablePullToRefresh()
-        FirebaseService.currentUserInfo { [weak self] user in
+        FirebaseDatabaseDownload.currentUserInfo { [weak self] user in
             self?.activeUserLbl.text = user.email
         }
     }

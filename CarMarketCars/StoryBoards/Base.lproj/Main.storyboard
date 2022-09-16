@@ -36,7 +36,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="si4-2l-CND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-140" y="315"/>
+            <point key="canvasLocation" x="-163" y="315"/>
         </scene>
         <!--Login-->
         <scene sceneID="09r-rC-HlV">
@@ -46,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ENe-l2-FKC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="269"/>
+            <point key="canvasLocation" x="774" y="270"/>
         </scene>
         <!--MainPage-->
         <scene sceneID="EcV-Hx-okl">
@@ -54,7 +54,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="MainPage" storyboardName="MainPage" id="0y7-AD-X0q" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pqn-lg-Qae" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="315"/>
+            <point key="canvasLocation" x="912" y="315"/>
         </scene>
         <!--CarEdit_Upload_View-->
         <scene sceneID="b5n-8G-t8d">
@@ -62,7 +62,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="CarEdit_Upload_View" storyboardName="CarEdit_Upload_View" id="iWe-LA-dzG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQB-Xi-lXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1494" y="315"/>
+            <point key="canvasLocation" x="1403" y="315"/>
         </scene>
         <!--UserDetails-->
         <scene sceneID="dZU-rM-R6l">
@@ -70,7 +70,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="UserDetails" storyboardName="UserDetails" id="G1Y-Fh-6ad" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXF-j6-gR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240" y="315"/>
+            <point key="canvasLocation" x="1132" y="315"/>
         </scene>
         <!--Register-->
         <scene sceneID="6Fi-1l-JCL">
@@ -80,7 +80,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3G-I5-I0l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="361"/>
+            <point key="canvasLocation" x="774" y="360"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="i1l-N3-5Yb">

@@ -1,6 +1,6 @@
 import UIKit
 
-final class LoginScreenViewController: UIViewController {
+final class LoginScreenViewController: UIViewController, LoadableView {
     
     //MARK: - Clean Components
     
@@ -13,6 +13,7 @@ final class LoginScreenViewController: UIViewController {
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    var loader = UIActivityIndicatorView()
     
     //MARK: - Object Lifecycle
 
@@ -25,40 +26,35 @@ final class LoginScreenViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        cleanAllFields()
+        [UserEmailTxt, UserPasswordTxt].clearFields()
     }
     
     // MARK: - Setup
     
     private func setup() {
+        setupLoader()
         //adding toggle button to password for showing and hiding text
         UserPasswordTxt.enablePasswordToggle()
         loader(isLoading: false)
     }
     
-    //MARK: - Methods
-    
-    private func cleanAllFields() {
-        let allTxtFields = [UserEmailTxt, UserPasswordTxt]
-        allTxtFields.forEach { elem in
-            elem?.text?.removeAll()
-        }
+    func setupLoader() {
+        view.addSubview(loader)
+        loader.center(inView: view)
     }
+    
+    //MARK: - Methods
     
     //MARK: - Actions
     
     @IBAction func signInBtn(_ sender: Any) {
-        
         guard
             let email = UserEmailTxt.text,
             let password = UserPasswordTxt.text
         else { return }
-        
         if validateIfEmpty() && validateIfEmailCorrectForm(str: email) {
-            
             loader(isLoading: true)
-            
-            FirebaseService.loginUser(withEmail: email, password: password) { [weak self] result, error in
+            FirebaseAuth.loginUser(withEmail: email, password: password) { [weak self] result, error in
                 self?.loader(isLoading: false)
                 if let error = error, result == nil {
                     self?.alertPopUp(title: LoginValidationTitles.authFailed, message: "\(error.localizedDescription)", okTitle: LoginValidationOkTitles.tryAgainTitle)
@@ -68,15 +64,11 @@ final class LoginScreenViewController: UIViewController {
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            
         }
     }
     
 }
 
 //MARK: - protocol to ViewController
-
-
-
 
 

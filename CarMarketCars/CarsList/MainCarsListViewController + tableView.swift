@@ -20,16 +20,16 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellName.CarTableViewCell, for: indexPath) as! CarTableViewCell
-        cell.loader(isLoading: true)
+//        cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
-        FirebaseService.loadImage(image: thisCar.documentID) { url, error in
+        FirebaseDatabaseDownload.loadImage(image: thisCar.documentID) { url, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
-            cell.loader(isLoading: false)
+//            cell.loader(isLoading: false)
         }
         
         cell.carMarkLbl.text = thisCar.mark

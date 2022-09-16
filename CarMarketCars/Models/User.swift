@@ -44,7 +44,4 @@ struct User {
             "Uid": uid
         ]
     }
-    
-    
-    
 }

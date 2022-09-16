@@ -12,7 +12,8 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
-        FirebaseService.logOutUser()
+        //TODO: - handle error with complition!!!!
+        FirebaseAuth.logOutUser()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -136,7 +137,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func carInfo() {
-        loader(isLoading: true)
+//        loader(isLoading: true)
         
         let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
         outletsList.forEach { elem in
@@ -157,21 +158,20 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             elem?.isEnabled = false
         }
         
-        FirebaseService.loadImage(image: editingCar.documentID) { [weak self] url, error in
+        FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
             self?.carImage.loadImageFrom(url: url)
-            self?.loader(isLoading: false)
+//            self?.loader(isLoading: false)
         }
     }
     
     func addNewCar() {
-        loader(isLoading: true)
+//        loader(isLoading: true)
 
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
-        indicator.isHidden = false
-        indicator.startAnimating()
+//        loader(isLoading: true)
     }
     
     func updateCar() {
@@ -187,10 +187,10 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
         
-        FirebaseService.loadImage(image: editingCar.documentID) { [weak self] url, error in
+        FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
             self?.carImage.loadImageFrom(url: url)
-            self?.loader(isLoading: false)
+//            self?.loader(isLoading: false)
         }
     }
      
@@ -216,68 +216,30 @@ extension MainCarsListViewController {
         }
     }
     
-    //check, download and update sellable car data from database
-//    func fetchSellableCars() {
-//        carsdb.whereField(CarFields.sellable, isEqualTo: true).addSnapshotListener { [weak self] snapshot, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//
-//            guard let snapshot = snapshot?.documents else { return }
-//
-//            self?.carsList.removeAll()
-//
-//            snapshot.forEach { document in
-//                self?.carsList.append(Car(with: document.data()))
-//            }
-//
-//            DispatchQueue.main.async {
-//                self?.tableView.reloadData()
-//            }
-//
-//        }
-//    }
-    
 }
 
 //MARK: - indicator animation for viewcontrollers
 
-protocol indicatorAnimateions {
+protocol LoadableView {
+    var loader: UIActivityIndicatorView { get }
     func loader(isLoading: Bool)
+    func setupLoader()
 }
 
-extension LoginScreenViewController: indicatorAnimateions {
+extension LoadableView {
     func loader(isLoading: Bool) {
-        indicator.isHidden = !isLoading
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+        loader.isHidden = !isLoading
+        isLoading ? loader.startAnimating() : loader.stopAnimating()
     }
 }
 
-extension RegisterScreenViewController: indicatorAnimateions {
-    func loader(isLoading: Bool) {
-        indicator.isHidden = !isLoading
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
-    }
-}
+//MARK: - For clearing textfields
 
-extension CarTableViewCell: indicatorAnimateions {
-    func loader(isLoading: Bool) {
-        indicator.isHidden = !isLoading
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
-    }
-}
-
-extension NewCarUploadViewController: indicatorAnimateions {
-    func loader(isLoading: Bool) {
-        indicator.isHidden = !isLoading
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
-    }
-}
-
-extension UserDetailsTableViewCell: indicatorAnimateions {
-    func loader(isLoading: Bool) {
-        indicator.isHidden = !isLoading
-        isLoading ? indicator.startAnimating() : indicator.stopAnimating()
+extension Array where Element: UITextField {
+    func clearFields() {
+        self.forEach { elem in
+            elem.text?.removeAll()
+        }
     }
 }
 

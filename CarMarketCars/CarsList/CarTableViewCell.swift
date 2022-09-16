@@ -1,6 +1,6 @@
 import UIKit
 
-class CarTableViewCell: UITableViewCell {
+final class CarTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
 
@@ -12,7 +12,7 @@ class CarTableViewCell: UITableViewCell {
     @IBOutlet weak var carLocationLbl: UILabel!
     @IBOutlet weak var carPriceLbl: UILabel!
     @IBOutlet weak var carPhoneLbl: UILabel!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     //MARK: - Cell Lifecycle
         
@@ -35,7 +35,11 @@ class CarTableViewCell: UITableViewCell {
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
         carImage.contentMode = .scaleAspectFill
-        indicator.isHidden = true
+        loader.isHidden = true
+        
+        carImage.addSubview(loader)
+        loader.center(inView: carImage)
+        
     }
 
 }
