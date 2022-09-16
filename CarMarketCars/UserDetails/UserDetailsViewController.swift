@@ -31,16 +31,13 @@ final class UserDetailsViewController: UIViewController {
         self.tableView.dataSource = self
         tableView.separatorStyle = .none
         searchBar.delegate = self
-        
-        FirebaseDatabaseDownload.currentUserInfo { user in
+        FirebaseDatabaseDownload.currentUserInfo(remove: false) { user in
             FirebaseDatabaseDownload.fetchCarsByEmail(email: user.email) { [weak self] snapshot, error in
                 let currentUserData = User(with: user.toDatabaseType())
-                
                 self?.UserNameLbl.text = currentUserData.name
                 self?.UserSurnameLbl.text = currentUserData.surname
                 self?.UserEmailLbl.text = currentUserData.email
                 self?.UserUidLbl.text = currentUserData.uid
-                
                 guard let snapshot = snapshot?.documents else { return }
                 self?.carsList.removeAll()
                 snapshot.forEach { elem in

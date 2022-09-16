@@ -156,10 +156,6 @@
                                                                 <constraint firstAttribute="width" secondItem="qIi-NJ-SWo" secondAttribute="height" multiplier="1:1" id="FpE-wb-IeJ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="NYm-7y-3cZ">
-                                                            <rect key="frame" x="79" y="79" width="20" height="20"/>
-                                                            <color key="color" systemColor="systemIndigoColor"/>
-                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
@@ -168,10 +164,8 @@
                                                         <constraint firstItem="qIi-NJ-SWo" firstAttribute="top" secondItem="3hV-z8-De7" secondAttribute="top" constant="10" id="Hmf-n7-B8q"/>
                                                         <constraint firstAttribute="trailing" secondItem="aeh-Eg-Cs2" secondAttribute="trailing" constant="10" id="HwL-rg-ahk"/>
                                                         <constraint firstItem="aeh-Eg-Cs2" firstAttribute="top" secondItem="qIi-NJ-SWo" secondAttribute="top" id="Ned-Ij-gpA"/>
-                                                        <constraint firstItem="NYm-7y-3cZ" firstAttribute="centerX" secondItem="qIi-NJ-SWo" secondAttribute="centerX" id="OlS-Tu-dpo"/>
                                                         <constraint firstItem="qIi-NJ-SWo" firstAttribute="leading" secondItem="3hV-z8-De7" secondAttribute="leading" constant="10" id="Rjl-fQ-eCk"/>
                                                         <constraint firstItem="aeh-Eg-Cs2" firstAttribute="leading" secondItem="qIi-NJ-SWo" secondAttribute="trailing" constant="10" id="Ssf-NH-iG4"/>
-                                                        <constraint firstItem="NYm-7y-3cZ" firstAttribute="centerY" secondItem="qIi-NJ-SWo" secondAttribute="centerY" id="fa8-jR-zFZ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -192,7 +186,6 @@
                                             <outlet property="carPriceLbl" destination="Cme-ry-bcA" id="BbS-Nh-wsM"/>
                                             <outlet property="carYearLbl" destination="wmK-J8-rje" id="6YW-Ra-gKI"/>
                                             <outlet property="helperView" destination="3hV-z8-De7" id="oeW-Ku-BFi"/>
-                                            <outlet property="indicator" destination="NYm-7y-3cZ" id="kt5-2C-bPN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -259,9 +252,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

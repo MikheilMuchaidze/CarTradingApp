@@ -19,27 +19,26 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellName.CarTableViewCell, for: indexPath) as! CarTableViewCell
-//        cell.loader(isLoading: true)
-        let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellName.CarTableViewCell, for: indexPath) as! CarTableViewCell
+        cell.loader(isLoading: true)
+        let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         FirebaseDatabaseDownload.loadImage(image: thisCar.documentID) { url, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
-//            cell.loader(isLoading: false)
+            cell.loader(isLoading: false)
         }
-        
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model
         cell.carYearLbl.text = thisCar.year
         cell.carLocationLbl.text = thisCar.location
         cell.carPriceLbl.text = thisCar.price
         cell.carPhoneLbl.text = thisCar.phone
-        
         return cell
+        
     }
     
     //function to get to car info page when clicking
@@ -54,11 +53,10 @@ extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource
     
     //searchbar functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchingCarsList.removeAll()
         
+        searchingCarsList.removeAll()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = .systemBlue
-        
         if searchText == "" {
             searchingCarsList = carsList
         } else {

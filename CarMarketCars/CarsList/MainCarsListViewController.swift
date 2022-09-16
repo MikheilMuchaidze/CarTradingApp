@@ -54,7 +54,7 @@ final class MainCarsListViewController: UIViewController {
         }
         //add function to reload tableview after swiping from top
         tablePullToRefresh()
-        FirebaseDatabaseDownload.currentUserInfo { [weak self] user in
+        FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
             self?.activeUserLbl.text = user.email
         }
     }
@@ -69,5 +69,3 @@ final class MainCarsListViewController: UIViewController {
     }
     
 }
-
-

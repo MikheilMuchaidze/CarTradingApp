@@ -1,6 +1,6 @@
 import UIKit
 
-final class NewCarUploadViewController: UIViewController {
+final class NewCarUploadViewController: UIViewController, LoadableView {
     
     //MARK: - Clean Components
     
@@ -18,7 +18,6 @@ final class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var titleTextLbl: UILabel!
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
     @IBOutlet weak var carImage: UIImageView!
-    @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet var addLinkView: UIView!
     @IBOutlet weak var insertedLinkTxt: UITextField!
     @IBOutlet weak var carMarkTxt: UITextField!
@@ -33,6 +32,7 @@ final class NewCarUploadViewController: UIViewController {
     @IBOutlet weak var removeCarImage: UIButton!
     @IBOutlet weak var sellNowText: UILabel!
     @IBOutlet weak var resetTxtFieldsOutlet: UIButton!
+    var loader = UIActivityIndicatorView()
     
     //MARK: - Object Lifecycle
     
@@ -51,6 +51,7 @@ final class NewCarUploadViewController: UIViewController {
     //MARK: - Setup
     
     private func setup() {
+        setupLoader()
         carImage.layer.cornerRadius = 10
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
@@ -61,13 +62,15 @@ final class NewCarUploadViewController: UIViewController {
         carUpload(page: carUploadPageStatus)
     }
     
+    func setupLoader() {
+        carImage.addSubview(loader)
+        loader.center(inView: carImage)
+    }
+    
     //MARK: - Methods
     
     private func cleanAllFields() {
-        let allTxtFields = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
-        allTxtFields.forEach { elem in
-            elem?.text?.removeAll()
-        }
+        [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt].clearFields()
     }
     
     //MARK: - Actions
@@ -78,13 +81,12 @@ final class NewCarUploadViewController: UIViewController {
     
     @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
         showImagePickerController()
-//        loader(isLoading: false)
+        loader(isLoading: false)
     }
     
     @IBAction func linkLoadToImageBtn(_ sender: Any) {
         
         guard let imageUrl = insertedLinkTxt.text else { return }
-        
         if imageUrl == "" {
             alertPopUp(title: NewCarValidationTitles.imageUrlError, message: NewCarValidationMessages.imageUrlErrorMassage, okTitle: NewCarValidationOkTitles.okTitle)
             carImage.image = nil
@@ -104,7 +106,7 @@ final class NewCarUploadViewController: UIViewController {
     
     @IBAction func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
-//        loader(isLoading: true)
+        loader(isLoading: true)
     }
     
     @IBAction func sellableStatusAction(_ sender: UISwitch) {
@@ -114,7 +116,7 @@ final class NewCarUploadViewController: UIViewController {
     @IBAction func addCarToListBtn(_ sender: Any) {
         
         if validateIfEmpty() && validateIfImageIsEmpty() {
-            FirebaseDatabaseDownload.currentUserInfo { [weak self] user in
+            FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
                 guard
                     let uuid = self?.uuid,
                     let mark = self?.carMarkTxt.text,

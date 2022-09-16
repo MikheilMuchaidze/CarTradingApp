@@ -9,34 +9,31 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     //func for deleting car from table and also from database
     private func delete(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
+        
         let action = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, _) in
-            
             guard let thisCar = self?.carsList[indexPath.row] else { return }
             let currentID = thisCar.documentID
-            
             self?.carsList.remove(at: indexPath.row)
             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
             self?.tableView.reloadData()
-            
             FirebaseDatabaseEdit.carRemoverFromDb(car: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
-            
             FirebaseDatabaseEdit.imageRemoverFromDb(image: currentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
-            
         }
-        
         return action
+        
     }
     
     //func for editing car information
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
+        
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
             let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
@@ -46,8 +43,8 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
             vc.carUploadPageStatus = .UpdatingCar
             self.present(vc, animated: true)
         }
-        
         return action
+        
     }
 
     //action for Delete swiping row from right to left (trailing)
@@ -83,27 +80,26 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as! UserDetailsTableViewCell
-//        cell.loader(isLoading: true)
+        cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
-
         FirebaseDatabaseDownload.loadImage(image: thisCar.documentID) { url, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             guard let url = url else { return }
             cell.carImage.loadImageFrom(url: url)
-//            cell.loader(isLoading: false)
+            cell.loader(isLoading: false)
         }
-        
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model
         cell.carYearLbl.text = thisCar.year
         cell.carLocationLbl.text = thisCar.location
         cell.carPriceLbl.text = thisCar.price
         cell.carPhoneLbl.text = thisCar.phone
-        
         return cell
+        
     }
     
     //updating tableview after editing cell
@@ -111,14 +107,12 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         self.tableView.reloadData()
     }
     
-    
     //searchbar functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchingCarsList.removeAll()
         
+        searchingCarsList.removeAll()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = .systemBlue
-        
         if searchText == "" {
             searchingCarsList = carsList
         } else {

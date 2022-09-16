@@ -78,10 +78,6 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="eAD-0B-qPD">
-                                <rect key="frame" x="324" y="730.5" width="20" height="20"/>
-                                <color key="color" systemColor="systemIndigoColor"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jzf-se-pdy"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,13 +87,11 @@
                             <constraint firstItem="jzf-se-pdy" firstAttribute="trailing" secondItem="20O-Dx-LF4" secondAttribute="trailing" constant="20" id="Gkq-Wy-5Qe"/>
                             <constraint firstItem="dqN-vJ-ehY" firstAttribute="height" secondItem="uSR-Ba-r00" secondAttribute="height" multiplier="0.05" id="IZ5-5i-ldm"/>
                             <constraint firstItem="jzf-se-pdy" firstAttribute="bottom" secondItem="diL-rj-Qx5" secondAttribute="bottom" constant="50" id="JKR-aV-T0P"/>
-                            <constraint firstItem="eAD-0B-qPD" firstAttribute="centerY" secondItem="diL-rj-Qx5" secondAttribute="centerY" id="V8W-Nb-vV4"/>
                             <constraint firstItem="diL-rj-Qx5" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jzf-se-pdy" secondAttribute="leading" constant="100" id="W4c-nR-HGr"/>
                             <constraint firstItem="TnC-ks-9aE" firstAttribute="leading" secondItem="jzf-se-pdy" secondAttribute="leading" constant="20" id="WPG-cw-3Gc"/>
                             <constraint firstItem="jzf-se-pdy" firstAttribute="trailing" secondItem="apg-yM-kBG" secondAttribute="trailing" constant="20" id="ZdS-nl-bXR"/>
                             <constraint firstItem="apg-yM-kBG" firstAttribute="top" secondItem="20O-Dx-LF4" secondAttribute="bottom" id="bCX-v1-T3f"/>
                             <constraint firstItem="20O-Dx-LF4" firstAttribute="leading" secondItem="jzf-se-pdy" secondAttribute="leading" constant="20" id="ev5-E9-Q48"/>
-                            <constraint firstItem="eAD-0B-qPD" firstAttribute="leading" secondItem="diL-rj-Qx5" secondAttribute="trailing" constant="10" id="gnv-sI-rfn"/>
                             <constraint firstItem="diL-rj-Qx5" firstAttribute="height" secondItem="uSR-Ba-r00" secondAttribute="height" multiplier="0.05" id="l0P-eQ-uaf"/>
                             <constraint firstItem="apg-yM-kBG" firstAttribute="leading" secondItem="jzf-se-pdy" secondAttribute="leading" constant="20" id="lVA-LG-fjD"/>
                             <constraint firstItem="jzf-se-pdy" firstAttribute="trailing" secondItem="TnC-ks-9aE" secondAttribute="trailing" constant="20" id="mrX-7m-Z8t"/>
@@ -110,7 +104,6 @@
                     <connections>
                         <outlet property="UserEmailTxt" destination="dqN-vJ-ehY" id="Jhm-zY-o7N"/>
                         <outlet property="UserPasswordTxt" destination="ei5-kK-raX" id="PJn-gu-Lf4"/>
-                        <outlet property="indicator" destination="eAD-0B-qPD" id="zry-Rp-THA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrB-Ux-mcs" sceneMemberID="firstResponder"/>

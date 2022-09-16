@@ -29,7 +29,7 @@
 		2485FD0F28D403840057CFFF /* UIViewController+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */; };
 		2485FD1228D404570057CFFF /* UIImageView+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */; };
 		2485FD1428D404EA0057CFFF /* Array+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1328D404EA0057CFFF /* Array+Extansion.swift */; };
-		2485FD1628D405590057CFFF /* UIActivityIndicatorView+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */; };
+		2485FD1628D405590057CFFF /* Protocol+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485FD1528D405590057CFFF /* Protocol+Extansion.swift */; };
 		248998B728D0EA4600E3AFDB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B628D0EA4600E3AFDB /* Login.storyboard */; };
 		248998B928D0EA5300E3AFDB /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998B828D0EA5300E3AFDB /* Register.storyboard */; };
 		248998BB28D0EAEB00E3AFDB /* Starting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BA28D0EAEB00E3AFDB /* Starting.storyboard */; };
@@ -76,7 +76,7 @@
 		2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extansion.swift"; sourceTree = "<group>"; };
 		2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extansion.swift"; sourceTree = "<group>"; };
 		2485FD1328D404EA0057CFFF /* Array+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extansion.swift"; sourceTree = "<group>"; };
-		2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Extansion.swift"; sourceTree = "<group>"; };
+		2485FD1528D405590057CFFF /* Protocol+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol+Extansion.swift"; sourceTree = "<group>"; };
 		248998B628D0EA4600E3AFDB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		248998B828D0EA5300E3AFDB /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		248998BA28D0EAEB00E3AFDB /* Starting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Starting.storyboard; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 				2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */,
 				2485FD1128D404570057CFFF /* UIImageView+Extansion.swift */,
 				2485FD1328D404EA0057CFFF /* Array+Extansion.swift */,
-				2485FD1528D405590057CFFF /* UIActivityIndicatorView+Extansion.swift */,
+				2485FD1528D405590057CFFF /* Protocol+Extansion.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 				24B7728E28BB5E8F009305DC /* Car.swift in Sources */,
 				2485FD1428D404EA0057CFFF /* Array+Extansion.swift in Sources */,
 				2485FD1228D404570057CFFF /* UIImageView+Extansion.swift in Sources */,
-				2485FD1628D405590057CFFF /* UIActivityIndicatorView+Extansion.swift in Sources */,
+				2485FD1628D405590057CFFF /* Protocol+Extansion.swift in Sources */,
 				24B0B63928B551FB00C8ADDA /* Constants.swift in Sources */,
 				2485FD0F28D403840057CFFF /* UIViewController+Extansion.swift in Sources */,
 				24B7729028BBA236009305DC /* User.swift in Sources */,

@@ -15,7 +15,7 @@ enum FirebaseDatabaseUpload {
     //MARK: - Add user in firebase firestore
     
     static func registerUserInDB(with user: User) {
-        userDocument.setData(user.toDatabaseType())
+        usersdb.document(user.email).setData(user.toDatabaseType())
     }
     
     //MARK: - Add car in firebase firestore

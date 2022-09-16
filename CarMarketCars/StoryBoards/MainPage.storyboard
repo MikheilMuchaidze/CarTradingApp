@@ -129,22 +129,16 @@
                                                                 <constraint firstItem="CcZ-Ji-CnZ" firstAttribute="height" secondItem="zNj-Dt-Tsb" secondAttribute="height" id="ST0-KH-HJ7"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Jt6-ww-Nkh">
-                                                            <rect key="frame" x="79" y="79" width="20" height="20"/>
-                                                            <color key="color" systemColor="systemIndigoColor"/>
-                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="aej-Vu-tVb" firstAttribute="leading" secondItem="ZdR-8r-IiS" secondAttribute="trailing" constant="10" id="7FB-nc-7tr"/>
-                                                        <constraint firstItem="Jt6-ww-Nkh" firstAttribute="centerX" secondItem="ZdR-8r-IiS" secondAttribute="centerX" id="953-rL-64U"/>
                                                         <constraint firstItem="ZdR-8r-IiS" firstAttribute="leading" secondItem="VnS-86-a8I" secondAttribute="leading" constant="10" id="F4R-OY-cb5"/>
                                                         <constraint firstAttribute="trailing" secondItem="aej-Vu-tVb" secondAttribute="trailing" constant="20" id="GOd-S1-XuB"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZdR-8r-IiS" secondAttribute="bottom" constant="10" id="LFb-Dk-49E"/>
                                                         <constraint firstItem="aej-Vu-tVb" firstAttribute="bottom" secondItem="ZdR-8r-IiS" secondAttribute="bottom" id="O3f-vu-AuC"/>
                                                         <constraint firstItem="ZdR-8r-IiS" firstAttribute="top" secondItem="VnS-86-a8I" secondAttribute="top" constant="10" id="R1C-0K-kcv"/>
                                                         <constraint firstItem="aej-Vu-tVb" firstAttribute="top" secondItem="ZdR-8r-IiS" secondAttribute="top" id="jUj-1R-P5m"/>
-                                                        <constraint firstItem="Jt6-ww-Nkh" firstAttribute="centerY" secondItem="ZdR-8r-IiS" secondAttribute="centerY" id="twY-kq-XmL"/>
                                                         <constraint firstItem="ZdR-8r-IiS" firstAttribute="centerY" secondItem="VnS-86-a8I" secondAttribute="centerY" id="zcc-6S-gGt"/>
                                                     </constraints>
                                                 </view>
@@ -166,7 +160,6 @@
                                             <outlet property="carPriceLbl" destination="55B-fu-MTG" id="dSi-gw-LYp"/>
                                             <outlet property="carYearLbl" destination="Hl4-rY-ydS" id="YSN-QM-7Pj"/>
                                             <outlet property="helperView" destination="VnS-86-a8I" id="Z7n-dD-iHS"/>
-                                            <outlet property="indicator" destination="Jt6-ww-Nkh" id="NfW-07-hzJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

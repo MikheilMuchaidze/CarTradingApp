@@ -4,11 +4,17 @@ import UIKit
 
 private let button = UIButton(type: .custom)
 
-extension UITextField {
+fileprivate enum PasswordVisibilityStatus {
+    static let visible = "opened-eye"
+    static let notVisible = "closed-eye"
+}
 
+extension UITextField {
+    
     func enablePasswordToggle() {
-        let openEye = UIImage(named: "closed-eye")?.withTintColor(.blue)
-        let closedEye = UIImage(named: "opened-eye")?.withTintColor(.blue)
+        self.isSecureTextEntry = true
+        let openEye = UIImage(named: PasswordVisibilityStatus.notVisible)?.withTintColor(.blue)
+        let closedEye = UIImage(named: PasswordVisibilityStatus.visible)?.withTintColor(.blue)
 
         button.setImage(closedEye, for: .selected)
         button.setImage(openEye, for: .normal)

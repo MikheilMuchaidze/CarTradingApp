@@ -44,18 +44,15 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-//        imagePickerController.sourceType = chooseAction
         present(imagePickerController, animated: true)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             carImage.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             carImage.image = originalImage
         }
-        
         dismiss(animated: true)
     }
     
@@ -81,13 +78,12 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func carInfo() {
-//        loader(isLoading: true)
         
+        loader(isLoading: true)
         let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
         outletsList.forEach { elem in
             elem?.isHidden = true
         }
-        
         carMarkTxt.text = editingCar.mark
         carModelTxt.text = editingCar.model
         carYearTxt.text = editingCar.year
@@ -95,34 +91,31 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPriceTxt.text = editingCar.price
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
-        
         let fieldsList = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt, sellableStatusOutlet]
-        
         fieldsList.forEach { elem in
             elem?.isEnabled = false
         }
-        
         FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
             self?.carImage.loadImageFrom(url: url)
-//            self?.loader(isLoading: false)
+            self?.loader(isLoading: false)
         }
+        
     }
     
     func addNewCar() {
-//        loader(isLoading: true)
-
+        loader(isLoading: true)
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
         updateCarToListBtnOutlet.isHidden = true
-//        loader(isLoading: true)
+        loader(isLoading: true)
     }
     
     func updateCar() {
+        
         addCarToListBtnOutlet.isHidden = true
         titleTextLbl.isHidden = true
         updateCarToListBtnOutlet.isHidden = false
-        
         carMarkTxt.text = editingCar.mark
         carModelTxt.text = editingCar.model
         carYearTxt.text = editingCar.year
@@ -130,12 +123,12 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPriceTxt.text = editingCar.price
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
-        
         FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
             guard let url = url else { return }
             self?.carImage.loadImageFrom(url: url)
-//            self?.loader(isLoading: false)
+            self?.loader(isLoading: false)
         }
+        
     }
      
 }

@@ -48,10 +48,12 @@ final class LoginScreenViewController: UIViewController, LoadableView {
     //MARK: - Actions
     
     @IBAction func signInBtn(_ sender: Any) {
+        
         guard
             let email = UserEmailTxt.text,
             let password = UserPasswordTxt.text
         else { return }
+        
         if validateIfEmpty() && validateIfEmailCorrectForm(str: email) {
             loader(isLoading: true)
             FirebaseAuth.loginUser(withEmail: email, password: password) { [weak self] result, error in
@@ -69,6 +71,5 @@ final class LoginScreenViewController: UIViewController, LoadableView {
     
 }
 
-//MARK: - protocol to ViewController
 
 

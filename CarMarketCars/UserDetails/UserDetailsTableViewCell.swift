@@ -1,6 +1,6 @@
 import UIKit
 
-final class UserDetailsTableViewCell: UITableViewCell {
+final class UserDetailsTableViewCell: UITableViewCell, LoadableView {
     
     //MARK: - Outlets
     
@@ -12,7 +12,7 @@ final class UserDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var carLocationLbl: UILabel!
     @IBOutlet weak var carPriceLbl: UILabel!
     @IBOutlet weak var carPhoneLbl: UILabel!
-    @IBOutlet weak var loader: UIActivityIndicatorView!
+    var loader = UIActivityIndicatorView()
     
     //MARK: - Cell Lifecycle
 
@@ -23,18 +23,23 @@ final class UserDetailsTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     //MARK: - Setup
     
     private func setup() {
+        setupLoader()
         helperView.layer.cornerRadius = 10
         carImage.layer.cornerRadius = 10
         carImage.layer.borderColor = UIColor.systemBlue.cgColor
         carImage.layer.borderWidth = 2
         carImage.backgroundColor = .clear
         carImage.contentMode = .scaleAspectFill
+    }
+    
+    func setupLoader() {
+        carImage.addSubview(loader)
+        loader.center(inView: carImage)
     }
     
 }

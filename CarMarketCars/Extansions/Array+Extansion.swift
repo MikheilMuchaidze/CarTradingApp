@@ -9,5 +9,5 @@ extension Array where Element: UITextField {
             elem.text?.removeAll()
         }
     }
-    
 }
+

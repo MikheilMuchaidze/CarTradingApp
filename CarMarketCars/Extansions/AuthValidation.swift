@@ -92,6 +92,7 @@ extension RegisterScreenViewController {
             return false
         }
         return true
+        
     }
     
     //validate password and repeat password similarity

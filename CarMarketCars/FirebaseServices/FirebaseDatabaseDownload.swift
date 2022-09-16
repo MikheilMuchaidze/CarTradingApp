@@ -1,6 +1,9 @@
 import Firebase
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+
+//var handle: AuthStateDidChangeListenerHandle?
 
 enum FirebaseDatabaseDownload {
     
@@ -11,19 +14,26 @@ enum FirebaseDatabaseDownload {
     private static var currentUser: String {
         Auth.auth().currentUser?.email ?? ""
     }
-    private static let userDocument = usersdb.document(currentUser)
+    
+    private static var userDocument: DocumentReference {
+        usersdb.document(currentUser)
+    }
     
     //MARK: - Current user info
     
-    static func currentUserInfo(completion: ((User) -> Void)?) {
+    static func currentUserInfo(remove: Bool, completion: ((User) -> Void)?) {
+        
         firestoreListener?.remove()
-        firestoreListener = userDocument.addSnapshotListener({ snapshot, error in
-            guard let snapshot = snapshot?.data() else { return }
-            let currentUser = User(with: snapshot)
-            if let completion = completion {
-                completion(currentUser)
-            }
-        })
+        if !remove {
+            firestoreListener = userDocument.addSnapshotListener({ snapshot, error in
+                guard let snapshot = snapshot?.data() else { return }
+                let currentUser = User(with: snapshot)
+                if let completion = completion {
+                    completion(currentUser)
+                }
+            })
+        }
+        
     }
     
     //MARK: - Fetch from database all selleble cars
