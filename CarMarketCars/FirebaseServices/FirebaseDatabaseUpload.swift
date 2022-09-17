@@ -7,10 +7,6 @@ enum FirebaseDatabaseUpload {
     private static let imageStorage = Storage.storage().reference()
     private static let carsdb = Firestore.firestore().collection(FirebaseCollectionNames.cars.rawValue)
     private static let usersdb = Firestore.firestore().collection(FirebaseCollectionNames.users.rawValue)
-    private static var currentUser: String {
-        Auth.auth().currentUser?.email ?? ""
-    }
-    private static let userDocument = usersdb.document(currentUser)
     
     //MARK: - Add user in firebase firestore
     
@@ -33,7 +29,7 @@ enum FirebaseDatabaseUpload {
     //MARK: - Image upload to storage functions
     
     static func imageUploader(image: Data, uid: String, completion: ((StorageMetadata?, Error?) -> Void)?) {
-        imageStorage.child("carImages/\(uid)").putData(image, completion: completion)
+        imageStorage.child("\(FirebaseImageStorageName.carImages)\(uid)").putData(image, completion: completion)
     }
     
 }

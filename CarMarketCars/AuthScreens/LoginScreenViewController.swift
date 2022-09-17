@@ -7,13 +7,13 @@ final class LoginScreenViewController: UIViewController, LoadableView {
     
     //MARK: - Fields
     
+    var loader = UIActivityIndicatorView()
     
     //MARK: Outlets
     
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    var loader = UIActivityIndicatorView()
     
     //MARK: - Object Lifecycle
 
@@ -44,6 +44,7 @@ final class LoginScreenViewController: UIViewController, LoadableView {
     }
     
     //MARK: - Methods
+    
     
     //MARK: - Actions
     

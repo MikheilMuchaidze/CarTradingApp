@@ -1,4 +1,5 @@
 import FirebaseAuth
+import UIKit
 
 enum FirebaseAuth {
     
@@ -19,7 +20,6 @@ enum FirebaseAuth {
     static func logOutUser() {
         do {
             try Auth.auth().signOut()
-            print("logged out")
         } catch let error {
             //TODO: - No error handling?????
             print(error.localizedDescription)

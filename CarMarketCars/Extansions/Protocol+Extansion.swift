@@ -8,6 +8,8 @@ protocol LoadableView {
     func setupLoader()
 }
 
+//MARK: - extansion for LoadableView protocol to insert default function in view which conforms to this protocol
+
 extension LoadableView {
     func loader(isLoading: Bool) {
         loader.color = .systemIndigo

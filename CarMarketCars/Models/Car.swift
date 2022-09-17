@@ -1,5 +1,7 @@
 import UIKit
 
+//MARK: - Car struct fields
+
 enum CarFields {
     static let documentID = "DocumentID"
     static let email = "Email"
@@ -12,7 +14,23 @@ enum CarFields {
     static let sellable = "Sellable"
 }
 
-struct CaruForUpdate: Equatable {
+//MARK: - Car struct fields for failed fetching data from firebase
+
+fileprivate enum CarFieldsFailedFetch {
+    static let documentID = "No document id"
+    static let email = "No email"
+    static let mark = "No mark"
+    static let model = "No model"
+    static let year = "No year"
+    static let location = "No location"
+    static let price = "No price"
+    static let phone = "No phone"
+    static let sellable = false
+}
+
+//MARK: - Struct for adding/updating car function to database with specific init and funcion
+
+struct CarForUpdate {
     let mark: String
     let model: String
     let year: String
@@ -48,6 +66,8 @@ struct CaruForUpdate: Equatable {
     }
 }
 
+//MARK: - Main car struct
+
 struct Car: Equatable {
     let documentID: String
     let email: String
@@ -74,15 +94,15 @@ struct Car: Equatable {
     //MARK: - Init for download from firebase
     
     init(with dictionary: Dictionary<String, Any>) {
-        self.documentID = dictionary[CarFields.documentID] as? String ?? "No document id"
-        self.email = dictionary[CarFields.email] as? String ?? "No email"
-        self.mark = dictionary[CarFields.mark] as? String ?? "No mark"
-        self.model = dictionary[CarFields.model] as? String ?? "No model"
-        self.year = dictionary[CarFields.year] as? String ?? "No year"
-        self.location = dictionary[CarFields.location] as? String ?? "No location"
-        self.price = dictionary[CarFields.price] as? String ?? "No price"
-        self.phone = dictionary[CarFields.phone] as? String ?? "No phone"
-        self.sellable = dictionary[CarFields.sellable] as? Bool ?? false
+        self.documentID = dictionary[CarFields.documentID] as? String ?? CarFieldsFailedFetch.documentID
+        self.email = dictionary[CarFields.email] as? String ?? CarFieldsFailedFetch.email
+        self.mark = dictionary[CarFields.mark] as? String ?? CarFieldsFailedFetch.mark
+        self.model = dictionary[CarFields.model] as? String ?? CarFieldsFailedFetch.model
+        self.year = dictionary[CarFields.year] as? String ?? CarFieldsFailedFetch.year
+        self.location = dictionary[CarFields.location] as? String ?? CarFieldsFailedFetch.location
+        self.price = dictionary[CarFields.price] as? String ?? CarFieldsFailedFetch.price
+        self.phone = dictionary[CarFields.phone] as? String ?? CarFieldsFailedFetch.phone
+        self.sellable = dictionary[CarFields.sellable] as? Bool ?? CarFieldsFailedFetch.sellable
     }
     
     //MARK: - Convert Car to database type for upload

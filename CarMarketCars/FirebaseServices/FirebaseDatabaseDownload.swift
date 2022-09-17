@@ -14,7 +14,6 @@ enum FirebaseDatabaseDownload {
     private static var currentUser: String {
         Auth.auth().currentUser?.email ?? ""
     }
-    
     private static var userDocument: DocumentReference {
         usersdb.document(currentUser)
     }
@@ -22,7 +21,6 @@ enum FirebaseDatabaseDownload {
     //MARK: - Current user info
     
     static func currentUserInfo(remove: Bool, completion: ((User) -> Void)?) {
-        
         firestoreListener?.remove()
         if !remove {
             firestoreListener = userDocument.addSnapshotListener({ snapshot, error in
@@ -33,7 +31,6 @@ enum FirebaseDatabaseDownload {
                 }
             })
         }
-        
     }
     
     //MARK: - Fetch from database all selleble cars
@@ -51,7 +48,7 @@ enum FirebaseDatabaseDownload {
     //MARK: - load image from storage with parameter
     
     static func loadImage(image: String ,completion: @escaping (URL?, Error?) -> Void) {
-        imageStorage.child("carImages/\(image)").downloadURL(completion: completion)
+        imageStorage.child("\(FirebaseImageStorageName.carImages)\(image)").downloadURL(completion: completion)
     }
 
 }

@@ -3,7 +3,8 @@ import UIKit
 final class RegisterScreenViewController: UIViewController, LoadableView {
     
     //MARK: - Fields
-        
+    
+    var loader = UIActivityIndicatorView()
     
     //MARK: - Outlets
     
@@ -12,7 +13,6 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
     @IBOutlet weak var UserEmailTxt: UITextField!
     @IBOutlet weak var UserPasswordTxt: UITextField!
     @IBOutlet weak var UserRepeatPassTxt: UITextField!
-    var loader = UIActivityIndicatorView()
 
     //MARK: - Object Lifecycle
 

@@ -128,7 +128,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             self?.carImage.loadImageFrom(url: url)
             self?.loader(isLoading: false)
         }
-        
     }
      
 }

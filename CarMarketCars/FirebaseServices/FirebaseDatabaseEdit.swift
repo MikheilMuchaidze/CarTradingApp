@@ -16,7 +16,7 @@ enum FirebaseDatabaseEdit {
     //MARK: - delete image from firestore
     
     static func imageRemoverFromDb(image: String, completion: ((Error?) -> Void)?) {
-        imageStorage.child("carImages/\(image)").delete(completion: completion)
+        imageStorage.child("\(FirebaseImageStorageName.carImages)\(image)").delete(completion: completion)
     }
     
     //MARK: - delete car from firestore

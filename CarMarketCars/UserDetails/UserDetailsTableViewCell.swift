@@ -2,6 +2,10 @@ import UIKit
 
 final class UserDetailsTableViewCell: UITableViewCell, LoadableView {
     
+    //MARK: - Fields
+    
+    var loader = UIActivityIndicatorView()
+    
     //MARK: - Outlets
     
     @IBOutlet weak var helperView: UIView!
@@ -12,7 +16,6 @@ final class UserDetailsTableViewCell: UITableViewCell, LoadableView {
     @IBOutlet weak var carLocationLbl: UILabel!
     @IBOutlet weak var carPriceLbl: UILabel!
     @IBOutlet weak var carPhoneLbl: UILabel!
-    var loader = UIActivityIndicatorView()
     
     //MARK: - Cell Lifecycle
 

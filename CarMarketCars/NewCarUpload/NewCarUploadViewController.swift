@@ -11,6 +11,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     var editingCar: Car!
     var sellable: Bool = true
     let uuid = UUID().uuidString
+    var loader = UIActivityIndicatorView()
     
     //MARK: - Outlets
     
@@ -32,7 +33,6 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     @IBOutlet weak var removeCarImage: UIButton!
     @IBOutlet weak var sellNowText: UILabel!
     @IBOutlet weak var resetTxtFieldsOutlet: UIButton!
-    var loader = UIActivityIndicatorView()
     
     //MARK: - Object Lifecycle
     
@@ -161,7 +161,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
                 let price = self.carPriceTxt.text,
                 let phone = self.carPhoneTxt.text
             else { return }
-            let updates = CaruForUpdate(mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
+            let updates = CarForUpdate(mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
             FirebaseDatabaseEdit.updateCarInDB(car: updates.toDatabaseTypeUpdate(), uid: editingCar.documentID) { error in
                 if let error = error {
                     print(error.localizedDescription)
