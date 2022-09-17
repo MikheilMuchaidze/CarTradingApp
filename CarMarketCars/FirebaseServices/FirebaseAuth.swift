@@ -17,12 +17,11 @@ enum FirebaseAuth {
     
     //MARK: - Log out service
     
-    static func logOutUser() {
+    static func logOutUser(completion: (_ errorOccured: Bool, _ error: Error) -> Void) {
         do {
             try Auth.auth().signOut()
         } catch let error {
-            //TODO: - No error handling?????
-            print(error.localizedDescription)
+            completion(true, error)
         }
     }
     

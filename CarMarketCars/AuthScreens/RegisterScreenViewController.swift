@@ -34,6 +34,7 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
         setupLoader()
         //adding toggle button to password for showing and hiding text
         UserPasswordTxt.enablePasswordToggle()
+        UserRepeatPassTxt.enablePasswordToggle()
     }
     
     func setupLoader() {

@@ -12,8 +12,6 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
-        //TODO: - handle error with complition!!!!
-        FirebaseAuth.logOutUser()
         self.navigationController?.popViewController(animated: true)
     }
     

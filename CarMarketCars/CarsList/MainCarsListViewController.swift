@@ -28,6 +28,14 @@ final class MainCarsListViewController: UIViewController {
         setup()
     }
     
+    deinit {
+        FirebaseAuth.logOutUser { errorOccured, error in
+            if errorOccured {
+                alertPopUp(title: LogoutInfo.Fail.loggedOut, message: error.localizedDescription, okTitle: LogoutInfo.Fail.okTitle)
+            }
+        }
+    }
+        
     //MARK: - Setup
     
     private func setup() {

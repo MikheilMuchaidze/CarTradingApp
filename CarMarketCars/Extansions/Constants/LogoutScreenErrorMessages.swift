@@ -1,8 +1,7 @@
-extension MainCarsListViewController {
+enum LogoutInfo {
     
-    enum LogoutMesseges {
-        static let fieldsLogut = "Logged out"
-        static let fieldsLogutMassage = "You successfully logged out!"
+    enum Fail {
+        static let loggedOut = "Fail to log out"
         static let okTitle = "Ok."
     }
     
