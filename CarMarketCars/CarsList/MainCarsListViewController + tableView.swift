@@ -1,7 +1,7 @@
 import UIKit
 
 extension MainCarsListViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-        
+            
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10.0

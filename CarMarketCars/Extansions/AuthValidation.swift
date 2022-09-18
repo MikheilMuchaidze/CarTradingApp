@@ -1,32 +1,5 @@
 import UIKit
 
-//MARK: - New car adding validations
-
-extension NewCarUploadViewController {
-    
-    //validation of text fields
-    func validateIfEmpty() -> Bool {
-        if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty || carPhoneTxt.text!.isEmpty {
-            alertPopUp(title: NewCarValidationTitles.fieldsEmpty, message: NewCarValidationMessages.fieldsEmptyMassage, okTitle: NewCarValidationOkTitles.okTitle)
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    //validate image form
-    func validateIfImageIsEmpty() -> Bool {
-        //validation that an user added image for the car
-        if carImage.image == nil {
-            alertPopUp(title: NewCarValidationTitles.noImage, message: NewCarValidationMessages.noImageMassage, okTitle: NewCarValidationOkTitles.okTitle)
-            return false
-        } else {
-            return true
-        }
-    }
-    
-}
-
 //MARK: - Login view auth validations
 
 extension LoginScreenViewController {
@@ -111,6 +84,33 @@ extension RegisterScreenViewController {
 
         if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: str)) {
             alertPopUp(title: RegisterValidationTitles.incorrectEmail, message: RegisterValidationMessages.incorrectEmailMassage, okTitle: RegisterValidationOkTitles.tryAgainTitle)
+            return false
+        } else {
+            return true
+        }
+    }
+    
+}
+
+//MARK: - New car adding validations
+
+extension NewCarUploadViewController {
+    
+    //validation of text fields
+    func validateIfEmpty() -> Bool {
+        if carMarkTxt.text!.isEmpty || carModelTxt.text!.isEmpty || carYearTxt.text!.isEmpty || carLocationTxt.text!.isEmpty || carPriceTxt.text!.isEmpty || carPhoneTxt.text!.isEmpty {
+            alertPopUp(title: NewCarValidationTitles.fieldsEmpty, message: NewCarValidationMessages.fieldsEmptyMassage, okTitle: NewCarValidationOkTitles.okTitle)
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //validate image form
+    func validateIfImageIsEmpty() -> Bool {
+        //validation that an user added image for the car
+        if carImage.image == nil {
+            alertPopUp(title: NewCarValidationTitles.noImage, message: NewCarValidationMessages.noImageMassage, okTitle: NewCarValidationOkTitles.okTitle)
             return false
         } else {
             return true

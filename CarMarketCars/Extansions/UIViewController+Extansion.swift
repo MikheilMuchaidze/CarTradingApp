@@ -33,6 +33,41 @@ extension UIViewController {
         })
     }
     
+    //MARK: - Tap fucntionality for sign out and profile pics
+    
+    //funcion for add back option to image
+    func addTapToGoBackToImage(image: UIImageView) {
+        image.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToGoBack))
+        image.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tapToGoBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //funcion for presenting view to image
+    func addTapToGoToDetailsToImage(image: UIImageView) {
+        image.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToGoToDetails))
+        image.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tapToGoToDetails() {
+        let toDetailsVC = UIStoryboard(name: StoryboardNames.userDetails, bundle: nil)
+        guard let toDetailsVC = toDetailsVC.instantiateViewController(withIdentifier: ViewControllerName.userDetails) as? UserDetailsViewController else { return }
+        self.present(toDetailsVC, animated: true)
+    }
+    
+    //MARK: - Alert massege funcion
+    
+    func alertPopUp(title: String, message: String, okTitle: String) {
+        let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: okTitle, style: UIAlertAction.Style.default, handler: nil)
+        alertmassege.addAction(okAction)
+        self.present(alertmassege, animated: true)
+    }
+    
 }
 
 //MARK: - adding new car view: image picker from galley functions
@@ -78,7 +113,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func carInfo() {
-        
         loader(isLoading: true)
         let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
         outletsList.forEach { elem in
@@ -100,7 +134,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             self?.carImage.loadImageFrom(url: url)
             self?.loader(isLoading: false)
         }
-        
     }
     
     func addNewCar() {
@@ -112,7 +145,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     }
     
     func updateCar() {
-        
         addCarToListBtnOutlet.isHidden = true
         titleTextLbl.isHidden = true
         updateCarToListBtnOutlet.isHidden = false
@@ -129,7 +161,6 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             self?.loader(isLoading: false)
         }
     }
-     
 }
 
 //MARK: - main table view refresh if pulled from top
@@ -147,11 +178,19 @@ extension MainCarsListViewController {
     //refreshing objc funtion itself
     @objc func didPullToRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            FirebaseDatabaseDownload.fetchCars { [weak self] snapshot, error in
+                guard let snapshot = snapshot?.documents else { return }
+                self?.carsList.removeAll()
+                snapshot.forEach { elem in
+                    self?.carsList.append(Car(with: elem.data()))
+                }
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
     }
     
 }
-
-
