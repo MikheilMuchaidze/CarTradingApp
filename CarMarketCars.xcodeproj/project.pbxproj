@@ -192,6 +192,7 @@
 		2481C55728ACC928000DAC49 /* AuthScreens */ = {
 			isa = PBXGroup;
 			children = (
+				24E6AF6928D7B561005E78DD /* Login */,
 				2481C55A28ACC976000DAC49 /* LoginScreenViewController.swift */,
 				2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */,
 			);
@@ -289,6 +290,13 @@
 				24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */,
 			);
 			path = UserDetails;
+			sourceTree = "<group>";
+		};
+		24E6AF6928D7B561005E78DD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
