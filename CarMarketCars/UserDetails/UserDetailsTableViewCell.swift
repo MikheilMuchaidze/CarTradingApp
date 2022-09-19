@@ -40,7 +40,7 @@ final class UserDetailsTableViewCell: UITableViewCell, LoadableView {
         carImage.contentMode = .scaleAspectFill
     }
     
-    func setupLoader() {
+    private func setupLoader() {
         carImage.addSubview(loader)
         loader.center(inView: carImage)
     }

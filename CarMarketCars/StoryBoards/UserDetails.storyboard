@@ -230,18 +230,18 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="UserEmailLbl" destination="bPg-o3-O0P" id="WcP-f5-9sf"/>
-                        <outlet property="UserImageImage" destination="0l2-Nm-0UN" id="5ez-7A-HDl"/>
-                        <outlet property="UserNameLbl" destination="tCh-YM-PEd" id="0bw-LY-6me"/>
-                        <outlet property="UserSurnameLbl" destination="Dn9-YY-xOK" id="uAJ-Bs-9J6"/>
-                        <outlet property="UserUidLbl" destination="qHE-21-6V5" id="hQK-er-h9i"/>
                         <outlet property="searchBar" destination="FDb-36-n7e" id="Pgz-i4-QWn"/>
                         <outlet property="tableView" destination="idd-ah-zqK" id="rFA-03-css"/>
+                        <outlet property="userEmailLbl" destination="bPg-o3-O0P" id="SpU-6u-uDm"/>
+                        <outlet property="userImage" destination="0l2-Nm-0UN" id="x6q-gF-ZyH"/>
+                        <outlet property="userNameLbl" destination="tCh-YM-PEd" id="JDA-1b-Dlb"/>
+                        <outlet property="userSurnameLbl" destination="Dn9-YY-xOK" id="TRs-2G-s2D"/>
+                        <outlet property="userUidLbl" destination="qHE-21-6V5" id="gHm-9Z-xSW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LV3-zD-o0e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057.9439252336447" y="-710.15118790496763"/>
+            <point key="canvasLocation" x="2051" y="-710"/>
         </scene>
     </scenes>
     <resources>

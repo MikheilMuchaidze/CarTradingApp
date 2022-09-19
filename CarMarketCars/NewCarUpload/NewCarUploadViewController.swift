@@ -1,14 +1,11 @@
 import UIKit
 
 final class NewCarUploadViewController: UIViewController, LoadableView {
-    
-    //MARK: - Clean Components
-    
-    
+
     //MARK: - Fields
 
-    var carUploadPageStatus: carUploadStatus!
-    var editingCar: Car!
+    var carUploadPageStatus: carUploadStatus?
+    var editingCar: Car?
     var sellable: Bool = true
     let uuid = UUID().uuidString
     var loader = UIActivityIndicatorView()
@@ -33,10 +30,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     @IBOutlet weak var removeCarImage: UIButton!
     @IBOutlet weak var sellNowText: UILabel!
     @IBOutlet weak var resetTxtFieldsOutlet: UIButton!
-    
-    //MARK: - Object Lifecycle
-    
-    
+
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -59,10 +53,11 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
         //set width = 300, height = 140
         addLinkView.bounds = CGRect(x: 0, y: 0, width: 300, height: 140)
         //editing mode choose
+        guard let carUploadPageStatus = carUploadPageStatus else { return }
         carUpload(page: carUploadPageStatus)
     }
     
-    func setupLoader() {
+    private func setupLoader() {
         carImage.addSubview(loader)
         loader.center(inView: carImage)
     }
@@ -88,7 +83,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
         
         guard let imageUrl = insertedLinkTxt.text else { return }
         if imageUrl == "" {
-            alertPopUp(title: NewCarValidationTitles.imageUrlError, message: NewCarValidationMessages.imageUrlErrorMassage, okTitle: NewCarValidationOkTitles.okTitle)
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.imageUrlError)
             carImage.image = nil
         } else {
             guard let url = URL(string: imageUrl) else { return }
@@ -115,7 +110,9 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
 
     @IBAction func addCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() && validateIfImageIsEmpty() {
+        let ifEmptyValidation = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
+                
+        if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && ifImageIsEmpty(for: carImage) {
             FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
                 guard
                     let uuid = self?.uuid,
@@ -130,13 +127,13 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
                 let addingCar = Car(documentID: uuid, email: user.email, mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
                 FirebaseDatabaseUpload.addCarInDB(car: addingCar.toDatabaseType(), uid: uuid) { error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.addCarTodatabase, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
                     }
                 }
                 if let imageData = self?.carImage.image?.jpegData(compressionQuality: 0.5) {
                     FirebaseDatabaseUpload.imageUploader(image: imageData, uid: uuid) { metadata, error in
                         if let error = error {
-                            print(error.localizedDescription)
+                            self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.addImageToStorage, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
                         }
                     }
                 }
@@ -152,8 +149,11 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     
     @IBAction func updateCarToListBtn(_ sender: Any) {
         
-        if validateIfEmpty() && validateIfImageIsEmpty() {
+        let ifEmptyValidation = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
+        
+        if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && ifImageIsEmpty(for: carImage) {
             guard
+                let editingCar = editingCar,
                 let mark = self.carMarkTxt.text,
                 let model = self.carModelTxt.text,
                 let year = self.carYearTxt.text,
@@ -164,13 +164,13 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
             let updates = CarForUpdate(mark: mark, model: model, year: year, location: location, price: price, phone: phone, sellable: sellable)
             FirebaseDatabaseEdit.updateCarInDB(car: updates.toDatabaseTypeUpdate(), uid: editingCar.documentID) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+                    self.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.updateCarTodatabase, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.tryAgain)
                 }
             }
             if let imageData = carImage.image?.jpegData(compressionQuality: 0.5) {
                 FirebaseDatabaseUpload.imageUploader(image: imageData, uid: editingCar.documentID) { metadata, error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        self.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.addImageToStorage, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
                     }
                 }
             }

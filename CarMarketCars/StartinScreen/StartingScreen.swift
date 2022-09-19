@@ -12,8 +12,8 @@ final class StartingScreen: UIViewController {
     
     @IBAction func StartBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: StoryboardNames.main, bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.mainTabBar) as? StartingTabBarController else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let toAuthScreen = storyboard.instantiateViewController(withIdentifier: ViewControllerName.mainTabBar) as? StartingTabBarController else { return }
+        self.navigationController?.pushViewController(toAuthScreen, animated: true)
     }
     
 }

@@ -41,7 +41,7 @@ final class CarTableViewCell: UITableViewCell, LoadableView {
         loader.isHidden = true
     }
     
-    func setupLoader() {
+    private func setupLoader() {
         carImage.addSubview(loader)
         loader.center(inView: carImage)
     }

@@ -102,13 +102,13 @@
                     <tabBarItem key="tabBarItem" title="Sign In" image="rectangle.portrait.and.arrow.right" catalog="system" id="Stu-ch-rfh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="UserEmailTxt" destination="dqN-vJ-ehY" id="Jhm-zY-o7N"/>
-                        <outlet property="UserPasswordTxt" destination="ei5-kK-raX" id="PJn-gu-Lf4"/>
+                        <outlet property="userEmailTxt" destination="dqN-vJ-ehY" id="qvo-R9-jRk"/>
+                        <outlet property="userPasswordTxt" destination="ei5-kK-raX" id="5pJ-V0-oYy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrB-Ux-mcs" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="-45"/>
+            <point key="canvasLocation" x="1167" y="-46"/>
         </scene>
     </scenes>
     <resources>

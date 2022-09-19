@@ -181,11 +181,11 @@
                     <tabBarItem key="tabBarItem" title="Sign Up" image="square.and.arrow.up.fill" catalog="system" id="wvq-IZ-aBx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="UserEmailTxt" destination="HZS-km-vxx" id="hGV-HJ-eRA"/>
-                        <outlet property="UserNameTxt" destination="Naa-1X-QuR" id="pen-Ba-zeK"/>
-                        <outlet property="UserPasswordTxt" destination="n7w-Ka-6Ii" id="ccT-5j-BGF"/>
-                        <outlet property="UserRepeatPassTxt" destination="WWR-FT-xIi" id="5iW-2Q-GJd"/>
-                        <outlet property="UserSurnameTxt" destination="M87-hV-hac" id="koq-95-efx"/>
+                        <outlet property="userEmailTxt" destination="HZS-km-vxx" id="eHR-2k-08Z"/>
+                        <outlet property="userNameTxt" destination="Naa-1X-QuR" id="TU0-m9-8ia"/>
+                        <outlet property="userPasswordTxt" destination="n7w-Ka-6Ii" id="EUk-6Z-TeL"/>
+                        <outlet property="userRepeatPassTxt" destination="WWR-FT-xIi" id="o93-ih-dyk"/>
+                        <outlet property="userSurnameTxt" destination="M87-hV-hac" id="g9p-1N-Sfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs6-vj-oJW" sceneMemberID="firstResponder"/>

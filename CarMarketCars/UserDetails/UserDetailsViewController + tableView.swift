@@ -9,7 +9,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     //func for deleting car from table and also from database
     private func delete(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
-        
         let action = UIContextualAction(style: .destructive, title: "Remove") { [weak self] (_, _, _) in
             guard let thisCar = self?.carsList[indexPath.row] else { return }
             let currentID = thisCar.documentID
@@ -18,35 +17,34 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
             self?.tableView.reloadData()
             FirebaseDatabaseEdit.carRemoverFromDb(car: currentID) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+                    self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.carRemoveFromDatabaseFail, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
+                } else {
+                    self?.alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.carRemoveFromDbSucces)
                 }
             }
             FirebaseDatabaseEdit.imageRemoverFromDb(image: currentID) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+                    self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.imageRemoveFromDatabaseFail, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
                 }
             }
         }
         return action
-        
     }
     
     //func for editing car information
     private func edit(rowIndexPathar indexPath: IndexPath) -> UIContextualAction {
-        
         let action = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, _) in
             guard let self = self else { return }
             let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
-            guard let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
+            guard let toEditPage = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
             let thisCar = self.carsList[indexPath.row]
-            vc.editingCar = thisCar
-            vc.carUploadPageStatus = .UpdatingCar
-            self.present(vc, animated: true)
+            toEditPage.editingCar = thisCar
+            toEditPage.carUploadPageStatus = .UpdatingCar
+            self.present(toEditPage, animated: true)
         }
         return action
-        
     }
-
+    
     //action for Delete swiping row from right to left (trailing)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = self.delete(rowIndexPathar: indexPath)
@@ -80,17 +78,18 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as! UserDetailsTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellName.UserDetailsTableViewCell, for: indexPath) as? UserDetailsTableViewCell else { return UITableViewCell() }
         cell.loader(isLoading: true)
         let thisCar = searchingCarsList.isEmpty ? carsList[indexPath.row] : searchingCarsList[indexPath.row]
         FirebaseDatabaseDownload.loadImage(image: thisCar.documentID) { url, error in
             if let error = error {
-                print(error.localizedDescription)
+                self.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingImageError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
+                cell.carImage.image = UIImage(systemName: "eyes.inverse")
+            } else {
+                guard let url = url else { return }
+                cell.carImage.loadImageFrom(url: url)
+                cell.loader(isLoading: false)
             }
-            guard let url = url else { return }
-            cell.carImage.loadImageFrom(url: url)
-            cell.loader(isLoading: false)
         }
         cell.carMarkLbl.text = thisCar.mark
         cell.carModelLbl.text = thisCar.model
@@ -99,7 +98,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
         cell.carPriceLbl.text = thisCar.price
         cell.carPhoneLbl.text = thisCar.phone
         return cell
-        
     }
     
     //updating tableview after editing cell
@@ -109,7 +107,6 @@ extension UserDetailsViewController: UITableViewDelegate, UITableViewDataSource,
     
     //searchbar functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         searchingCarsList.removeAll()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = .systemBlue

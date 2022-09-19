@@ -3,8 +3,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-//var handle: AuthStateDidChangeListenerHandle?
-
 enum FirebaseDatabaseDownload {
     
     private static let imageStorage = Storage.storage().reference()

@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2447CE8E28C64D48008F1032 /* UITextField+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */; };
-		244B901828D5BB8200EB13C8 /* LoginScreenErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B901728D5BB8200EB13C8 /* LoginScreenErrorMessages.swift */; };
-		244B901A28D5BBDC00EB13C8 /* RegisterScreenErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B901928D5BBDC00EB13C8 /* RegisterScreenErrorMessages.swift */; };
-		244B901C28D5BC3600EB13C8 /* LogoutScreenErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B901B28D5BC3600EB13C8 /* LogoutScreenErrorMessages.swift */; };
 		244B901E28D5BCC900EB13C8 /* Storyboards_Viewcontrollers_Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B901D28D5BCC900EB13C8 /* Storyboards_Viewcontrollers_Cells.swift */; };
-		244B902028D5BD1000EB13C8 /* NewCarUploadScreenErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B901F28D5BD1000EB13C8 /* NewCarUploadScreenErrorMessages.swift */; };
 		246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667928B11AF600E7C240 /* CarTableViewCell.swift */; };
 		246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */; };
 		246F667F28B2201700E7C240 /* NewCarUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */; };
@@ -41,7 +37,7 @@
 		248998BD28D0EB6200E3AFDB /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BC28D0EB6200E3AFDB /* MainPage.storyboard */; };
 		248998BF28D0EB9B00E3AFDB /* UserDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998BE28D0EB9B00E3AFDB /* UserDetails.storyboard */; };
 		248998C328D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248998C228D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard */; };
-		24B0B63928B551FB00C8ADDA /* FirebaseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B63828B551FB00C8ADDA /* FirebaseNames.swift */; };
+		24B0B63928B551FB00C8ADDA /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B63828B551FB00C8ADDA /* FirebaseConstants.swift */; };
 		24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */; };
 		24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */; };
 		24B7728E28BB5E8F009305DC /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B7728D28BB5E8F009305DC /* Car.swift */; };
@@ -52,18 +48,14 @@
 		24C6305E28ADA151006A1194 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 24C6305D28ADA151006A1194 /* FirebaseAuth */; };
 		24C6306028ADA151006A1194 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 24C6305F28ADA151006A1194 /* FirebaseDatabase */; };
 		24C6306228ADA151006A1194 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 24C6306128ADA151006A1194 /* FirebaseDatabaseSwift */; };
-		24C6306428ADAEAF006A1194 /* AuthValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6306328ADAEAE006A1194 /* AuthValidation.swift */; };
 		24C6306728AFCBEA006A1194 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 24C6306628AFCBEA006A1194 /* FirebaseFirestore */; };
 		24C6306A28AFE202006A1194 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C6306928AFE201006A1194 /* UserDetailsViewController.swift */; };
+		24F8B8E028D8CDF10074E4D6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F8B8DF28D8CDF10074E4D6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extansion.swift"; sourceTree = "<group>"; };
-		244B901728D5BB8200EB13C8 /* LoginScreenErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenErrorMessages.swift; sourceTree = "<group>"; };
-		244B901928D5BBDC00EB13C8 /* RegisterScreenErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreenErrorMessages.swift; sourceTree = "<group>"; };
-		244B901B28D5BC3600EB13C8 /* LogoutScreenErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutScreenErrorMessages.swift; sourceTree = "<group>"; };
 		244B901D28D5BCC900EB13C8 /* Storyboards_Viewcontrollers_Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards_Viewcontrollers_Cells.swift; sourceTree = "<group>"; };
-		244B901F28D5BD1000EB13C8 /* NewCarUploadScreenErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCarUploadScreenErrorMessages.swift; sourceTree = "<group>"; };
 		246F667928B11AF600E7C240 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
 		246F667B28B11BE200E7C240 /* MainCarsListViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCarsListViewController + tableView.swift"; sourceTree = "<group>"; };
 		246F667E28B2201700E7C240 /* NewCarUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCarUploadViewController.swift; sourceTree = "<group>"; };
@@ -93,15 +85,15 @@
 		248998BC28D0EB6200E3AFDB /* MainPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
 		248998BE28D0EB9B00E3AFDB /* UserDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetails.storyboard; sourceTree = "<group>"; };
 		248998C228D0EBE500E3AFDB /* CarEdit_Upload_View.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CarEdit_Upload_View.storyboard; sourceTree = "<group>"; };
-		24B0B63828B551FB00C8ADDA /* FirebaseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNames.swift; sourceTree = "<group>"; };
+		24B0B63828B551FB00C8ADDA /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		24B0B66728B7CE1300C8ADDA /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDetailsViewController + tableView.swift"; sourceTree = "<group>"; };
 		24B7728D28BB5E8F009305DC /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		24B7728F28BBA236009305DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24C6305628AD9722006A1194 /* MainCarsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCarsListViewController.swift; sourceTree = "<group>"; };
 		24C6305828AD9D79006A1194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		24C6306328ADAEAE006A1194 /* AuthValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidation.swift; sourceTree = "<group>"; };
 		24C6306928AFE201006A1194 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		24F8B8DF28D8CDF10074E4D6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +116,9 @@
 		244B901628D5BB6900EB13C8 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				24B0B63828B551FB00C8ADDA /* FirebaseNames.swift */,
-				244B901728D5BB8200EB13C8 /* LoginScreenErrorMessages.swift */,
-				244B901928D5BBDC00EB13C8 /* RegisterScreenErrorMessages.swift */,
-				244B901B28D5BC3600EB13C8 /* LogoutScreenErrorMessages.swift */,
+				24B0B63828B551FB00C8ADDA /* FirebaseConstants.swift */,
+				24F8B8DF28D8CDF10074E4D6 /* Constants.swift */,
 				244B901D28D5BCC900EB13C8 /* Storyboards_Viewcontrollers_Cells.swift */,
-				244B901F28D5BD1000EB13C8 /* NewCarUploadScreenErrorMessages.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -165,6 +154,7 @@
 				2489989828CB911900E3AFDB /* App */,
 				248998A628CB93D600E3AFDB /* FirebaseServices */,
 				24C6305428AD53BD006A1194 /* Extansions */,
+				244B901628D5BB6900EB13C8 /* Constants */,
 				24B7728C28BB5E74009305DC /* Models */,
 				2481C55628ACC91E000DAC49 /* StartinScreen */,
 				2481C55E28AD43D3000DAC49 /* TabController */,
@@ -192,7 +182,6 @@
 		2481C55728ACC928000DAC49 /* AuthScreens */ = {
 			isa = PBXGroup;
 			children = (
-				24E6AF6928D7B561005E78DD /* Login */,
 				2481C55A28ACC976000DAC49 /* LoginScreenViewController.swift */,
 				2481C55C28ACC9A3000DAC49 /* RegisterScreenViewController.swift */,
 			);
@@ -253,8 +242,6 @@
 		24C6305428AD53BD006A1194 /* Extansions */ = {
 			isa = PBXGroup;
 			children = (
-				244B901628D5BB6900EB13C8 /* Constants */,
-				24C6306328ADAEAE006A1194 /* AuthValidation.swift */,
 				2447CE8D28C64D48008F1032 /* UITextField+Extansion.swift */,
 				2485FD0428D246550057CFFF /* UIView+Extansion.swift */,
 				2485FD0E28D403840057CFFF /* UIViewController+Extansion.swift */,
@@ -290,13 +277,6 @@
 				24B0B66928B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift */,
 			);
 			path = UserDetails;
-			sourceTree = "<group>";
-		};
-		24E6AF6928D7B561005E78DD /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,19 +368,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				244B901C28D5BC3600EB13C8 /* LogoutScreenErrorMessages.swift in Sources */,
 				244B901E28D5BCC900EB13C8 /* Storyboards_Viewcontrollers_Cells.swift in Sources */,
 				2485FD0728D3FA370057CFFF /* FirebaseAuth.swift in Sources */,
 				2485FD0D28D3FDC70057CFFF /* FirebaseDatabaseEdit.swift in Sources */,
 				24C6306A28AFE202006A1194 /* UserDetailsViewController.swift in Sources */,
 				24C6305728AD9722006A1194 /* MainCarsListViewController.swift in Sources */,
 				246F667C28B11BE200E7C240 /* MainCarsListViewController + tableView.swift in Sources */,
-				244B902028D5BD1000EB13C8 /* NewCarUploadScreenErrorMessages.swift in Sources */,
 				2481C54328ACC87C000DAC49 /* AppDelegate.swift in Sources */,
 				2485FD0528D246550057CFFF /* UIView+Extansion.swift in Sources */,
 				2481C56028AD4414000DAC49 /* StartingTabBarController.swift in Sources */,
 				2481C54528ACC87C000DAC49 /* SceneDelegate.swift in Sources */,
-				24C6306428ADAEAF006A1194 /* AuthValidation.swift in Sources */,
 				2481C55B28ACC976000DAC49 /* LoginScreenViewController.swift in Sources */,
 				24B0B66A28B7CEB400C8ADDA /* UserDetailsViewController + tableView.swift in Sources */,
 				2481C55928ACC943000DAC49 /* StartingScreen.swift in Sources */,
@@ -409,15 +386,14 @@
 				2485FD1428D404EA0057CFFF /* Array+Extansion.swift in Sources */,
 				2485FD1228D404570057CFFF /* UIImageView+Extansion.swift in Sources */,
 				2485FD1628D405590057CFFF /* Protocol+Extansion.swift in Sources */,
-				24B0B63928B551FB00C8ADDA /* FirebaseNames.swift in Sources */,
+				24B0B63928B551FB00C8ADDA /* FirebaseConstants.swift in Sources */,
 				2485FD0F28D403840057CFFF /* UIViewController+Extansion.swift in Sources */,
+				24F8B8E028D8CDF10074E4D6 /* Constants.swift in Sources */,
 				24B7729028BBA236009305DC /* User.swift in Sources */,
-				244B901A28D5BBDC00EB13C8 /* RegisterScreenErrorMessages.swift in Sources */,
 				246F667A28B11AF600E7C240 /* CarTableViewCell.swift in Sources */,
 				2485FD0928D3FC1B0057CFFF /* FirebaseDatabaseUpload.swift in Sources */,
 				24B0B66828B7CE1300C8ADDA /* UserDetailsTableViewCell.swift in Sources */,
 				2447CE8E28C64D48008F1032 /* UITextField+Extansion.swift in Sources */,
-				244B901828D5BB8200EB13C8 /* LoginScreenErrorMessages.swift in Sources */,
 				2481C55D28ACC9A3000DAC49 /* RegisterScreenViewController.swift in Sources */,
 				2485FD0B28D3FCCA0057CFFF /* FirebaseDatabaseDownload.swift in Sources */,
 			);

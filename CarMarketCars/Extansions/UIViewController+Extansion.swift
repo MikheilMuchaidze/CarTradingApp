@@ -2,6 +2,84 @@ import UIKit
 
 extension UIViewController {
     
+    //MARK: - Auth validation functions
+    
+    //validation of text fields
+    func validateIfEmpty(for textFields: [UITextField?], errorPopUpModel: AuthValidationAndAlert.AlertPopupModel) -> Bool {
+        for textField in textFields {
+            if textField?.text?.isEmpty == true {
+                alertPopUp(title: errorPopUpModel.title, message: errorPopUpModel.message, okTitle: errorPopUpModel.okTitle)
+                return false
+            }
+        }
+        return true
+    }
+    
+    //validate email form
+    func validateEmailForm(for emailString: String?, errorPopUpModel: AuthValidationAndAlert.AlertPopupModel) -> Bool {
+        guard let emailValue = emailString else { return false }
+        let emailRegEx = AuthValidationAndAlert.AuthEmailPredicate.emailRegEx
+        if (!NSPredicate(format:"SELF MATCHES %@", emailRegEx).evaluate(with: emailValue)) {
+            alertPopUp(title: errorPopUpModel.title, message: errorPopUpModel.message, okTitle: errorPopUpModel.okTitle)
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //password validation
+    func validatePassword(for passwordString: String?) -> Bool {
+        guard let passwordString = passwordString else { return false }
+        let passwordUppercase = AuthValidationAndAlert.AuthPasswordPredicate.passwordUppercase
+        let passwordDigit = AuthValidationAndAlert.AuthPasswordPredicate.passwordDigit
+        let passwordLowercase = AuthValidationAndAlert.AuthPasswordPredicate.passwordLowercase
+        let passwordLength = AuthValidationAndAlert.AuthPasswordPredicate.passwordLength
+        
+        if (!NSPredicate(format:"SELF MATCHES %@", passwordUppercase).evaluate(with: passwordString)) {
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.incorrectPasswordOneUppercase)
+            return false
+        }
+        
+        if (!NSPredicate(format:"SELF MATCHES %@", passwordDigit).evaluate(with: passwordString)) {
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.incorrectPasswordOneDigit)
+            return false
+        }
+        
+        if (!NSPredicate(format:"SELF MATCHES %@", passwordLowercase).evaluate(with: passwordString)) {
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.incorrectPasswordOneLowercase)
+            return false
+        }
+        
+        if (passwordString.count < passwordLength) {
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.incorrectPasswordLength)
+            return false
+        }
+        return true
+    }
+    
+    //validate password and repeat password similarity
+    func validatePasswordMatch(for textFields: [UITextField?], errorPopUpModel: AuthValidationAndAlert.AlertPopupModel) -> Bool {
+        guard let firstField = textFields.first else { return false }
+        guard let secondField = textFields.last else { return false }
+        if firstField?.text != secondField?.text {
+            alertPopUp(title: errorPopUpModel.title, message: errorPopUpModel.message, okTitle: errorPopUpModel.okTitle)
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    //validate image form
+    func ifImageIsEmpty(for imageSoruce: UIImageView?) -> Bool {
+        guard let imageSoruce = imageSoruce else { return false }
+        if imageSoruce.image == nil {
+            alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.noImageError)
+            return false
+        } else {
+            return true
+        }
+    }
+    
     //MARK: - Popup view animations
     
     //animate in a specific view
@@ -43,6 +121,9 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
+        FirebaseAuth.logOutUser {error in
+            alertPopUp(title: AuthValidationAndAlert.ValidationTitles.loggedOutFail, message: error.localizedDescription, okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
+        }
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -61,6 +142,7 @@ extension UIViewController {
     
     //MARK: - Alert massege funcion
     
+    //general popup message without AlerModel struct
     func alertPopUp(title: String, message: String, okTitle: String) {
         let alertmassege = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: okTitle, style: UIAlertAction.Style.default, handler: nil)
@@ -68,12 +150,17 @@ extension UIViewController {
         self.present(alertmassege, animated: true)
     }
     
+    //alert popup model with AlertModel Struct
+    func alertPopUpWithModel(errorPopUpModel: AuthValidationAndAlert.AlertPopupModel) {
+        alertPopUp(title: errorPopUpModel.title, message: errorPopUpModel.message, okTitle: errorPopUpModel.okTitle)
+    }
+    
 }
 
 //MARK: - adding new car view: image picker from galley functions
 
 extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     //function that shows image picker
     func showImagePickerController() {
         let imagePickerController = UIImagePickerController()
@@ -81,7 +168,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             carImage.image = editedImage
@@ -118,6 +205,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         outletsList.forEach { elem in
             elem?.isHidden = true
         }
+        guard let editingCar = editingCar else { return }
         carMarkTxt.text = editingCar.mark
         carModelTxt.text = editingCar.model
         carYearTxt.text = editingCar.year
@@ -130,9 +218,14 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
             elem?.isEnabled = false
         }
         FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
-            guard let url = url else { return }
-            self?.carImage.loadImageFrom(url: url)
-            self?.loader(isLoading: false)
+            if let error = error {
+                self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingImageError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
+                self?.carImage.image = UIImage(systemName: "eyes.inverse")
+            } else {
+                guard let url = url else { return }
+                self?.carImage.loadImageFrom(url: url)
+                self?.loader(isLoading: false)
+            }
         }
     }
     
@@ -148,6 +241,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         addCarToListBtnOutlet.isHidden = true
         titleTextLbl.isHidden = true
         updateCarToListBtnOutlet.isHidden = false
+        guard let editingCar = editingCar else { return }
         carMarkTxt.text = editingCar.mark
         carModelTxt.text = editingCar.model
         carYearTxt.text = editingCar.year
@@ -156,11 +250,17 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
         FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
-            guard let url = url else { return }
-            self?.carImage.loadImageFrom(url: url)
-            self?.loader(isLoading: false)
+            if let error = error {
+                self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingImageError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
+                self?.carImage.image = UIImage(systemName: "eyes.inverse")
+            } else {
+                guard let url = url else { return }
+                self?.carImage.loadImageFrom(url: url)
+                self?.loader(isLoading: false)
+            }
         }
     }
+    
 }
 
 //MARK: - main table view refresh if pulled from top
@@ -194,3 +294,4 @@ extension MainCarsListViewController {
     }
     
 }
+

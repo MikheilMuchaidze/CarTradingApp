@@ -1,3 +1,5 @@
+//MARK: - firebase collection & storage names
+
 enum FirebaseCollectionNames: String {
     case users
     case cars
