@@ -111,7 +111,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     @IBAction func addCarToListBtn(_ sender: Any) {
         
         let ifEmptyValidation = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
-                
+        
         if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && ifImageIsEmpty(for: carImage) {
             FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
                 guard
