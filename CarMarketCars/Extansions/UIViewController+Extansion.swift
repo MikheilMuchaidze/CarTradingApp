@@ -34,7 +34,6 @@ extension UIViewController {
         let passwordDigit = AuthValidationAndAlert.AuthPasswordPredicate.passwordDigit
         let passwordLowercase = AuthValidationAndAlert.AuthPasswordPredicate.passwordLowercase
         let passwordLength = AuthValidationAndAlert.AuthPasswordPredicate.passwordLength
-        
         if (!NSPredicate(format:"SELF MATCHES %@", passwordUppercase).evaluate(with: passwordString)) {
             alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.incorrectPasswordOneUppercase)
             return false
@@ -85,15 +84,12 @@ extension UIViewController {
     //animate in a specific view
     func animateIn(desiredView: UIView) {
         let backgroundView = self.view!
-        
         //attach our desired view to the screen (self.view/backgroundView)
         backgroundView.addSubview(desiredView)
-        
         //sets the view's scaling to be 120%
         desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         desiredView.alpha = 0
         desiredView.center = backgroundView.center
-        
         //animate the affect
         UIView.animate(withDuration: 0.3, animations: {
             desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -121,7 +117,7 @@ extension UIViewController {
     }
     
     @objc func tapToGoBack() {
-        FirebaseAuth.logOutUser {error in
+        FirebaseAuth.logOutUser { error in
             alertPopUp(title: AuthValidationAndAlert.ValidationTitles.loggedOutFail, message: error.localizedDescription, okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
         }
         self.navigationController?.popViewController(animated: true)
@@ -138,6 +134,17 @@ extension UIViewController {
         let toDetailsVC = UIStoryboard(name: StoryboardNames.userDetails, bundle: nil)
         guard let toDetailsVC = toDetailsVC.instantiateViewController(withIdentifier: ViewControllerName.userDetails) as? UserDetailsViewController else { return }
         self.present(toDetailsVC, animated: true)
+    }
+    
+    //function for touching outside of the UITextField and then keyboard will hide
+    func dismissKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action:    #selector(UIViewController.dismissKeyboardTouchOutside))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboardTouchOutside() {
+        view.endEditing(true)
     }
     
     //MARK: - Alert massege funcion
@@ -157,9 +164,11 @@ extension UIViewController {
     
 }
 
-//MARK: - adding new car view: image picker from galley functions
+//MARK: - New car upload/show/edit page extension
 
 extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    //MARK: - Image picker
     
     //function that shows image picker
     func showImagePickerController() {
@@ -199,37 +208,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         }
     }
     
-    func carInfo() {
-        loader(isLoading: true)
-        let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
-        outletsList.forEach { elem in
-            elem?.isHidden = true
-        }
-        guard let editingCar = editingCar else { return }
-        carMarkTxt.text = editingCar.mark
-        carModelTxt.text = editingCar.model
-        carYearTxt.text = editingCar.year
-        carLocationTxt.text = editingCar.location
-        carPriceTxt.text = editingCar.price
-        carPhoneTxt.text = editingCar.phone
-        sellableStatusOutlet.isOn = editingCar.sellable
-        let fieldsList = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt, sellableStatusOutlet]
-        fieldsList.forEach { elem in
-            elem?.isEnabled = false
-        }
-        FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
-            if let error = error {
-                self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingImageError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
-                self?.carImage.image = UIImage(systemName: "eyes.inverse")
-            } else {
-                guard let url = url else { return }
-                self?.carImage.loadImageFrom(url: url)
-                self?.loader(isLoading: false)
-            }
-        }
-    }
-    
-    func addNewCar() {
+    private func addNewCar() {
         loader(isLoading: true)
         addCarToListBtnOutlet.isHidden = false
         titleTextLbl.isHidden = false
@@ -237,10 +216,30 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         loader(isLoading: true)
     }
     
-    func updateCar() {
+    private func carInfo() {
+        loader(isLoading: true)
+        let outletsList = [addCarToListBtnOutlet, titleTextLbl, updateCarToListBtnOutlet, sellableStatusOutlet, addCarImageWithUrl, addCarImageFromGallery, removeCarImage, sellNowText, resetTxtFieldsOutlet]
+        outletsList.forEach { elem in
+            elem?.isHidden = true
+        }
+        initEditingCar()
+        let fieldsList = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt, sellableStatusOutlet]
+        fieldsList.forEach { elem in
+            elem?.isEnabled = false
+        }
+        fetchImageByUserId()
+    }
+    
+    private func updateCar() {
         addCarToListBtnOutlet.isHidden = true
         titleTextLbl.isHidden = true
         updateCarToListBtnOutlet.isHidden = false
+        initEditingCar()
+        fetchImageByUserId()
+    }
+    
+    //get editing car from carsls list
+    private func initEditingCar() {
         guard let editingCar = editingCar else { return }
         carMarkTxt.text = editingCar.mark
         carModelTxt.text = editingCar.model
@@ -249,7 +248,11 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
         carPriceTxt.text = editingCar.price
         carPhoneTxt.text = editingCar.phone
         sellableStatusOutlet.isOn = editingCar.sellable
-        FirebaseDatabaseDownload.loadImage(image: editingCar.documentID) { [weak self] url, error in
+    }
+    
+    //fetch images from storage by user documendID
+    private func fetchImageByUserId() {
+        FirebaseDatabaseDownload.loadImage(image: editingCar?.documentID ?? "") { [weak self] url, error in
             if let error = error {
                 self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingImageError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.ok)
                 self?.carImage.image = UIImage(systemName: "eyes.inverse")
@@ -263,7 +266,7 @@ extension NewCarUploadViewController: UIImagePickerControllerDelegate, UINavigat
     
 }
 
-//MARK: - main table view refresh if pulled from top
+//MARK: - Main table view refresh if pulled from top
 
 extension MainCarsListViewController {
     
@@ -278,19 +281,24 @@ extension MainCarsListViewController {
     //refreshing objc funtion itself
     @objc func didPullToRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            FirebaseDatabaseDownload.fetchCars { [weak self] snapshot, error in
-                guard let snapshot = snapshot?.documents else { return }
-                self?.carsList.removeAll()
-                snapshot.forEach { elem in
-                    self?.carsList.append(Car(with: elem.data()))
-                }
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
+            self.fetchCars()
         }
+    }
+    
+    //fetching car data from database
+    private func fetchCars() {
+        FirebaseDatabaseDownload.fetchCars { [weak self] snapshot, error in
+            guard let snapshot = snapshot?.documents else { return }
+            self?.carsList.removeAll()
+            snapshot.forEach { elem in
+                self?.carsList.append(Car(with: elem.data()))
+            }
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+        self.tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
     }
     
 }

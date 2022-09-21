@@ -20,8 +20,8 @@ enum FirebaseDatabaseUpload {
         carsdb.document(uid).setData(car, completion: completion)
     }
     
-    //MARK: - Upload data to database
-    
+    //MARK: - Add car in firebase firestore
+
     static func uploadCarInfo(id: String, data: [String : Any]) {
         carsdb.document(id).setData(data)
     }

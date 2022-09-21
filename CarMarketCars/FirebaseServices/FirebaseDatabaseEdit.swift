@@ -13,16 +13,16 @@ enum FirebaseDatabaseEdit {
         carsdb.document(uid).updateData(car, completion: completion)
     }
     
-    //MARK: - delete image from firestore
-    
-    static func imageRemoverFromDb(image: String, completion: ((Error?) -> Void)?) {
-        imageStorage.child("\(FirebaseImageStorageName.carImages)\(image)").delete(completion: completion)
-    }
-    
     //MARK: - delete car from firestore
     
     static func carRemoverFromDb(car: String, completion: ((Error?) -> Void)?) {
         carsdb.document(car).delete(completion: completion)
     }
     
+    //MARK: - delete image from firestore
+    
+    static func imageRemoverFromDb(image: String, completion: ((Error?) -> Void)?) {
+        imageStorage.child("\(FirebaseImageStorageName.carImages)\(image)").delete(completion: completion)
+    }
+
 }

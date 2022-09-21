@@ -3,6 +3,7 @@ import UIKit
 //MARK: - extansion for giving anchors for items on specific views
 
 extension UIView {
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,

@@ -6,8 +6,8 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
 
     var carUploadPageStatus: carUploadStatus?
     var editingCar: Car?
-    var sellable: Bool = true
-    let uuid = UUID().uuidString
+    private var sellable: Bool = true
+    private let uuid = UUID().uuidString
     var loader = UIActivityIndicatorView()
     
     //MARK: - Outlets
@@ -16,8 +16,8 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     @IBOutlet weak var titleTextLbl: UILabel!
     @IBOutlet weak var updateCarToListBtnOutlet: UIButton!
     @IBOutlet weak var carImage: UIImageView!
-    @IBOutlet var addLinkView: UIView!
-    @IBOutlet weak var insertedLinkTxt: UITextField!
+    @IBOutlet private var addLinkView: UIView!
+    @IBOutlet private weak var insertedLinkTxt: UITextField!
     @IBOutlet weak var carMarkTxt: UITextField!
     @IBOutlet weak var carModelTxt: UITextField!
     @IBOutlet weak var carYearTxt: UITextField!
@@ -55,6 +55,7 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
         //editing mode choose
         guard let carUploadPageStatus = carUploadPageStatus else { return }
         carUpload(page: carUploadPageStatus)
+        self.dismissKeyboard()
     }
     
     private func setupLoader() {
@@ -70,17 +71,16 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
     
     //MARK: - Actions
     
-    @IBAction func addCarImageWithUrlBtn(_ sender: Any) {
+    @IBAction private func addCarImageWithUrlBtn(_ sender: Any) {
         animateIn(desiredView: addLinkView)
     }
     
-    @IBAction func addCarImageFromGalleryBtn(_ sender: Any) {
+    @IBAction private func addCarImageFromGalleryBtn(_ sender: Any) {
         showImagePickerController()
         loader(isLoading: false)
     }
     
-    @IBAction func linkLoadToImageBtn(_ sender: Any) {
-        
+    @IBAction private func linkLoadToImageBtn(_ sender: Any) {
         guard let imageUrl = insertedLinkTxt.text else { return }
         if imageUrl == "" {
             alertPopUpWithModel(errorPopUpModel: PredefinedAlerMessages.imageUrlError)
@@ -91,15 +91,14 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
             insertedLinkTxt.text = nil
             animateOut(desiredView: addLinkView)
         }
-        
     }
     
-    @IBAction func addLinkViewExit(_ sender: Any) {
+    @IBAction private func addLinkViewExit(_ sender: Any) {
         insertedLinkTxt.text = nil
         animateOut(desiredView: addLinkView)
     }
     
-    @IBAction func removeCarImageBtn(_ sender: Any) {
+    @IBAction private func removeCarImageBtn(_ sender: Any) {
         carImage.image = nil
         loader(isLoading: true)
     }
@@ -108,10 +107,9 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
         sellable = sender.isOn
     }
 
-    @IBAction func addCarToListBtn(_ sender: Any) {
+    @IBAction private func addCarToListBtn(_ sender: Any) {
         
         let ifEmptyValidation = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
-        
         if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && ifImageIsEmpty(for: carImage) {
             FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
                 guard
@@ -143,14 +141,13 @@ final class NewCarUploadViewController: UIViewController, LoadableView {
         
     }
     
-    @IBAction func resetTxtFields(_ sender: Any) {
+    @IBAction private func resetTxtFields(_ sender: Any) {
         cleanAllFields()
     }
     
-    @IBAction func updateCarToListBtn(_ sender: Any) {
+    @IBAction private func updateCarToListBtn(_ sender: Any) {
         
         let ifEmptyValidation = [carMarkTxt, carModelTxt, carYearTxt, carLocationTxt, carPriceTxt, carPhoneTxt]
-        
         if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && ifImageIsEmpty(for: carImage) {
             guard
                 let editingCar = editingCar,

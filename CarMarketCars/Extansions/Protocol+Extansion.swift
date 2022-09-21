@@ -1,13 +1,13 @@
 import UIKit
 
-//MARK: - indicator animation for viewcontrollers
+//MARK: - Indicator animation for viewcontrollers
 
 protocol LoadableView {
     var loader: UIActivityIndicatorView { get }
     func loader(isLoading: Bool)
 }
 
-//MARK: - extansion for LoadableView protocol to insert default function in view which conforms to this protocol
+//MARK: - Extansion for LoadableView protocol to insert default function in view which conforms to this protocol
 
 extension LoadableView {
     func loader(isLoading: Bool) {

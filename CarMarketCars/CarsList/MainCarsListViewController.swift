@@ -9,10 +9,10 @@ final class MainCarsListViewController: UIViewController {
     
     //MARK: - Outlets
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var activeUserLbl: UILabel!
-    @IBOutlet weak var goBackActionImage: UIImageView!
-    @IBOutlet weak var userDetailsImage: UIImageView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var activeUserLbl: UILabel!
+    @IBOutlet private weak var goBackActionImage: UIImageView!
+    @IBOutlet private weak var userDetailsImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - View Lifecycle
@@ -35,7 +35,15 @@ final class MainCarsListViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         searchBar.delegate = self
-        //downloading data for tableview
+        fetchCars()
+        tablePullToRefresh()
+        getUserEmail()
+    }
+    
+    //MARK: - Mehods
+    
+    //fetching car data from database
+    private func fetchCars() {
         FirebaseDatabaseDownload.fetchCars { [weak self] snapshot, error in
             if let error = error {
                 self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.fetchingCarsError, message: "\(error.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.tryAgain)
@@ -50,7 +58,10 @@ final class MainCarsListViewController: UIViewController {
                 }
             }
         }
-        tablePullToRefresh()
+    }
+    
+    //get current user email and add to active user label on top of the screen
+    private func getUserEmail() {
         FirebaseDatabaseDownload.currentUserInfo(remove: false) { [weak self] user in
             self?.activeUserLbl.text = user.email
         }
@@ -58,7 +69,7 @@ final class MainCarsListViewController: UIViewController {
     
     //MARK: - Actions
     
-    @IBAction func uploadCarBtn(_ sender: Any) {
+    @IBAction private func uploadCarBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: StoryboardNames.newCar, bundle: nil)
         guard let carUploadPage = storyboard.instantiateViewController(withIdentifier: ViewControllerName.newCar) as? NewCarUploadViewController else { return }
         carUploadPage.carUploadPageStatus = .AddingCar

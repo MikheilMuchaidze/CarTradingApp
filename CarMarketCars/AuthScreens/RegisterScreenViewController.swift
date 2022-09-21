@@ -8,11 +8,11 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
     
     //MARK: - Outlets
     
-    @IBOutlet weak var userNameTxt: UITextField!
-    @IBOutlet weak var userSurnameTxt: UITextField!
-    @IBOutlet weak var userEmailTxt: UITextField!
-    @IBOutlet weak var userPasswordTxt: UITextField!
-    @IBOutlet weak var userRepeatPassTxt: UITextField!
+    @IBOutlet private weak var userNameTxt: UITextField!
+    @IBOutlet private weak var userSurnameTxt: UITextField!
+    @IBOutlet private weak var userEmailTxt: UITextField!
+    @IBOutlet private weak var userPasswordTxt: UITextField!
+    @IBOutlet private weak var userRepeatPassTxt: UITextField!
     
     //MARK: - View Lifecycle
     
@@ -32,6 +32,7 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
         //adding toggle button to password for showing and hiding text
         userPasswordTxt.enablePasswordToggle()
         userRepeatPassTxt.enablePasswordToggle()
+        self.dismissKeyboard()
     }
     
     private func setupLoader() {
@@ -48,11 +49,11 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
     //MARK: - Actions
     
     //clear all fields
-    @IBAction func resetAllFields(_ sender: Any) {
+    @IBAction private func resetAllFields(_ sender: Any) {
         cleanAllFields()
     }
     
-    @IBAction func signUpBtn(_ sender: Any) {
+    @IBAction private func signUpBtn(_ sender: Any) {
         
         guard
             let name = userNameTxt.text,
@@ -60,18 +61,16 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
             let email = userEmailTxt.text,
             let password = userPasswordTxt.text
         else { return }
-        
         let ifEmptyValidation = [userNameTxt, userSurnameTxt, userEmailTxt, userPasswordTxt, userRepeatPassTxt]
         let passwordMatchValidation = [userPasswordTxt, userRepeatPassTxt]
         
         if validateIfEmpty(for: ifEmptyValidation, errorPopUpModel: PredefinedAlerMessages.ifEmptyError) && validatePasswordMatch(for: passwordMatchValidation, errorPopUpModel: PredefinedAlerMessages.passwordMismatch) && validatePassword(for: password) && validateEmailForm(for: email, errorPopUpModel: PredefinedAlerMessages.incorrectEmailError) {
             loader(isLoading: true)
-            
             FirebaseAuth.registerUser(withEmail: email, password: password) { [weak self] result, error in
                 self?.loader(isLoading: false)
                 let registeredUser = User(name: name, surname: surname, password: password, email: email, uid: result?.user.uid ?? "")
                 if error != nil {
-                    self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.registerFailed, message: "\(error!.localizedDescription)", okTitle: AuthValidationAndAlert.ValidationOkTitles.tryAgain)
+                    self?.alertPopUp(title: AuthValidationAndAlert.ValidationTitles.registerFailed, message: "\(error?.localizedDescription ?? "")", okTitle: AuthValidationAndAlert.ValidationOkTitles.tryAgain)
                     return
                 } else {
                     FirebaseDatabaseUpload.registerUserInDB(with: registeredUser)

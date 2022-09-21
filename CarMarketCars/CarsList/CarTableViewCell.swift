@@ -8,7 +8,7 @@ final class CarTableViewCell: UITableViewCell, LoadableView {
     
     //MARK: - Outlets
 
-    @IBOutlet weak var helperView: UIView!
+    @IBOutlet private weak var helperView: UIView!
     @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var carMarkLbl: UILabel!
     @IBOutlet weak var carModelLbl: UILabel!

@@ -9,12 +9,12 @@ final class UserDetailsViewController: UIViewController {
     
     //MARK: - Outlets
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userNameLbl: UILabel!
-    @IBOutlet weak var userSurnameLbl: UILabel!
-    @IBOutlet weak var userEmailLbl: UILabel!
-    @IBOutlet weak var userUidLbl: UILabel!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var userImage: UIImageView!
+    @IBOutlet private weak var userNameLbl: UILabel!
+    @IBOutlet private weak var userSurnameLbl: UILabel!
+    @IBOutlet private weak var userEmailLbl: UILabel!
+    @IBOutlet private weak var userUidLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - View Lifecycle
@@ -31,6 +31,14 @@ final class UserDetailsViewController: UIViewController {
         self.tableView.dataSource = self
         tableView.separatorStyle = .none
         searchBar.delegate = self
+        fetchCarsByCurrentUserEmail()
+    }
+    
+    //MARK: - Methods
+
+    //fetching car data from database but for current email
+    private func fetchCarsByCurrentUserEmail() {
+        
         FirebaseDatabaseDownload.currentUserInfo(remove: false) { user in
             FirebaseDatabaseDownload.fetchCarsByEmail(email: user.email) { [weak self] snapshot, error in
                 if let error = error {
@@ -52,6 +60,7 @@ final class UserDetailsViewController: UIViewController {
                 }
             }
         }
+        
     }
     
 }

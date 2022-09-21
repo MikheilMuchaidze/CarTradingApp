@@ -18,6 +18,7 @@ enum AuthValidationAndAlert {
         static let registerFailed = "Registration failed"
         static let registerFailedInDatabase = "Registration failed"
         static let successfulRegistration = "Congratulations"
+        static let successfulLogin = "Congratulations, you logged in!"
         static let imageUrlError = "Url Error"
         static let noImage = "No Image"
         static let loggedOutFail = "Fail to log out"
