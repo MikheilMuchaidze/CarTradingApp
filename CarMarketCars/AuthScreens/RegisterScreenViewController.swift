@@ -33,6 +33,7 @@ final class RegisterScreenViewController: UIViewController, LoadableView {
         userPasswordTxt.enablePasswordToggle()
         userRepeatPassTxt.enablePasswordToggle()
         self.dismissKeyboard()
+        keyboardUIMovingLogic()
     }
     
     private func setupLoader() {

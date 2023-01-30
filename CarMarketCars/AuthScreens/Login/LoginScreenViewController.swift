@@ -53,6 +53,7 @@ final class LoginScreenViewController: UIViewController, LoadableView {
         userPasswordTxt.enablePasswordToggle()
         loader(isLoading: false)
         self.dismissKeyboard()
+        keyboardUIMovingLogic()
     }
     
     private func setupLoader() {

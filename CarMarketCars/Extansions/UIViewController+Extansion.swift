@@ -147,6 +147,22 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func keyboardUIMovingLogic() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
     //MARK: - Alert massege funcion
     
     //general popup message without AlerModel struct
