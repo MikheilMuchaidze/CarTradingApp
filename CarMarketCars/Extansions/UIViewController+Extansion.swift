@@ -161,7 +161,6 @@ extension UIViewController {
     //function for touching outside of the UITextField and then keyboard will hide
     func dismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action:    #selector(UIViewController.dismissKeyboardTouchOutside))
-        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
