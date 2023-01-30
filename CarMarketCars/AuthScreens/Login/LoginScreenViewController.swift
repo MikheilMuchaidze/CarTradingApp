@@ -54,6 +54,7 @@ final class LoginScreenViewController: UIViewController, LoadableView {
         loader(isLoading: false)
         self.dismissKeyboard()
         keyboardUIMovingLogic()
+        addSwipeGestures()
     }
     
     private func setupLoader() {

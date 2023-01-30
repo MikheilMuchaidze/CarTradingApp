@@ -107,6 +107,28 @@ extension UIViewController {
         })
     }
     
+    //MARK: - Swiping left and right for moving between tab bars on login and registration screens
+    
+    func addSwipeGestures() {
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender: )))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
+
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(sender: )))
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            self.tabBarController!.selectedIndex += 1
+        }
+        if sender.direction == .right {
+            self.tabBarController!.selectedIndex -= 1
+        }
+    }
+
+    
     //MARK: - Tap fucntionality for sign out and profile pics
     
     //funcion for add back option to image
